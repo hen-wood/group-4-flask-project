@@ -1,18 +1,16 @@
 from .db import db, environment, SCHEMA
-import uuid
-from sqlalchemy.sql import func
 import datetime
 
-class Server(db.Model):
-    __tablename__ = 'servers_table'
+class Channel(db.Model):
+    __tablename__ = 'channels_table'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(40), nullable=False)
-    mod_id = db.Column(db.Integer, nullable=False)
-    code = db.Column(db.String(5), default=str(uuid.uuid4()), unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    server_id = db.Column(db.Integer, nullable=False)
+    description = db.Column(db.String(100), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
@@ -20,6 +18,6 @@ class Server(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'code': self.code,
-            'mod_id': self.mod_id
+            'server_id': self.server_id,
+            'description': self.description
         }
