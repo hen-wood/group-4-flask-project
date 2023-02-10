@@ -5,7 +5,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-
+import PeopleImageLeft from "./components/Svgs/peopleatabar";
+import SplashPage from "./components/SplashPage";
+import LoginForm from "./components/LoginForm"
+import RegisterForm from "./components/RegisterForm";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -15,14 +18,16 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
+          <Route exact path='/'>
+            <SplashPage />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
+          <Route path="/login" >
+            <LoginForm />
+          </Route>
+          <Route path="/register">
+            <RegisterForm />
           </Route>
         </Switch>
       )}

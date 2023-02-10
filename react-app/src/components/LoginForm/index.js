@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import './LoginForm.css';
+// import './LoginForm.css';
 
-function LoginFormPage() {
+export default function LoginForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -50,10 +50,8 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
-         Need an account <Link>Register</Link>
+         Need an account <Link to='/register'>Register</Link>
       </form>
     </>
   );
-}
-
-export default LoginFormPage;
+          }
