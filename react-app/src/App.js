@@ -5,6 +5,7 @@ import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
+import DirectChannels from "./components/DirectChannels";
 function App() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -24,6 +25,9 @@ function App() {
 					</Route>
 					<Route path="/register">
 						<RegisterForm />
+					</Route>
+					<Route path="/direct-channels">
+						<DirectChannels />
 					</Route>
 				</Switch>
 			)}
