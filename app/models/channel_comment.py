@@ -9,7 +9,8 @@ class ChannelComment(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text(2000), nullable=False)
+    #postgreSQL does not take a length argument
+    content = db.Column(db.Text, nullable=False)
     #has to be a foreignkey in order to connect to the channel table in a many comments to one channel relationship
     channel_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("channels_table.id")), nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
