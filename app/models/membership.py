@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 import datetime
 
 class Membership(db.Model):
@@ -9,13 +9,13 @@ class Membership(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    server_id = db.Column(db.Integer, db.ForeignKey('servers_table.id') ,nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id') , nullable=False)
+    server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('servers_table.id'), ondelete="cascade"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'),ondelete="cascade"))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
-    server_members = db.relationship('Server', foreign_keys=[server_id])
-    user_memberships = db.relationship('User', foreign_keys=[user_id])
+    user = db.relationship('User', back_populates="user_memberships")
+    server = db.relationship('Server', back_populates="server_members")
 
     def to_dict(self):
         return {

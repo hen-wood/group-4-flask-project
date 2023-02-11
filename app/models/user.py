@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     user_servers = db.relationship("Server", back_populates="server_mod")
-    user_memberships =db.relationship('Membership', back_populates="user_memberships")
+    user_memberships =db.relationship('Membership', back_populates="user")
 
 
     @property
@@ -34,5 +34,5 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'memberships': [membership.to_dict() for membership in self.user_memberships]
+            'memberships': [membership.server.to_dict() for membership in self.user_memberships]
         }
