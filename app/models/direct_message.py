@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 import datetime
 
 class DirectMessage(db.Model):
@@ -9,7 +9,7 @@ class DirectMessage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     #has to be a foreignkey in order to connect to the direct channel table in a many comments to one channel relationship
-    direct_channel_id = db.Column(db.Integer,db.ForeignKey("direct_channels_table.id"), nullable=False)
+    direct_channel_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("direct_channels_table.id")), nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
     content = db.Column(db.Text(2000), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
