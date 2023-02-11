@@ -17,8 +17,16 @@ class Server(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
+
+
+#added to join channels relationship and if server is deleted then the channel will be deleted,
+# db.relationship is called here in order to define this table as the "Parent" of the channels
+# table. So if this table is deleted then all channels in the server are deleted --chase
+    server_channels = db.relationship("Channel",  cascade="all")
+
+
     server_mod = db.relationship('User', back_populates='user_servers')
-    server_members = db.relationship('Membership', back_populates='server')
+    server_members = db.relationship('Membership', back_populates='server',  passive_deletes=True)
 
     def user_data(self):
         return{

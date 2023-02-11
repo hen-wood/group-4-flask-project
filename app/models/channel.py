@@ -9,10 +9,19 @@ class Channel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    server_id = db.Column(db.Integer, nullable=False)
+    #has to be a foreignkey in order to connect to the server table in a many channels to one server relationship
+    server_id = db.Column(db.Integer,db.ForeignKey("servers_table.id"))
     description = db.Column(db.String(100), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+
+
+#added to join channel_comments_table relationship and if channel is deleted then the channel comment will be deleted,
+# db.relationship is called here in order to define this table as the "Parent" of the ChannelComment
+# table. So if this table is deleted then all channels comments are deleted --chase
+    channel_comments = db.relationship("ChannelComment",  cascade="all")
+
+
 
     def to_dict(self):
         return {

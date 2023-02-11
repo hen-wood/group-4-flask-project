@@ -9,6 +9,9 @@ class Membership(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
+    #removed ondelete casecade here since it is not required. handleing cascades in servers route
+        #  EDITED CODE  server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('servers_table.id'), ondelete="cascade"))
+        #  EDITED CODE user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'),ondelete="cascade"))
     server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('servers_table.id'), ondelete="cascade"))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'),ondelete="cascade"))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)

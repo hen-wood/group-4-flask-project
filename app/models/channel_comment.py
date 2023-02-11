@@ -9,7 +9,8 @@ class ChannelComment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text(2000), nullable=False)
-    channel_id = db.Column(db.Integer, nullable=False)
+    #has to be a foreignkey in order to connect to the channel table in a many comments to one channel relationship
+    channel_id = db.Column(db.Integer,db.ForeignKey("channels_table.id"), nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
