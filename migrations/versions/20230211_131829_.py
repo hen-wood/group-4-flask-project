@@ -8,6 +8,9 @@ Create Date: 2023-02-11 13:18:29.882304
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = 'a513676c43f9'
@@ -35,6 +38,9 @@ def upgrade():
         batch_op.create_foreign_key(None, 'users', ['mod_id'], ['id'])
 
     # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE channels_table SET SCHEMA {SCHEMA};")
+
 
 
 def downgrade():
