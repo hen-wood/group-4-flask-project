@@ -11,7 +11,7 @@ class DirectMessage(db.Model):
     #has to be a foreignkey in order to connect to the direct channel table in a many comments to one channel relationship
     direct_channel_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("direct_channels_table.id")), nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
-    content = db.Column(db.Text(2000), nullable=False)
+    content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
