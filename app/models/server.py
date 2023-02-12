@@ -42,5 +42,5 @@ class Server(db.Model):
             'code': self.code,
             'mod_id': self.mod_id,
             'server_mod': self.server_mod.to_dict(),
-            'server_members': [member.user.to_dict() for member in self.server_members]
+            # 'server_members': [member.user.to_dict() for member in self.server_members]
         }

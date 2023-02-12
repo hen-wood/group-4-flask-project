@@ -12,7 +12,7 @@ export default function LoginForm() {
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	if (sessionUser) return <Redirect to="/direct-channels" />;
+	if (sessionUser) return <Redirect to="/channels/@me" />;
 
 	const handleSubmit = async e => {
 		e.preventDefault();

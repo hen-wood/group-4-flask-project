@@ -18,7 +18,9 @@
     background-color: white;
     border-radius: 20px;
     padding: 10px;
+    z-index: 1;
 }
+
 #splash-center{
     position: absolute;
     bottom: 30vh;
