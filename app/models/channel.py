@@ -9,7 +9,6 @@ class Channel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    #has to be a foreignkey in order to connect to the server table in a many channels to one server relationship
     server_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("servers_table.id")))
     description = db.Column(db.String(100), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
