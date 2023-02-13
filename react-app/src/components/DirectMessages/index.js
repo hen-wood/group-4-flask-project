@@ -1,28 +1,59 @@
-import { thunkGetDirectMessages } from "../../store/directMessages";
+import {
+	thunkGetDirectMessages,
+	actionClearMessages
+} from "../../store/directMessages";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { io } from "socket.io-client";
+let socket;
 export default function DirectMessages() {
 	const { directChannelId } = useParams();
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [newMessages, setNewMessages] = useState([]);
 
 	useEffect(() => {
-		console.log(directChannelId);
 		dispatch(thunkGetDirectMessages(directChannelId)).then(() => {
 			setIsLoaded(true);
 		});
-	}, [dispatch]);
+		return () => {
+			dispatch(actionClearMessages());
+			setNewMessages([]);
+		};
+	}, [dispatch, directChannelId]);
 
-	const messages = useSelector(
+	useEffect(() => {
+		socket = io();
+
+		socket.on(`${directChannelId} message`, msg => {
+			setNewMessages(messages => [...messages, msg]);
+		});
+		// when component unmounts, disconnect
+		return () => {
+			socket.disconnect();
+		};
+	}, [directChannelId]);
+
+	const currMessages = useSelector(
 		state => state.directMessages.directChannelMessages
 	);
 
 	return isLoaded ? (
 		<div>
-			{Object.keys(messages).map(key => {
-				const message = messages[key];
-				return <p key={key}>{message.content}</p>;
+			{Object.keys(currMessages).map(key => {
+				const message = currMessages[key];
+				return (
+					<div>
+						<p>{message.created_at}</p>
+						<p key={key}>{message.username + ": " + message.content}</p>
+					</div>
+				);
+			})}
+			{newMessages.map(message => {
+				return (
+					<p key={message.id}>{message.username + ": " + message.content}</p>
+				);
 			})}
 		</div>
 	) : (
