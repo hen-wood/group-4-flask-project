@@ -3,13 +3,13 @@ from app.models import db, DirectChannel, environment, SCHEMA
 
 def seed_direct_channels():
     demo_direct1 = DirectChannel(
-        user_one = 1,
-        user_two = 2
+        user_one_id = 1,
+        user_two_id = 2
     )
 
     demo_direct2 = DirectChannel(
-        user_one = 2,
-        user_two = 3
+        user_one_id = 2,
+        user_two_id = 3
     )
 
     db.session.add(demo_direct1)

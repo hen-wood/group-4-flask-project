@@ -13,7 +13,7 @@ export default function RegisterForm() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	if (sessionUser) return <Redirect to="/direct-channels" />;
+	if (sessionUser) return <Redirect to="/channels/@me" />;
 
 	const handleSubmit = async e => {
 		e.preventDefault();

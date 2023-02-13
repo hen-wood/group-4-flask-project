@@ -12,13 +12,16 @@
 
 #discordance-logo{
     height: 40px;
+    width: 40px;
 }
 
 #login-button{
     background-color: white;
     border-radius: 20px;
     padding: 10px;
+    z-index: 1;
 }
+
 #splash-center{
     position: absolute;
     bottom: 30vh;
