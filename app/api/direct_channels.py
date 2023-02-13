@@ -13,7 +13,7 @@ def get_all_user_direct_channels():
     userId = current_user.id
     channels = DirectChannel.query.filter(or_(DirectChannel.user_one_id == userId, DirectChannel.user_two_id == userId)).all()
     res = [channel.to_dict() for channel in channels]
-    return jsonify(res)
+    return jsonify(res), 200
 
 @direct_channels.route('/<int:directChannelId>')
 def get_all_direct_channel_messages(directChannelId):

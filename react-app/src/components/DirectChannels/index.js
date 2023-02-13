@@ -28,9 +28,11 @@ export default function DirectChannels() {
 						: channel.user_one.username;
 				console.log(title);
 				return (
-					<NavLink key={key} to={`/channels/@me/${channel.id}`}>
-						{title}
-					</NavLink>
+					<div>
+						<NavLink key={key} to={`/channels/@me/${channel.id}`}>
+							{title}
+						</NavLink>
+					</div>
 				);
 			})}
 		</div>
