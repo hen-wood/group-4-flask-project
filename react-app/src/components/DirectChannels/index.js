@@ -20,6 +20,7 @@ export default function DirectChannels() {
 	const currUserId = useSelector(state => state.session.user.id);
 	return isLoaded ? (
 		<div>
+			<p id="direct-message-title">Direct Messages</p>
 			{Object.keys(directChannels).map(key => {
 				const channel = directChannels[key];
 				const title =
