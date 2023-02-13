@@ -2,6 +2,7 @@ import DirectChannels from "../DirectChannels";
 import { Switch, Route } from "react-router";
 import "./HomePage.css";
 import DiscordanceLogo from "../Svgs/DiscordanceLogo";
+import DirectMessages from "../DirectMessages";
 export default function HomePage() {
 	return (
 		<div id="main-container">
@@ -40,7 +41,7 @@ export default function HomePage() {
 							</p>
 						</Route>
 						<Route path="/channels/@me/:directChannelId">
-							<h1>This would be the direct channel comments component</h1>
+							<DirectMessages />
 						</Route>
 					</Switch>
 				</div>

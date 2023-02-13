@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import directChannels from "./directChannels";
+import directMessages from "./directMessages";
 
 const rootReducer = combineReducers({
 	session,
-	directChannels
+	directChannels,
+	directMessages
 });
 
 let enhancer;

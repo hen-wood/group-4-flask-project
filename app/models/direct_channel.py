@@ -19,7 +19,7 @@ class DirectChannel(db.Model):
 #added to join direct_channel_comments_table relationship and if channel is deleted then the channel comment will be deleted,
 # db.relationship is called here in order to define this table as the "Parent" of the DirectMessage
 # table. So if this table is deleted then all direct channel comments are deleted --chase
-    direct_channel_comments = db.relationship("DirectMessage",  cascade="all")
+    direct_channel_messages = db.relationship("DirectMessage",  cascade="all")
 
     def to_dict(self):
         return {
@@ -31,5 +31,6 @@ class DirectChannel(db.Model):
             'user_two': {
                 'id': self.user_one.id,
                 'username': self.user_two.username
-                }
+                },
+            'messages': [message.to_dict() for message in self.direct_channel_messages]
         }
