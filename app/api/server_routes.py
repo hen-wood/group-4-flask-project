@@ -11,8 +11,7 @@ server_routes = Blueprint('servers', __name__)
 @server_routes.route('/')
 # @login_required
 def get_current_user_servers():
-    # userId = current_user.id
-    userId = 1
+    userId = current_user.id
     memberships = Membership.query.filter(Membership.user_id == userId).all()
     servers = [Server.query.get(membership.server_id) for membership in memberships]
 
