@@ -8,18 +8,17 @@ channel_routes = Blueprint('channels', __name__)
 
 @channel_routes.route('/<int:serverId>')
 # @login_required
-def get_channels(server_id):
+def get_channels(serverId):
     """
     Query for all channels and return
     """
-    channels = Channel.query.filter(Channel.server_id==server_id).all()
+    channels = Channel.query.filter(Channel.server_id==serverId).all()
     return {'channels': [channel.to_dict() for channel in channels]}
-
 
 
 @channel_routes.route('/<int:serverId>', methods=['POST'])
 # @login_required
-def add_channel():
+def add_channel(serverId):
     """
     Add channel and return
     """
@@ -27,32 +26,33 @@ def add_channel():
 
     channel = Channel(
             name=request_data['name'],
-            server_id=request_data['server_id'],
+            server_id=serverId,
             description=request_data['description']
         )
     db.session.add(channel)
     db.session.commit()
     return channel.to_dict()
 
-@channel_routes.route('/<int:id>', methods=['PUT'])
-def edit_channel(id):
+
+@channel_routes.route('/<int:serverId>/<int:channelId>', methods=['PUT'])
+def edit_channel(serverId, channelId):
     """
     Edit channel desciption and return
     """
-    channel = Channel.query.get(id)
+    channel = Channel.query.get(channelId)
     description = request.json['description']
     channel.description = description
     db.session.commit()
     return channel.to_dict()
 
 
-@channel_routes.route('/<int:id>', methods=['DELETE'])
-@login_required
-def delete_channel(id):
+@channel_routes.route('/<int:serverId>/<int:channelId>', methods=['DELETE'])
+# @login_required
+def delete_channel(serverId, channelId):
     """
     Delete channel
     """
-    channel = Channel.query.get(id)
+    channel = Channel.query.get(channelId)
     db.session.delete(channel)
     db.session.commit()
-    return "Channel was successfully deleted"
+    return f"channel id:{channelId} was successfully deleted"
