@@ -1,6 +1,6 @@
 // constants
 const SET_DIRECT_MESSAGES = "directMessages/SET_DIRECT_MESSAGES";
-
+const CLEAR_DIRECT_MESSAGES = "directMessages/CLEAR_DIRECT_MESSAGES";
 // Action Creators
 const actionSetDirectMessages = userDirectChannels => {
 	const messagesObj = {};
@@ -8,6 +8,12 @@ const actionSetDirectMessages = userDirectChannels => {
 	return {
 		type: SET_DIRECT_MESSAGES,
 		payload: messagesObj
+	};
+};
+
+export const actionClearMessages = () => {
+	return {
+		type: CLEAR_DIRECT_MESSAGES
 	};
 };
 
@@ -29,6 +35,8 @@ export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_DIRECT_MESSAGES:
 			return { directChannelMessages: action.payload };
+		case CLEAR_DIRECT_MESSAGES:
+			return initialState;
 		default:
 			return state;
 	}

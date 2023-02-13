@@ -6,18 +6,18 @@ from app.models import db, ChannelComment, Channel
 channel_routes = Blueprint('channels', __name__)
 
 
-@channel_routes.route('/')
+@channel_routes.route('/<int:serverId>')
 # @login_required
-def get_channels():
+def get_channels(server_id):
     """
     Query for all channels and return
     """
-    channels = Channel.query.all()
+    channels = Channel.query.filter(Channel.server_id==server_id).all()
     return {'channels': [channel.to_dict() for channel in channels]}
 
 
 
-@channel_routes.route('/', methods=['POST'])
+@channel_routes.route('/<int:serverId>', methods=['POST'])
 # @login_required
 def add_channel():
     """

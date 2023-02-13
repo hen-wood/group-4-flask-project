@@ -3,11 +3,25 @@ from app.models import db, DirectMessage, environment, SCHEMA
 
 def seed_direct_messages():
     demo_direct_message1 = DirectMessage(
-        content='direct message 1', direct_channel_id=1, user_id=1 )
+        # From Demo to Marnie
+        content='Hello Marnie', direct_channel_id=1, user_id=1 )
     demo_direct_message2 = DirectMessage(
-        content='direct message 2', direct_channel_id=2, user_id=3 )
+        # From Marnie to Demo
+        content='Hello Demo', direct_channel_id=1, user_id=2 )
+    demo_direct_message3 = DirectMessage(
+        # From Demo to Marnie
+        content='This is a conversation', direct_channel_id=1, user_id=1 )
+    demo_direct_message4 = DirectMessage(
+        # From Demo to Bobbie
+        content='Hello Bobbie', direct_channel_id=2, user_id=1 )
+    demo_direct_message5 = DirectMessage(
+        # From Demo to Bobbie
+        content='Hello Demo', direct_channel_id=2, user_id=3 )
     db.session.add(demo_direct_message1)
     db.session.add(demo_direct_message2)
+    db.session.add(demo_direct_message3)
+    db.session.add(demo_direct_message4)
+    db.session.add(demo_direct_message5)
     db.session.commit()
 
 

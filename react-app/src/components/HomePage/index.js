@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router";
 import "./HomePage.css";
 import DiscordanceLogo from "../Svgs/DiscordanceLogo";
 import DirectMessages from "../DirectMessages";
+import DirectMessageForm from "../DirectMessages/DirectMessageForm";
 export default function HomePage() {
 	return (
 		<div id="main-container">
@@ -46,15 +47,11 @@ export default function HomePage() {
 					</Switch>
 				</div>
 				<div id="center-message-form">
-					<h3>
-						Just A Placeholder for the send direct message/server comment form ,
-						nothing to see here
-					</h3>
-					<form>
-						{/* PLACEHOLDER FORM, WILL BE COMPONENT */}
-						<input type="text" placeholder="send new message"></input>
-						<button>Submit</button>
-					</form>
+					<Switch>
+						<Route path="/channels/@me/:directChannelId">
+							<DirectMessageForm />
+						</Route>
+					</Switch>
 				</div>
 			</div>
 			<div id="right-container">
