@@ -1,13 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600&family=Titan+One&display=swap');
+
 #splash-container{
     background-color: #414eed;
     height: 70vh;
+    display: flex;
+    justify-content: center;
 }
 
 #splash-top-bar{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 0;
+    width: 1180px;
+    height: fit-content;
+}
+
+#logo-title-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    width: 260px;
 }
 
 #discordance-logo{
@@ -15,26 +29,39 @@
     width: 40px;
 }
 
+#splash-title{
+    margin: 0;
+    font-family: 'Titan One', cursive;
+    color: white;
+}
+
 #login-button{
     background-color: white;
     border-radius: 20px;
+    border: none;
     padding: 10px;
     z-index: 1;
+}
+#login-button:hover{
+    cursor: pointer;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.178);
 }
 
 #splash-center{
     position: absolute;
+    width: 100vw;
     bottom: 30vh;
 }
 
 #splash-left{
     position: absolute;
-    right: -100px;
+    right: -150px;
     bottom: 30vh;
 }
 
 #splash-right{
     position: absolute;
-    left: -100px;
+    border: 1px solid red;
+    left: -250px;
     bottom: 30vh;
 }

@@ -13,15 +13,18 @@ export default function SplashPage() {
 	const sessionUser = useSelector(state => state.session.user);
 	return (
 		<div id="splash-container">
-			<SplashCenter />
-			<SplashLeft />
-			<SplashRight />
 			<div id="splash-top-bar">
-				<DiscordanceLogo />
+				<div id="logo-title-container">
+					<DiscordanceLogo />
+					<h1 id="splash-title">Discordance</h1>
+				</div>
 				<button id="login-button" onClick={handleClick}>
 					{sessionUser ? "Open Discordance" : "Login"}
 				</button>
 			</div>
+			<SplashCenter />
+			<SplashLeft />
+			<SplashRight />
 		</div>
 	);
 }
