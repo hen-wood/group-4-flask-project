@@ -7,8 +7,9 @@ import os
 
 if os.environ.get("FLASK_ENV") == "production":
     origins = [
-        "http://actual-app-url.herokuapp.com",
-        "https://actual-app-url.herokuapp.com"
+        "https://group-4-discord.onrender.com/",
+        "https://discord-clone-maks.onrender.com/",
+        "https://discordance.onrender.com/"
     ]
 else:
     origins = "*"
