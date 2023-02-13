@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.test_route import test_route
 from .api.comments_routes import comments_routes
+from .api.channel_routes import channel_routes
 from .api.direct_channels import direct_channels
 from .api.sockets import socketio
 from .api.server_routes import server_routes
@@ -35,6 +36,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(test_route, url_prefix='/api/test')
 app.register_blueprint(comments_routes, url_prefix='/api/comments')
+app.register_blueprint(channel_routes, url_prefix='/api/channels')
 app.register_blueprint(direct_channels, url_prefix='/api/directchannels')
 app.register_blueprint(server_routes, url_prefix='/api/servers')
 db.init_app(app)
