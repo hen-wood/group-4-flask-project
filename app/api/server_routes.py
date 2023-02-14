@@ -31,8 +31,11 @@ def get_current_channel(serverId):
     '''
 
     server = Server.query.get(serverId)
+    channels = Channel.query.filter(Channel.server_id==serverId).all()
 
-    return server.to_dict()
+    res = {**server.to_dict(), 'Channels': [channel.to_dict() for channel in channels]}
+
+    return jsonify(res)
 
 
 @server_routes.route('/', methods=['POST'])
