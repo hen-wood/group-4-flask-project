@@ -12,7 +12,7 @@ server_routes = Blueprint('servers', __name__)
 # @login_required
 def get_current_user_servers():
     '''
-    Returns all servers that current user is a member of 
+    Returns all servers that current user is a member of
     '''
     userId = current_user.id
     memberships = Membership.query.filter(Membership.user_id == userId).all()
@@ -51,7 +51,18 @@ def add_server():
     )
     db.session.add(server)
     db.session.commit()
-
+    membership = Membership(
+        server_id = server.id,
+        user_id = current_user.id
+    )
+    general_channel = Channel(
+        name = 'General Chat',
+        server_id = server.id
+    )
+    db.session.add(membership)
+    db.session.add(general_channel)
+    db.session.commit()
+    db.session.commit()
     return server.to_dict()
 
 
@@ -78,4 +89,4 @@ def delete_server(serverId):
     server = Server.query.get(serverId)
     db.session.delete(server)
     db.session.commit()
-    return 'Server successfully deleted'
+    return jsonify({"message": "Successfully deleted"})

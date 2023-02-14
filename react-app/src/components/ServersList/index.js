@@ -11,26 +11,23 @@ export default function ServersList() {
     })
 
     if(serversObj){
-        console.log('in it')
       servers = Object.values(serversObj);
     }
 
 
-    console.log(servers, 'here')
     useEffect(() => {
         dispatch(thunkGetUserServers())
-        console.log(servers, serversObj, 'innnnn')
+
     }, [dispatch, servers.length])
 
     // const directChannels = useSelector(state => state.directChannels.userDirectChannels);
-    console.log(servers, serversObj, 'innnnn')
     const currUserId = useSelector(state => state.session.user.id);
     if (!servers) {
 
         return <div>no servers</div>
     }
 
-    return servers ? (
+    return servers && (
         <div>
 
             {servers.map((server) => (
@@ -42,7 +39,5 @@ export default function ServersList() {
                     ) : (<div>nothin</div>)
                 ))}
         </div>
-    ) : (
-        <div>nothing </div>
     )
 }
