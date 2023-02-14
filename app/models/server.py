@@ -13,7 +13,7 @@ class Server(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
     mod_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    code = db.Column(db.String(5), default=str(uuid.uuid4())[0:5], unique=True, nullable=False)
+    code = db.Column(db.String,  default=lambda: str(uuid.uuid4())[0:5], unique=True)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 

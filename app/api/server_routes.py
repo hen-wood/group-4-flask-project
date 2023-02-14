@@ -12,7 +12,7 @@ server_routes = Blueprint('servers', __name__)
 # @login_required
 def get_current_user_servers():
     '''
-    Returns all servers that current user is a member of 
+    Returns all servers that current user is a member of
     '''
     userId = current_user.id
     memberships = Membership.query.filter(Membership.user_id == userId).all()
@@ -80,4 +80,4 @@ def delete_server(serverId):
     server = Server.query.get(serverId)
     db.session.delete(server)
     db.session.commit()
-    return 'Server successfully deleted'
+    return jsonify({"message": "Successfully deleted"})
