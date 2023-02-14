@@ -61,7 +61,6 @@
 
 #splash-right{
     position: absolute;
-    border: 1px solid red;
     left: -250px;
     bottom: 30vh;
 }

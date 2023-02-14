@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { io } from "socket.io-client";
+import DirectMessageForm from "../DirectMessages/DirectMessageForm";
+
 let socket;
 export default function DirectMessages() {
 	const { directChannelId } = useParams();
@@ -28,6 +30,8 @@ export default function DirectMessages() {
 
 		socket.on(`${directChannelId} message`, msg => {
 			setNewMessages(messages => [...messages, msg]);
+			const messages = document.querySelector("#center-messages");
+			messages.scrollTop = messages.scrollHeight;
 		});
 		// when component unmounts, disconnect
 		return () => {
@@ -39,22 +43,66 @@ export default function DirectMessages() {
 		state => state.directMessages.directChannelMessages
 	);
 
+	const currChannel = useSelector(
+		state => state.directChannels.userDirectChannels[directChannelId]
+	);
+
+	const currUser = useSelector(state => state.session.user);
+
+	const otherUsername =
+		currChannel.user_one.id === currUser.id
+			? currChannel.user_two.username
+			: currChannel.user_one.username;
+
 	return isLoaded ? (
-		<div>
-			{Object.keys(currMessages).map(key => {
-				const message = currMessages[key];
-				return (
-					<div>
-						<p>{message.created_at}</p>
-						<p key={key}>{message.username + ": " + message.content}</p>
-					</div>
-				);
-			})}
-			{newMessages.map(message => {
-				return (
-					<p key={message.id}>{message.username + ": " + message.content}</p>
-				);
-			})}
+		<div id="center-container">
+			<div id="center-top">
+				<p>@{otherUsername}</p>
+			</div>
+			<div id="center-messages">
+				{Object.keys(currMessages).map(key => {
+					const message = currMessages[key];
+					return (
+						<div key={key} className="message-card">
+							<div className="message-card-top">
+								<p className="message-card-username">{message.username}</p>
+								<p className="message-card-date">
+									{new Date(message.created_at).toLocaleString("en-US", {
+										year: "numeric",
+										month: "2-digit",
+										day: "2-digit",
+										hour: "2-digit",
+										minute: "2-digit",
+										hour12: true
+									})}
+								</p>
+							</div>
+							<p>{message.content}</p>
+						</div>
+					);
+				})}
+				{newMessages.map(message => {
+					return (
+						<div key={message.id} className="message-card">
+							<div className="message-card-top">
+								<p className="message-card-username">{message.username}</p>
+								<p className="message-card-date">
+									{new Date(Date.now()).toLocaleString("en-US", {
+										year: "numeric",
+										month: "2-digit",
+										day: "2-digit",
+										hour: "2-digit",
+										minute: "2-digit",
+										hour12: true
+									})}
+								</p>
+							</div>
+							<p>{message.content}</p>
+						</div>
+					);
+				})}
+			</div>
+			<DirectMessageForm otherUserName={otherUsername} />
 		</div>
 	) : (
 		<h3>Loading Messages...</h3>
