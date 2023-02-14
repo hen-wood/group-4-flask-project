@@ -15,24 +15,20 @@ export default function HomePage() {
 						<DiscordanceLogo />
 					</div>
 					<div id="left-nav-center"></div>
-
-								<ServersList />
-
+					<ServersList />
 					<div id="left-nav-bottom"></div>
 				</div>
 				<div id="left-menu">
 					<div id="left-menu-top">
 						<Switch>
-
 							<Route path="/channels/:serverId">
-							<ServerName />
+								<ServerName />
 							</Route>
-
 						</Switch>
 					</div>
 					<div id="left-menu-center">
 						<Switch>
-							<Route exact path="/channels/@me">
+							<Route path="/channels/@me">
 								<DirectChannels />
 							</Route>
 							<Route path="/channels/:serverId">
