@@ -18,24 +18,22 @@ def get_current_user_servers():
     memberships = Membership.query.filter(Membership.user_id == userId).all()
     servers = [Server.query.get(membership.server_id) for membership in memberships]
 
-    res = [server.to_dict() for server in servers]
+    res = [server.to_dict_all_servers() for server in servers]
 
     return jsonify(res)
 
 
 @server_routes.route('/<int:serverId>')
 #@login_required
-def get_current_channel(serverId):
+def get_single_server(serverId):
     '''
-    Returns selected Channel
+    Returns selected Server with Channel and Member data
     '''
 
     server = Server.query.get(serverId)
-    channels = Channel.query.filter(Channel.server_id==serverId).all()
+    
 
-    res = {**server.to_dict(), 'Channels': [channel.to_dict() for channel in channels]}
-
-    return jsonify(res)
+    return server.to_dict_single_server()
 
 
 @server_routes.route('/', methods=['POST'])
