@@ -46,7 +46,7 @@ def add_server():
 
     server = Server(
         name = req_data['name'],
-        mod_id = current_user
+        mod_id = current_user.id
     )
     db.session.add(server)
     db.session.commit()
