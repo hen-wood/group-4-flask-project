@@ -53,7 +53,18 @@ def add_server():
     )
     db.session.add(server)
     db.session.commit()
-
+    membership = Membership(
+        server_id = server.id,
+        user_id = current_user.id
+    )
+    general_channel = Channel(
+        name = 'General Chat',
+        server_id = server.id
+    )
+    db.session.add(membership)
+    db.session.add(general_channel)
+    db.session.commit()
+    db.session.commit()
     return server.to_dict()
 
 
