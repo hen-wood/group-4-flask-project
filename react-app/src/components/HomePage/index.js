@@ -3,6 +3,9 @@ import { Switch, Route } from "react-router";
 import "./HomePage.css";
 import DiscordanceLogo from "../Svgs/DiscordanceLogo";
 import DirectMessages from "../DirectMessages";
+import ServersList from "../ServersList";
+import ServerChannels from "../ServerChannels";
+import ServerName from "../ServerName";
 export default function HomePage() {
 	return (
 		<div id="main-container">
@@ -12,14 +15,28 @@ export default function HomePage() {
 						<DiscordanceLogo />
 					</div>
 					<div id="left-nav-center"></div>
+
+								<ServersList />
+
 					<div id="left-nav-bottom"></div>
 				</div>
 				<div id="left-menu">
-					<div id="left-menu-top"></div>
+					<div id="left-menu-top">
+						<Switch>
+
+							<Route path="/channels/:serverId">
+							<ServerName />
+							</Route>
+
+						</Switch>
+					</div>
 					<div id="left-menu-center">
 						<Switch>
-							<Route path="/channels/@me">
+							<Route exact path="/channels/@me">
 								<DirectChannels />
+							</Route>
+							<Route path="/channels/:serverId">
+								<ServerChannels />
 							</Route>
 						</Switch>
 					</div>

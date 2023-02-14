@@ -6,11 +6,11 @@ def seed_memberships():
         server_id = 1,
         user_id = 1
     )
-
     demo_membership2 = Membership(
-        server_id = 1,
-        user_id = 3
+        server_id = 2,
+        user_id = 1
     )
+
 
     db.session.add(demo_membership1)
     db.session.add(demo_membership2)

@@ -3,11 +3,17 @@ import thunk from "redux-thunk";
 import session from "./session";
 import directChannels from "./directChannels";
 import directMessages from "./directMessages";
+import server from "./server";
+import servers from "./servers";
+import channels from "./serverChannels";
 
 const rootReducer = combineReducers({
 	session,
 	directChannels,
-	directMessages
+	directMessages,
+	server,
+	servers,
+	channels
 });
 
 let enhancer;

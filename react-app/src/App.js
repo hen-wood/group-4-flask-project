@@ -27,7 +27,7 @@ function App() {
 					<Route path="/register">
 						<RegisterForm />
 					</Route>
-					<Route path="/channels/@me">
+					<Route path="/channels">
 						<HomePage />
 					</Route>
 				</Switch>
