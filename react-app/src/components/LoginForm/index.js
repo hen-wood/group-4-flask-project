@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-// import './LoginForm.css';
+import './LoginForm.css';
 
 export default function LoginForm() {
 	const dispatch = useDispatch();
@@ -24,34 +24,47 @@ export default function LoginForm() {
 
 	return (
 		<>
-			<h1>Log In</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={e => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={e => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Log In</button>
-				Need an account <Link to="/register">Register</Link>
-			</form>
+			{/* <img src="https://i.imgur.com/nBUx5Al.png" className="temp-img-class" /> */}
+
+			<div className="login-form-div">
+				<div className="login-form-info">
+
+					<h1>Log In</h1>
+					<form
+						className="login-form-actual"
+						onSubmit={handleSubmit}
+					>
+						<ul>
+							{errors.map((error, idx) => (
+								<li key={idx}>{error}</li>
+							))}
+						</ul>
+						<label>
+							Email
+						</label>
+						<input
+							type="text"
+							value={email}
+							onChange={e => setEmail(e.target.value)}
+							required
+						/>
+						<label>
+							Password
+						</label>
+						<input
+							type="password"
+							value={password}
+							onChange={e => setPassword(e.target.value)}
+							required
+						/>
+						<button type="submit">Log In</button>
+						Need an account? <Link to="/register">Register</Link>
+					</form>
+				</div>
+				<div className="potential-qr-code">
+					SQUARE
+				</div>
+			</div>
 		</>
 	);
 }

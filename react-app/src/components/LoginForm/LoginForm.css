@@ -1,0 +1,30 @@
+body {
+    background-color: #5865F2;
+    color: white;
+}
+
+.login-form-div {
+    position: absolute;
+    margin: 450px 0px 0px;
+    /* margin-left: 30%; */
+    width: 784px;
+    height: 408px;
+    background-color: #36393F;
+    border-radius: 5px;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login-form-actual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .temp-img-class {
+    position: absolute;
+    max-height: 1440px;
+    max-width: 2560px;
+} */
