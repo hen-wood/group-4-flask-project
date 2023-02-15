@@ -29,7 +29,7 @@
     border-bottom: 1px solid rgb(66, 66, 66);
 }
 
-#left-nav-top{
+#left-nav-top {
     display: flex;
     justify-content: center;
     padding: 10px 0;
@@ -57,16 +57,17 @@
 #left-menu-center {
     display: flex;
     flex-direction: column;
-    margin: 5px;;
+    margin: 5px;
+    ;
 }
 
-#direct-message-title{
+#direct-message-title {
     padding: 10px;
     color: #d9dce4;
     font-weight: bolder;
 }
 
-#left-menu-center a{
+#left-menu-center a {
     color: #96989d;
     display: flex;
     padding: 10px;
@@ -75,12 +76,12 @@
     font-weight: bolder;
 }
 
-#left-menu-center a.active{
+#left-menu-center a.active {
     background-color: #35393f;
-    color:#d9dce4;
+    color: #d9dce4;
 }
 
-#left-menu-center a:hover{
+#left-menu-center a:hover {
     background-color: #35393f;
 }
 
@@ -93,7 +94,7 @@
     flex-direction: column;
 }
 
-#center-top{
+#center-top {
     min-height: 50px;
     border-bottom: 1px solid #202225;
     display: flex;
@@ -101,40 +102,75 @@
     padding: 0 10px;
 }
 
-#center-top p{
+#center-top p {
     margin: 0;
     color: white;
     font-weight: bolder;
 }
 
-#center-messages{
+#center-messages {
     height: 100%;
     overflow-y: scroll;
-    padding: 0 20px;
 }
 
-.message-card{
+.message-card {
+    position: relative;
     display: flex;
     flex-direction: column;
+    padding: 10px;
     color: #d9dce4;
 }
 
-.message-card-top{
+.message-card:hover {
+    background-color: #272b30;
+}
+
+.message-card-top {
     display: flex;
     align-items: center;
 }
 
-.message-card-username{
+.message-options {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    border-radius: 5px;
+    border: 1px solid #202225;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 40px;
+    width: 60px;
+}
+
+.message-options:hover {
+    box-shadow: 0px 5px 15px -5px black;
+}
+
+.message-option {
+    color: #babcc4;
+}
+
+.message-option:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.options-hidden {
+    display: none;
+}
+
+.message-card-username {
     margin-right: 10px;
     color: #eff1f7;
     font-weight: bolder;
 }
 
-.message-card-date{
+.message-card-date {
     font-size: small;
 }
 
-#message-form-container{
+#message-form-container {
     width: 100%;
     height: 100px;
     display: flex;
@@ -142,13 +178,14 @@
     justify-content: center;
 }
 
-#message-input{
+#message-input {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-#message-input input[type="text"]{
-    width:95%;
+
+#message-input input[type="text"] {
+    width: 95%;
     padding: 12px;
     border: none;
     border-radius: 5px;
@@ -156,8 +193,8 @@
     background-color: #40444b;
 }
 
-#message-input input[type="text"]:focus{
-    outline:none;
+#message-input input[type="text"]:focus {
+    outline: none;
 }
 
 /* Right area of the screen */

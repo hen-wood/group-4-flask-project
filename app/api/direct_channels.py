@@ -15,10 +15,9 @@ def get_all_user_direct_channels():
     res = [channel.to_dict() for channel in channels]
     return jsonify(res), 200
 
-@direct_channels.route('/<int:directChannelId>')
-def get_all_direct_channel_messages(directChannelId):
-    messages = DirectMessage.query.filter(DirectMessage.direct_channel_id == directChannelId).all()
-    print(messages)
-    res = [message.to_dict() for message in messages]
-    print(res)
-    return jsonify(res)
+@direct_channels.route('/<id>')
+def get_single_channel(id):
+    print("FUCUCUCUCUUCUCUCUUCK")
+    channel = DirectChannel.query.filter(DirectChannel.id == id).one()
+    print(channel.to_dict())
+    return jsonify(channel.to_dict())
