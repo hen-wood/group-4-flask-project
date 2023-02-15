@@ -8,6 +8,8 @@ import ServerChannels from "../ServerChannels";
 import ServerName from "../ServerName";
 import CreateServer from "../CreateServer";
 import DeleteServer from "../DeleteServer";
+import ServerMembers from "../ServerMembers"
+import JoinAServer from "../JoinAServer"
 
 export default function HomePage() {
 	return (
@@ -21,6 +23,7 @@ export default function HomePage() {
 
 								<ServersList />
 								<CreateServer />
+								<JoinAServer />
 
 					<div id="left-nav-bottom"></div>
 				</div>
@@ -29,7 +32,7 @@ export default function HomePage() {
 						<Switch>
 
 							<Route path="/channels/:serverId">
-								<ServerName />
+							<ServerName />
 							</Route>
 
 						</Switch>
@@ -57,6 +60,20 @@ export default function HomePage() {
 				</Route>
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />
+				</Route>
+				<Route path="/channels/:serverId">
+					<div>
+
+
+				place holder for channel comments
+
+						<div className="right-container">
+
+					<ServerMembers />
+						</div>
+
+					</div>
+
 				</Route>
 			</Switch>
 		</div>
