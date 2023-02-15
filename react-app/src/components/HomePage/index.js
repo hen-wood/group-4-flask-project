@@ -52,10 +52,15 @@ export default function HomePage() {
 							<Route path="/channels/@me">
 								<DirectChannels />
 							</Route>
+							<Route path="/channels/:serverId/:channelId">
+								<ServerChannels />
+								<DeleteServer />
+							</Route>
 							<Route path="/channels/:serverId">
 								<ServerChannels />
 								<DeleteServer />
 							</Route>
+
 						</Switch>
 					</div>
 				</div>
@@ -71,9 +76,9 @@ export default function HomePage() {
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />
 				</Route>
-				<Route path="/channels/:serverId">
+				{/* <Route path="/channels/:serverId">
 				<ServerMembers />
-				</Route>
+				</Route> */}
 
 				<Route path="/channels/:serverId/:channelId">
 					<ChannelComments />
