@@ -16,15 +16,15 @@ else:
 
 socketio = SocketIO(cors_allowed_origins=origins)
 
-# @socketio.on("message")
-# def handle_chat(data):
-#     print(data)
-#     new_message = DirectMessage(
-#         direct_channel_id = data['directChannelId'],
-#         user_id = data['userId'],
-#         content = data['content']
-#     )
-#     db.session.add(new_message)
-#     db.session.commit()
-#     event = f"{data['directChannelId']} message"
-#     emit(event, data, broadcast=True)
+@socketio.on("message")
+def handle_chat(data):
+    print(data)
+    new_message = DirectMessage(
+        direct_channel_id = data['directChannelId'],
+        user_id = data['userId'],
+        content = data['content']
+    )
+    db.session.add(new_message)
+    db.session.commit()
+    event = f"{data['directChannelId']} message"
+    emit(event, data, broadcast=True)

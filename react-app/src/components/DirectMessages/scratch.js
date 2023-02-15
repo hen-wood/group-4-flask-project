@@ -1,65 +1,80 @@
+import {
+	thunkGetDirectMessages,
+	thunkUpdateDirectMessage,
+	actionAddDirectMessage,
+	actionClearMessages
+} from "../../store/directMessages";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-	thunkGetUserSingleDirectChannel,
-	actionClearSingleUserDirectChannel
-} from "../../store/directChannels";
 import { io } from "socket.io-client";
+import DirectMessageForm from "../DirectMessages/DirectMessageForm";
 
 let socket;
 export default function DirectMessages() {
 	const { directChannelId } = useParams();
-	const currChannel = useSelector(
-		state => state.directChannels.singleUserDirectChannel
-	);
-	const user = useSelector(state => state.session.user);
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
-	const [messages, setMessages] = useState({});
-	const [messageInput, setMessageInput] = useState("");
-	const [otherUsername, setOtherUsername] = useState("");
-
-	const [selectedMessageId, setSelectedMessageId] = useState(null);
+	const [newMessages, setNewMessages] = useState({});
 	const [showOptions, setShowOptions] = useState(false);
 	const [showEditor, setShowEditor] = useState(false);
+	const [selectedMessageId, setSelectedMessageId] = useState(null);
+	const [messageToEditId, setMessageToEditId] = useState(null);
 	const [editedMessageContent, setEditedMessageContent] = useState("");
-
+	const [messageInput, setMessageInput] = useState("");
+	const currMessages = useSelector(
+		state => state.directMessages.directChannelMessages
+	);
+	const currUser = useSelector(state => state.session.user);
+	const currChannel = useSelector(
+		state => state.directChannels.userDirectChannels[directChannelId]
+	);
+	const otherUsername =
+		currChannel.user_one.id === currUser.id
+			? currChannel.user_two.username
+			: currChannel.user_one.username;
 	useEffect(() => {
-		dispatch(thunkGetUserSingleDirectChannel(directChannelId)).then(() => {
+		dispatch(thunkGetDirectMessages(directChannelId)).then(() => {
+			setNewMessages(currMessages);
 			setIsLoaded(true);
-		});
+			const messages = document.querySelector("#center-messages");
+			messages.scrollTop = messages.scrollHeight;
 
-		return () => {
-			dispatch(actionClearSingleUserDirectChannel);
-			setMessages({});
-		};
-	}, [directChannelId]);
+			socket = io();
 
-	useEffect(() => {
-		if (currChannel) {
-			setMessages(currChannel.messages);
-			setOtherUsername(
-				currChannel.user_one.id === user.id
-					? currChannel.user_two.username
-					: currChannel.user_one.username
-			);
-			setIsLoaded(true);
-		}
-	}, [currChannel]);
+			socket.on(`${directChannelId} message`, data => {
+				setNewMessages(messages => {
+					return {
+						...messages,
+						[data.id]: {
+							...messages[data.id],
+							content: data.content
+						}
+					};
+				});
+				messages.scrollTop = messages.scrollHeight;
+			});
 
-	useEffect(() => {
-		socket = io();
-		socket.on(`${directChannelId} message`, data => {
-			setMessages(messages => {
-				return {
-					...messages,
-					[data.id]: data
-				};
+			// Add a listener for the "edit message" event
+			socket.on(`${directChannelId} edit message`, data => {
+				setNewMessages(messages => {
+					return {
+						...messages,
+						[data.id]: {
+							...messages[data.id],
+							content: data.content
+						}
+					};
+				});
+				console.log(newMessages);
 			});
 		});
-	}, [directChannelId]);
-
+		return () => {
+			socket.disconnect();
+			dispatch(actionClearMessages());
+			setNewMessages([]);
+		};
+	}, [dispatch, directChannelId]);
 	const updateChatInput = e => {
 		setMessageInput(e.target.value);
 	};
@@ -68,14 +83,12 @@ export default function DirectMessages() {
 		e.preventDefault();
 
 		socket.emit(`message`, {
-			directChannelId,
-			userId: user.id,
-			content: messageInput,
-			username: user.username
+			direct_channel_id: +directChannelId,
+			user_id: currUser.id,
+			content: messageInput
 		});
 		setMessageInput("");
 	};
-
 	const handleMouseOver = key => {
 		setSelectedMessageId(key);
 		setShowOptions(true);
@@ -85,16 +98,17 @@ export default function DirectMessages() {
 		setShowOptions(false);
 	};
 	const handleEditClick = key => {
-		setEditedMessageContent(messages[key].content);
+		setEditedMessageContent(newMessages[key].content);
+		setMessageToEditId(key);
 		setShowEditor(true);
 	};
 
-	const handleEditSubmit = (e, messageId) => {
+	const handleEditSubmit = e => {
 		e.preventDefault();
 		// Emit a message to the server indicating that a message has been edited
 		socket.emit("edit message", {
 			channel_id: directChannelId,
-			message_id: messageId,
+			message_id: messageToEditId,
 			content: editedMessageContent
 		});
 	};
@@ -105,14 +119,14 @@ export default function DirectMessages() {
 				<p>@{otherUsername}</p>
 			</div>
 			<div id="center-messages">
-				{Object.keys(messages).map(key => {
-					const message = messages[key];
+				{Object.keys(newMessages).map(key => {
+					const message = newMessages[key];
 					return (
 						<div
-							key={key}
+							key={message.id}
 							className="message-card"
 							onMouseOver={() =>
-								message.user_id === user.id && handleMouseOver(key)
+								message.user_id === currUser.id && handleMouseOver(key)
 							}
 							onMouseLeave={handleMouseLeave}
 						>
@@ -138,8 +152,8 @@ export default function DirectMessages() {
 									})}
 								</p>
 							</div>
-							{showEditor ? (
-								<form onSubmit={e => handleEditSubmit(e, message.id)}>
+							{messageToEditId === key && showEditor ? (
+								<form onSubmit={handleEditSubmit}>
 									<input
 										type="text"
 										value={editedMessageContent}
@@ -161,7 +175,7 @@ export default function DirectMessages() {
 					<input
 						type="text"
 						value={messageInput}
-						placeHolder={`Message ${otherUsername}`}
+						placeholder={`Message ${otherUsername}`}
 						onChange={updateChatInput}
 					/>
 				</form>

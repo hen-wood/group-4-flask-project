@@ -21,17 +21,17 @@ export default function DirectMessageForm({ otherUserName }) {
 		setMessageInput(e.target.value);
 	};
 
-	// const sendMessage = e => {
-	// 	e.preventDefault();
+	const sendMessage = e => {
+		e.preventDefault();
 
-	// 	socket.emit(`message`, {
-	// 		directChannelId,
-	// 		userId: user.id,
-	// 		content: messageInput,
-	// 		username: user.username
-	// 	});
-	// 	setMessageInput("");
-	// };
+		socket.emit(`message`, {
+			directChannelId,
+			userId: user.id,
+			content: messageInput,
+			username: user.username
+		});
+		setMessageInput("");
+	};
 
 	return (
 		<div id="message-form-container">
