@@ -61,14 +61,14 @@ export const editChannelThunk = (input, serverId, channelId) => async (dispatch)
     }
 }
 
-export const deleteChannelThunk = (serverId, channelId) => async (dispatch) => {
-    const response = await fetch(`/api/channels/${serverId}/${channelId}`, {
+export const deleteChannelThunk = (channelId) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${channelId}`, {
         method: 'DELETE',
     })
     if (response.ok) {
         const channel = await response.json();
         dispatch(deleteChannel(channel));
-        return channel;
+        // return channel;
     }
 }
 
@@ -103,7 +103,7 @@ export default function reducer(state = initialState, action) {
         case EDIT_CHANNEL: {
             return {
                 ...state,
-                [action.channel.id]: action.channel
+                [action.channel]: action.channel
             }
         }
         default:

@@ -5,22 +5,25 @@ import { useModal } from "../../context/Modal";
 
 function EditChannelModal(props) {
     const dispatch = useDispatch();
-
-    const [channel, setChannel] = useState(props.channel);
     const [description, setDescription] = useState(props.description);
     const [errors, setErrors] = useState([]);
-
     const { closeModal } = useModal();
 
     useEffect(() => {
         const errors = [];
         if (description === "") errors.push("Please enter your description");
         setErrors(errors);
-    }, [channel, description]);
+    }, [description]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        return dispatch(channelActions.editChannelThunk({ description }, props.channelId))
+        const editedChannel = {
+            server_id: props.serverId,
+            name: props.name,
+            description,
+            id: props.channelId
+        }
+        return dispatch(channelActions.editChannelThunk(editedChannel, props.serverId, props.channelId))
             .then(() => {
                 props.callbackClose();
                 closeModal();
