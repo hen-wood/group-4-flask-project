@@ -6,18 +6,19 @@ from app.models import ChannelComment, db
 comments_routes = Blueprint('comments', __name__)
 
 
-@comments_routes.route('/')
-# @login_required
-def get_comments():
+@comments_routes.route('/<int:channelId>')
+@login_required
+def get_comments(channelId):
     """
     Query for all comments and returns them in a date order
     """
-    comments = ChannelComment.query.all()
+    comments = ChannelComment.query.filter(ChannelComment.channel_id==channelId).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
 
 
 @comments_routes.route('/', methods=['POST'])
+@login_required
 def add_comment():
     """
     Add comment and returns it in a date order
@@ -34,6 +35,7 @@ def add_comment():
     return comment.to_dict()
 
 @comments_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def edit_comment(id):
     """
     Edit comment and return
@@ -46,7 +48,7 @@ def edit_comment(id):
 
 
 @comments_routes.route('/<int:id>', methods=['DELETE'])
-# @login_required
+@login_required
 def delete_comment(id):
     """
     Delete comment

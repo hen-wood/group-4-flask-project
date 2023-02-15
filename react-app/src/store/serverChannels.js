@@ -83,7 +83,6 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_CHANNELS: {
             const newState = {}
-            console.log('in reducer for all channels on a server to load',action.channels)
             action.channels.channels.forEach(channel => {
                 newState[channel.id] = channel
             })

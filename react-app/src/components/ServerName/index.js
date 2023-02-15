@@ -9,6 +9,7 @@ export default function ServerName() {
 	const [isLoaded, setIsLoaded] = useState(false);
 
 
+
 	const [showText, setShowText] = useState(false)
 	const handleMouseEnter = e => {
 		e.target.style.background = "grey"
@@ -24,19 +25,22 @@ export default function ServerName() {
 
 
     const {serverId} = useParams();
+
 	useEffect(() => {
 		dispatch(thunkGetServer(serverId)).then(() => {
 			setIsLoaded(true);
 		});
 	}, [dispatch, serverId]);
 
+
 	const server = useSelector(
 		state => state.server
 	);
 
 
-	// const currUserId = useSelector(state => state.session.user.id);
+
 	return isLoaded ? (
+
 		<div>
 
 
@@ -49,6 +53,7 @@ export default function ServerName() {
 		</div>
 		<LeaveAServer />
 				</div>
+
 	) : (
 		<h1>Loading user direct channels...</h1>
 	);

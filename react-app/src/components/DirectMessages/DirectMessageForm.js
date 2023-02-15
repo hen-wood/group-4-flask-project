@@ -10,12 +10,12 @@ export default function DirectMessageForm({ otherUserName }) {
 	const [messageInput, setMessageInput] = useState("");
 	const user = useSelector(state => state.session.user);
 
-	useEffect(() => {
-		socket = io();
-		return () => {
-			socket.disconnect();
-		};
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	socket = io();
+	// 	return () => {
+	// 		socket.disconnect();
+	// 	};
+	// }, [dispatch]);
 
 	const updateChatInput = e => {
 		setMessageInput(e.target.value);
@@ -35,14 +35,14 @@ export default function DirectMessageForm({ otherUserName }) {
 
 	return (
 		<div id="message-form-container">
-			<form id="message-input" onSubmit={sendMessage}>
+			{/* <form id="message-input" onSubmit={sendMessage}>
 				<input
 					type="text"
 					value={messageInput}
 					placeHolder={`Message ${otherUserName}`}
 					onChange={updateChatInput}
 				/>
-			</form>
+			</form> */}
 		</div>
 	);
 }
