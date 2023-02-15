@@ -25,6 +25,7 @@ def handle_chat(data):
     )
     db.session.add(new_message)
     db.session.commit()
+    data['id']=new_message.id
     data['created_at']=datetime.strptime(str(new_message.created_at), "%Y-%m-%d %H:%M:%S.%f").strftime("%a, %d %b %Y %H:%M:%S GMT")
     event = f"{data['directChannelId']} message"
     emit(event, data, broadcast=True)

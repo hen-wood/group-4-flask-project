@@ -29,6 +29,8 @@ export default function DirectMessages() {
 	useEffect(() => {
 		dispatch(thunkGetUserSingleDirectChannel(directChannelId)).then(() => {
 			setIsLoaded(true);
+			const messagesDiv = document.querySelector("#center-messages");
+			messagesDiv.scrollTop = messagesDiv.scrollHeight;
 		});
 
 		return () => {
@@ -45,6 +47,7 @@ export default function DirectMessages() {
 					? currChannel.user_two.username
 					: currChannel.user_one.username
 			);
+
 			socket = io();
 			socket.on(`${directChannelId} message`, data => {
 				setMessages(messages => {
@@ -53,8 +56,11 @@ export default function DirectMessages() {
 						[data.id]: data
 					};
 				});
+				const messagesDiv = document.querySelector("#center-messages");
+				messagesDiv.scrollTop = messagesDiv.scrollHeight;
 			});
 			socket.on(`${directChannelId} edit message`, data => {
+				data.edited = true;
 				setMessages(messages => {
 					return {
 						...messages,
@@ -164,6 +170,7 @@ export default function DirectMessages() {
 										minute: "2-digit",
 										hour12: true
 									})}
+									{message.edited && `   (edited)`}
 								</p>
 							</div>
 							{messageToEditId === key && showEditor ? (
