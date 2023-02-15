@@ -7,6 +7,9 @@ import ChannelComments from "../ChannelComments";
 import ServersList from "../ServersList";
 import ServerChannels from "../ServerChannels";
 import ServerName from "../ServerName";
+import CreateServer from "../CreateServer";
+import DeleteServer from "../DeleteServer";
+
 export default function HomePage() {
 	return (
 		<div id="main-container">
@@ -16,9 +19,8 @@ export default function HomePage() {
 						<DiscordanceLogo />
 					</div>
 					<div id="left-nav-center"></div>
-
-					<ServersList />
-
+								<ServersList />
+								<CreateServer />
 					<div id="left-nav-bottom"></div>
 				</div>
 				<div id="left-menu">
@@ -38,6 +40,7 @@ export default function HomePage() {
 							</Route>
 							<Route path="/channels/:serverId">
 								<ServerChannels />
+								<DeleteServer />
 							</Route>
 						</Switch>
 					</div>
