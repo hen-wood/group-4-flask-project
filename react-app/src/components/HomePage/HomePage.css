@@ -111,18 +111,53 @@
 #center-messages {
     height: 100%;
     overflow-y: scroll;
-    padding: 0 20px;
 }
 
 .message-card {
+    position: relative;
     display: flex;
     flex-direction: column;
+    padding: 10px;
     color: #d9dce4;
+}
+
+.message-card:hover {
+    background-color: #272b30;
 }
 
 .message-card-top {
     display: flex;
     align-items: center;
+}
+
+.message-options {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    border-radius: 5px;
+    border: 1px solid #202225;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 40px;
+    width: 60px;
+}
+
+.message-options:hover {
+    box-shadow: 0px 5px 15px -5px black;
+}
+
+.message-option {
+    color: #babcc4;
+}
+
+.message-option:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.options-hidden {
+    display: none;
 }
 
 .message-card-username {

@@ -9,9 +9,20 @@ import ServerChannels from "../ServerChannels";
 import ServerName from "../ServerName";
 import CreateServer from "../CreateServer";
 import DeleteServer from "../DeleteServer";
+import ServerMembers from "../ServerMembers"
+import JoinAServer from "../JoinAServer"
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { thunkGetUserDirectChannels } from "../../store/directChannels";
+
 
 export default function HomePage() {
-	return (
+	const [isLoaded, setIsLoaded] = useState(false);
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(thunkGetUserDirectChannels()).then(() => setIsLoaded(true));
+	}, [dispatch]);
+	return isLoaded ? (
 		<div id="main-container">
 			<div id="left-container">
 				<div id="left-nav-bar">
@@ -19,23 +30,26 @@ export default function HomePage() {
 						<DiscordanceLogo />
 					</div>
 					<div id="left-nav-center"></div>
+
+
 								<ServersList />
 								<CreateServer />
+								<JoinAServer />
+
+
 					<div id="left-nav-bottom"></div>
 				</div>
 				<div id="left-menu">
 					<div id="left-menu-top">
 						<Switch>
-
 							<Route path="/channels/:serverId">
-								<ServerName />
+							<ServerName />
 							</Route>
-
 						</Switch>
 					</div>
 					<div id="left-menu-center">
 						<Switch>
-							<Route exact path="/channels/@me">
+							<Route path="/channels/@me">
 								<DirectChannels />
 							</Route>
 							<Route path="/channels/:serverId">
@@ -57,10 +71,17 @@ export default function HomePage() {
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />
 				</Route>
+				<Route path="/channels/:serverId">
+				<ServerMembers />
+				</Route>
+
 				<Route path="/channels/:serverId/:channelId">
 					<ChannelComments />
+
 				</Route>
 			</Switch>
 		</div>
+	) : (
+		<h1>loading...</h1>
 	);
 }

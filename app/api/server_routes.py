@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Membership, Server, Channel,DirectChannel, ChannelComment, DirectMessage
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 
 
 
@@ -66,6 +66,10 @@ def add_server():
     db.session.commit()
     return server.to_dict_single_server()
 
+
+
+
+
 @server_routes.route('/<int:serverId>', methods=['PUT'])
 #@login_required
 def edit_server(serverId):
@@ -77,6 +81,50 @@ def edit_server(serverId):
     server.name = request.json['name']
     db.session.commit()
     return server.to_dict()
+
+
+
+@server_routes.route('/code/<codeId>', methods=['POST'])
+#@login_required
+def add_member_to_server(codeId):
+    '''
+    Adds a member to an existing sever
+    '''
+
+
+    print(codeId,'codeID')
+    server = Server.query.filter_by(code=codeId).first()
+    if Membership.query.filter_by(server_id=server.id, user_id=current_user.id).first():
+            return jsonify({"message": "You already have a membership to that server"})
+
+
+
+    membership = Membership(
+        server_id = server.id,
+        user_id = current_user.id
+    )
+
+    db.session.add(membership)
+
+    db.session.commit()
+    return server.to_dict_single_server()
+
+
+@server_routes.route('/membership/<serverId>', methods=['DELETE'])
+#@login_required
+def delete_member_to_server(serverId):
+    '''
+   Removes member to an existing sever
+    '''
+
+    print(serverId,'serverID')
+    membership = Membership.query.filter_by(server_id=serverId, user_id=current_user.id).first()
+
+
+    db.session.delete(membership)
+    db.session.commit()
+    return jsonify({"message": "Successfully removed from server"})
+
 
 
 
