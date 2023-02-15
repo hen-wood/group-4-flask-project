@@ -1,8 +1,10 @@
 const LOAD_SERVERS = '/servers/LOAD';
-const LOAD_SERVER = '/server/LOAD';
-
+const CREATE_SERVER = '/server/ADD';
+const DELETE_SERVER = '/serverlist/DELETE'
 export const thunkGetUserServers = () => async dispatch => {
+    console.log('in thunk severs')
     const response = await fetch("/api/servers/")
+    console.log(response)
     if (response.ok) {
         console.log('response good')
         const servers = await response.json()
@@ -15,10 +17,36 @@ export const thunkGetUserServers = () => async dispatch => {
 
 
 const loadServers = (servers) => {
+    console.log('loooooadd servers')
     return {type: LOAD_SERVERS, servers}
 }
 
+const createServer = (servers) => {
+    return {type: CREATE_SERVER, servers}
+}
 
+export const createServerThunk = (payload) => async dispatch => {
+    const response = await fetch(`/api/servers/`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(createServer(data))
+
+    }
+}
+
+
+export const deleteServerList = (server) => {
+    return{
+        type: DELETE_SERVER,
+        server
+    }
+}
 
 
 const initialState = {
@@ -29,18 +57,23 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_SERVERS:
-            const newState = {}
-            // console.log('in reducer for all spots to load', action.servers)
+            const newState = {...state}
+            console.log('in reducer for all servers to load', action.servers)
             action.servers.forEach(server => {
-                newState[server.id] = server
+            console.log(server, 'serverhere in loop')
+            newState[server.id] = server
             })
-            return {...newState};
-        case LOAD_SERVER:
-            const loadServerState={...action.server}
-            console.log(action.server, 'in load server reducer')
-            return loadServerState
+            return {...newState}
+        case CREATE_SERVER:
+            const newServerState = {...state }
+            newServerState[action.servers.id] = action.servers
+            return newServerState
+        case DELETE_SERVER:
+            const deleteState = {...state}
+            delete deleteState[action.server]
+            return deleteState
         default:
-            console.log('in default')
+            console.log('in default serversss')
             return state;
     }
 }
