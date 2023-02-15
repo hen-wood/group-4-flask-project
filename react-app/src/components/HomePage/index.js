@@ -9,9 +9,17 @@ import ServerChannels from "../ServerChannels";
 import ServerName from "../ServerName";
 import CreateServer from "../CreateServer";
 import DeleteServer from "../DeleteServer";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { thunkGetUserDirectChannels } from "../../store/directChannels";
 
 export default function HomePage() {
-	return (
+	const [isLoaded, setIsLoaded] = useState(false);
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(thunkGetUserDirectChannels()).then(() => setIsLoaded(true));
+	}, [dispatch]);
+	return isLoaded ? (
 		<div id="main-container">
 			<div id="left-container">
 				<div id="left-nav-bar">
@@ -60,5 +68,7 @@ export default function HomePage() {
 				</Route>
 			</Switch>
 		</div>
+	) : (
+		<h1>loading...</h1>
 	);
 }

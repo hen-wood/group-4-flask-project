@@ -27,7 +27,6 @@ export default function DirectChannels() {
 					channel.user_one.id === currUserId
 						? channel.user_two.username
 						: channel.user_one.username;
-				console.log(title);
 				return (
 					<div>
 						<NavLink key={key} to={`/channels/@me/${channel.id}`}>

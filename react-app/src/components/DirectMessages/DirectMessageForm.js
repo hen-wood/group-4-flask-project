@@ -10,39 +10,39 @@ export default function DirectMessageForm({ otherUserName }) {
 	const [messageInput, setMessageInput] = useState("");
 	const user = useSelector(state => state.session.user);
 
-	useEffect(() => {
-		socket = io();
-		return () => {
-			socket.disconnect();
-		};
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	socket = io();
+	// 	return () => {
+	// 		socket.disconnect();
+	// 	};
+	// }, [dispatch]);
 
 	const updateChatInput = e => {
 		setMessageInput(e.target.value);
 	};
 
-	const sendMessage = e => {
-		e.preventDefault();
+	// const sendMessage = e => {
+	// 	e.preventDefault();
 
-		socket.emit(`message`, {
-			directChannelId,
-			userId: user.id,
-			content: messageInput,
-			username: user.username
-		});
-		setMessageInput("");
-	};
+	// 	socket.emit(`message`, {
+	// 		directChannelId,
+	// 		userId: user.id,
+	// 		content: messageInput,
+	// 		username: user.username
+	// 	});
+	// 	setMessageInput("");
+	// };
 
 	return (
 		<div id="message-form-container">
-			<form id="message-input" onSubmit={sendMessage}>
+			{/* <form id="message-input" onSubmit={sendMessage}>
 				<input
 					type="text"
 					value={messageInput}
 					placeHolder={`Message ${otherUserName}`}
 					onChange={updateChatInput}
 				/>
-			</form>
+			</form> */}
 		</div>
 	);
 }
