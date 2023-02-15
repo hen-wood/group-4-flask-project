@@ -23,6 +23,7 @@ export default function DirectMessages() {
 	const [selectedMessageId, setSelectedMessageId] = useState(null);
 	const [showOptions, setShowOptions] = useState(false);
 	const [showEditor, setShowEditor] = useState(false);
+	const [messageToEditId, setMessageToEditId] = useState(null);
 	const [editedMessageContent, setEditedMessageContent] = useState("");
 
 	useEffect(() => {
@@ -58,6 +59,12 @@ export default function DirectMessages() {
 				};
 			});
 		});
+
+		socket.on(`${directChannelId} edit message`, data => {
+			const messagesWithEdit = { ...messages };
+			messagesWithEdit[data.id].content = data.content;
+			setMessages(messagesWithEdit);
+		});
 	}, [directChannelId]);
 
 	const updateChatInput = e => {
@@ -86,6 +93,7 @@ export default function DirectMessages() {
 	};
 	const handleEditClick = key => {
 		setEditedMessageContent(messages[key].content);
+		setMessageToEditId(key);
 		setShowEditor(true);
 	};
 
@@ -97,6 +105,7 @@ export default function DirectMessages() {
 			message_id: messageId,
 			content: editedMessageContent
 		});
+		setShowEditor(false);
 	};
 
 	return isLoaded ? (
@@ -111,9 +120,7 @@ export default function DirectMessages() {
 						<div
 							key={key}
 							className="message-card"
-							onMouseOver={() =>
-								message.user_id === user.id && handleMouseOver(key)
-							}
+							onMouseOver={() => handleMouseOver(key)}
 							onMouseLeave={handleMouseLeave}
 						>
 							<div className="message-card-top">
@@ -138,7 +145,7 @@ export default function DirectMessages() {
 									})}
 								</p>
 							</div>
-							{showEditor ? (
+							{messageToEditId === key && showEditor ? (
 								<form onSubmit={e => handleEditSubmit(e, message.id)}>
 									<input
 										type="text"
