@@ -20,6 +20,7 @@ export default function HomePage() {
 					<div id="left-nav-center"></div>
 
 								<ServersList />
+								<CreateServer />
 
 					<div id="left-nav-bottom"></div>
 				</div>
