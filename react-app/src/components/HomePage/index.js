@@ -20,7 +20,6 @@ export default function HomePage() {
 					<div id="left-nav-center"></div>
 
 								<ServersList />
-								<CreateServer />
 
 					<div id="left-nav-bottom"></div>
 				</div>
@@ -29,7 +28,7 @@ export default function HomePage() {
 						<Switch>
 
 							<Route path="/channels/:serverId">
-							<ServerName />
+								<ServerName />
 							</Route>
 
 						</Switch>
