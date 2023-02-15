@@ -37,11 +37,11 @@ export default function ChannelComments() {
     }, [channelId]);
 
     const currComments = useSelector(
-        state => state.channelComments.channelComments
+        state => state.channels
     );
 
     const currChannel = useSelector(
-		state => state.channels.channels[channelId]
+		state => state.channels[channelId]
 	);
 
     const currUser = useSelector(state => state.session.user);
@@ -49,7 +49,7 @@ export default function ChannelComments() {
     return isLoaded ? (
         <div id="center-container">
             <div id="center-top">
-                <p>@{currUser.username}</p>
+                <p>@{currChannel.name}</p>
             </div>
             <div id="center-comments">
                 {Object.keys(currComments).map(key => {
