@@ -6,6 +6,7 @@ import directMessages from "./directMessages";
 import server from "./server";
 import servers from "./servers";
 import channels from "./serverChannels";
+import channelComments from "./channelComments";
 
 const rootReducer = combineReducers({
 	session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
 	directMessages,
 	server,
 	servers,
-	channels
+	channels,
+	channelComments
 });
 
 let enhancer;

@@ -8,34 +8,33 @@ from sqlalchemy import or_
 server_routes = Blueprint('servers', __name__)
 
 
+
 @server_routes.route('/')
 # @login_required
 def get_current_user_servers():
     '''
-    Returns all servers that current user is a member of 
+    Returns all servers that current user is a member of
     '''
     userId = current_user.id
     memberships = Membership.query.filter(Membership.user_id == userId).all()
     servers = [Server.query.get(membership.server_id) for membership in memberships]
 
-    res = [server.to_dict() for server in servers]
+    res = [server.to_dict_all_servers() for server in servers]
 
     return jsonify(res)
 
 
 @server_routes.route('/<int:serverId>')
 #@login_required
-def get_current_channel(serverId):
+def get_single_server(serverId):
     '''
-    Returns selected Channel
+    Returns selected Server with Channel and Member data
     '''
 
     server = Server.query.get(serverId)
-    channels = Channel.query.filter(Channel.server_id==serverId).all()
 
-    res = {**server.to_dict(), 'Channels': [channel.to_dict() for channel in channels]}
 
-    return jsonify(res)
+    return server.to_dict_single_server()
 
 
 @server_routes.route('/', methods=['POST'])
@@ -53,9 +52,19 @@ def add_server():
     )
     db.session.add(server)
     db.session.commit()
-
-    return server.to_dict()
-
+    membership = Membership(
+        server_id = server.id,
+        user_id = current_user.id
+    )
+    general_channel = Channel(
+        name = 'General Chat',
+        server_id = server.id
+    )
+    db.session.add(membership)
+    db.session.add(general_channel)
+    db.session.commit()
+    db.session.commit()
+    return server.to_dict_single_server()
 
 @server_routes.route('/<int:serverId>', methods=['PUT'])
 #@login_required
@@ -70,6 +79,8 @@ def edit_server(serverId):
     return server.to_dict()
 
 
+
+
 @server_routes.route('/<int:serverId>', methods=['DELETE'])
 #@login_required
 def delete_server(serverId):
@@ -80,4 +91,4 @@ def delete_server(serverId):
     server = Server.query.get(serverId)
     db.session.delete(server)
     db.session.commit()
-    return 'Server successfully deleted'
+    return jsonify({"message": "Successfully deleted"})
