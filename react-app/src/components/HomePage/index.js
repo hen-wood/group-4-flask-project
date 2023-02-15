@@ -9,33 +9,40 @@ import ServerChannels from "../ServerChannels";
 import ServerName from "../ServerName";
 import CreateServer from "../CreateServer";
 import DeleteServer from "../DeleteServer";
-import ServerMembers from "../ServerMembers"
-import JoinAServer from "../JoinAServer"
+import ServerMembers from "../ServerMembers";
+import JoinAServer from "../JoinAServer";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
-
+import { useHistory } from "react-router";
 
 export default function HomePage() {
+	const history = useHistory();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const dispatch = useDispatch();
+
 	useEffect(() => {
 		dispatch(thunkGetUserDirectChannels()).then(() => setIsLoaded(true));
 	}, [dispatch]);
+
+	const handleDirectMessageIconClick = () => {
+		history.push("/channels/@me");
+	};
+
 	return isLoaded ? (
 		<div id="main-container">
 			<div id="left-container">
 				<div id="left-nav-bar">
 					<div id="left-nav-top">
-						<DiscordanceLogo />
+						<div onClick={handleDirectMessageIconClick}>
+							<DiscordanceLogo />
+						</div>
 					</div>
 					<div id="left-nav-center"></div>
 
-
-								<ServersList />
-								<CreateServer />
-								<JoinAServer />
-
+					<ServersList />
+					<CreateServer />
+					<JoinAServer />
 
 					<div id="left-nav-bottom"></div>
 				</div>
@@ -43,7 +50,7 @@ export default function HomePage() {
 					<div id="left-menu-top">
 						<Switch>
 							<Route path="/channels/:serverId">
-							<ServerName />
+								<ServerName />
 							</Route>
 						</Switch>
 					</div>
@@ -60,7 +67,6 @@ export default function HomePage() {
 								<ServerChannels />
 								<DeleteServer />
 							</Route>
-
 						</Switch>
 					</div>
 				</div>
@@ -82,7 +88,6 @@ export default function HomePage() {
 
 				<Route path="/channels/:serverId/:channelId">
 					<ChannelComments />
-
 				</Route>
 			</Switch>
 		</div>

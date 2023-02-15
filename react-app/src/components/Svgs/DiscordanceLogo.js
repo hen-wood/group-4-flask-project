@@ -1,6 +1,7 @@
 export default function DiscordanceLogo() {
 	return (
 		<svg
+			className="link-icon"
 			id="discordance-logo"
 			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
