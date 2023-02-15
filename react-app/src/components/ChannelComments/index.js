@@ -40,9 +40,10 @@ export default function ChannelComments() {
         state => state.channelComments.channelComments
     );
 
-    // const currChannel = useSelector(
-    //     state => state.channels[channelId]
-    // );
+    const currChannel = useSelector(
+		state => state.channels.channels[channelId]
+	);
+
     const currUser = useSelector(state => state.session.user);
 
     return isLoaded ? (
