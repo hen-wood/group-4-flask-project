@@ -20,8 +20,7 @@ export default function ServersList() {
 
     }, [dispatch, servers.length])
 
-    // const directChannels = useSelector(state => state.directChannels.userDirectChannels);
-    const currUserId = useSelector(state => state.session.user.id);
+
     if (!servers) {
 
         return <div>no servers</div>

@@ -8,6 +8,7 @@ from sqlalchemy import or_
 server_routes = Blueprint('servers', __name__)
 
 
+
 @server_routes.route('/')
 # @login_required
 def get_current_user_servers():
@@ -31,7 +32,7 @@ def get_single_server(serverId):
     '''
 
     server = Server.query.get(serverId)
-    
+
 
     return server.to_dict_single_server()
 
@@ -63,8 +64,7 @@ def add_server():
     db.session.add(general_channel)
     db.session.commit()
     db.session.commit()
-    return server.to_dict()
-
+    return server.to_dict_single_server()
 
 @server_routes.route('/<int:serverId>', methods=['PUT'])
 #@login_required
@@ -77,6 +77,8 @@ def edit_server(serverId):
     server.name = request.json['name']
     db.session.commit()
     return server.to_dict()
+
+
 
 
 @server_routes.route('/<int:serverId>', methods=['DELETE'])

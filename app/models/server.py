@@ -46,7 +46,7 @@ class Server(db.Model):
             'server_members': [member.user.to_dict() for member in self.server_members],
             'channels': [channel.to_dict() for channel in self.server_channels]
         }
-    
+
 
     def to_dict_all_servers(self):
         return {
