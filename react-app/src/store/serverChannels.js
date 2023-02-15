@@ -1,44 +1,113 @@
 const LOAD_CHANNELS = '/channels/LOAD';
+const CREATE_CHANNEL = 'channels/CREATE_CHANNEL';
+const EDIT_CHANNEL = 'channels/EDIT_CHANNEL';
+const DELETE_CHANNEL = 'channels/DELETE_CHANNEL';
 
-const loadChannels = (channels) => {
-    return {type: LOAD_CHANNELS, channels}
+// Action creator
+export const loadChannels = (channels) => {
+    return { type: LOAD_CHANNELS, channels }
 }
 
+export const createChannel = (channel) => ({
+    type: CREATE_CHANNEL,
+    channel
+})
 
+export const editChannel = (channel) => ({
+    type: EDIT_CHANNEL,
+    channel
+})
+
+export const deleteChannel = (channelId) => ({
+    type: DELETE_CHANNEL,
+    channelId
+})
+
+
+// Thunks
 export const thunkGetServerChannels = (id) => async dispatch => {
-    console.log('in thunk to get server channels')
     const response = await fetch(`/api/servers/${id}`)
-    console.log(id , 'here with id')
     if (response.ok) {
-        console.log('response good')
-        const channels= await response.json()
-        // console.log(servers)
+        const channels = await response.json()
         dispatch(loadChannels(channels))
     }
-
 }
 
 
+export const createChannelThunk = (userInput, serverId) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${serverId}`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userInput)
+    });
+    if (response.ok) {
+        const channel = await response.json();
+        dispatch(createChannel(channel));
+        return channel;
+    }
+}
 
 
+export const editChannelThunk = (input, serverId, channelId) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${serverId}/${channelId}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input)
+    })
+    if (response.ok) {
+        const editedChannel = await response.json();
+        dispatch(editChannel(editedChannel));
+        return editedChannel;
+    }
+}
 
+export const deleteChannelThunk = (serverId, channelId) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${serverId}/${channelId}`, {
+        method: 'DELETE',
+    })
+    if (response.ok) {
+        const channel = await response.json();
+        dispatch(deleteChannel(channel));
+        return channel;
+    }
+}
 
+// Initial State
 const initialState = {
-
+    channels: {}
 };
 
 
+// Reducer
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case LOAD_CHANNELS:
+        case LOAD_CHANNELS: {
             const newState = {}
             console.log('in reducer for all channels on a server to load')
             action.channels.Channels.forEach(channel => {
                 newState[channel.id] = channel
             })
-            return {...newState};
+            return { ...newState };
+        }
+        case CREATE_CHANNEL:
+            return {
+                ...state,
+                [action.channel.id]: action.channel
+            }
+        case DELETE_CHANNEL: {
+            const newState = {
+                ...state
+            }
+            delete newState.channels[action.channelId]
+            return newState
+        }
+        case EDIT_CHANNEL: {
+            return {
+                ...state,
+                [action.channel.id]: action.channel
+            }
+        }
         default:
-            console.log('in default')
             return state;
     }
 }
