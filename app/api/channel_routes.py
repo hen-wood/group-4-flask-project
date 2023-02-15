@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
 from app.models import db, ChannelComment, Channel
 
@@ -46,13 +46,13 @@ def edit_channel(serverId, channelId):
     return channel.to_dict()
 
 
-@channel_routes.route('/<int:serverId>/<int:channelId>', methods=['DELETE'])
+@channel_routes.route('/<int:channelId>', methods=['DELETE'])
 # @login_required
-def delete_channel(serverId, channelId):
+def delete_channel(channelId):
     """
     Delete channel
     """
     channel = Channel.query.get(channelId)
     db.session.delete(channel)
     db.session.commit()
-    return f"channel id:{channelId} was successfully deleted"
+    return redirect(url_for('/<int:serverId>'))

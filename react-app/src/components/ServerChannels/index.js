@@ -38,13 +38,12 @@ export default function ServerChannels() {
 		dispatch(deleteChannelThunk(channelId));
 		//refresh
 		dispatch(thunkGetServerChannels());
-		history.push(`/`);
+		// history.push(`/channels/`);
 	};
 
 	const OnModalClose = () => {
 		dispatch(thunkGetServerChannels(serverId));
 	}
-
 
 	// const currUserId = useSelector(state => state.session.user.id);
 	return isLoaded ? (
@@ -67,10 +66,10 @@ export default function ServerChannels() {
 							<OpenModalMenuItem
 								itemText="Edit"
 								// onItemClick={}
-								modalComponent={<EditChannelModal channelId={channel.id} description={channel.description} callbackClose={() => OnModalClose()} />}
+								modalComponent={<EditChannelModal channelId={channel.id} description={channel.description} name={channel.name} serverId={ channel.server_id} callbackClose={() => OnModalClose()} />}
 							/>
 						</button>
-						<button onClick={(e) => deleteChannel(e)}>Delete</button>
+						<button onClick={(e) => deleteChannel(e)} >Delete</button>
 					</div>
 				);
 			})}
