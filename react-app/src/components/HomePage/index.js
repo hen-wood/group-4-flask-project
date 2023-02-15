@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router";
 import "./HomePage.css";
 import DiscordanceLogo from "../Svgs/DiscordanceLogo";
 import DirectMessages from "../DirectMessages";
+import ChannelComments from "../ChannelComments";
 import ServersList from "../ServersList";
 import ServerChannels from "../ServerChannels";
 import ServerName from "../ServerName";
@@ -52,6 +53,9 @@ export default function HomePage() {
 				</Route>
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />
+				</Route>
+				<Route path="/channels/:serverId/:channelId">
+					<ChannelComments />
 				</Route>
 			</Switch>
 		</div>
