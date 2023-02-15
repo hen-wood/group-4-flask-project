@@ -28,15 +28,15 @@ This is the starter for the Flask React project.
    ```
 
    ```bash
-   flask db upgrade
+   pipenv run flask db upgrade
    ```
 
    ```bash
-   flask seed all
+   pipenv run flask seed all
    ```
 
    ```bash
-   flask run
+   pipenv run flask run
    ```
 
 7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.

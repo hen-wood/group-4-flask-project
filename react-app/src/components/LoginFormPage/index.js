@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -49,6 +50,7 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
+         Need an account <Link>Register</Link>
       </form>
     </>
   );
