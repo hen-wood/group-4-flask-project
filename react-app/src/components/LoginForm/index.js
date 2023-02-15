@@ -27,7 +27,7 @@ export default function LoginForm() {
 			{/* <img src="https://i.imgur.com/nBUx5Al.png" className="temp-img-class" /> */}
 
 			<div className="login-form-div">
-				<div className="login-form-info">
+				<div className="login-form-">
 
 					<h1>Log In</h1>
 					<form
@@ -61,8 +61,9 @@ export default function LoginForm() {
 						Need an account? <Link to="/register">Register</Link>
 					</form>
 				</div>
-				<div className="potential-qr-code">
-					SQUARE
+				<div className="potential-qr-code-div">
+					<img src="https://i.imgur.com/J2bDJdX.png" className="qr-code-actual" />
+					maybe we hav a qr code here like disc
 				</div>
 			</div>
 		</>
