@@ -45,27 +45,35 @@ export default function DirectMessages() {
 					? currChannel.user_two.username
 					: currChannel.user_one.username
 			);
+			socket = io();
+			socket.on(`${directChannelId} message`, data => {
+				setMessages(messages => {
+					return {
+						...messages,
+						[data.id]: data
+					};
+				});
+			});
+			socket.on(`${directChannelId} edit message`, data => {
+				setMessages(messages => {
+					return {
+						...messages,
+						[data.id]: data
+					};
+				});
+			});
+
+			socket.on(`${directChannelId} delete message`, data => {
+				setMessages(messages => {
+					const messagesCopy = { ...messages };
+					delete messagesCopy[data.message_id];
+					return messagesCopy;
+				});
+			});
+
 			setIsLoaded(true);
 		}
 	}, [currChannel]);
-
-	useEffect(() => {
-		socket = io();
-		socket.on(`${directChannelId} message`, data => {
-			setMessages(messages => {
-				return {
-					...messages,
-					[data.id]: data
-				};
-			});
-		});
-
-		socket.on(`${directChannelId} edit message`, data => {
-			const messagesWithEdit = { ...messages };
-			messagesWithEdit[data.id].content = data.content;
-			setMessages(messagesWithEdit);
-		});
-	}, [directChannelId]);
 
 	const updateChatInput = e => {
 		setMessageInput(e.target.value);
@@ -99,11 +107,19 @@ export default function DirectMessages() {
 
 	const handleEditSubmit = (e, messageId) => {
 		e.preventDefault();
-		// Emit a message to the server indicating that a message has been edited
 		socket.emit("edit message", {
 			channel_id: directChannelId,
 			message_id: messageId,
 			content: editedMessageContent
+		});
+		setShowEditor(false);
+	};
+
+	const handleDeleteSubmit = (e, messageId) => {
+		e.preventDefault();
+		socket.emit("delete message", {
+			channel_id: directChannelId,
+			message_id: messageId
 		});
 		setShowEditor(false);
 	};
@@ -124,15 +140,20 @@ export default function DirectMessages() {
 							onMouseLeave={handleMouseLeave}
 						>
 							<div className="message-card-top">
-								{selectedMessageId === key && showOptions && (
-									<div className="message-options">
-										<i
-											className="fa-solid fa-pencil message-option"
-											onClick={() => handleEditClick(key)}
-										></i>
-										<i className="fa-solid fa-trash-can message-option"></i>
-									</div>
-								)}
+								{selectedMessageId === key &&
+									message.username === user.username &&
+									showOptions && (
+										<div className="message-options">
+											<i
+												className="fa-solid fa-pencil message-option"
+												onClick={() => handleEditClick(key)}
+											></i>
+											<i
+												className="fa-solid fa-trash-can message-option"
+												onClick={e => handleDeleteSubmit(e, key)}
+											></i>
+										</div>
+									)}
 								<p className="message-card-username">{message.username}</p>
 								<p className="message-card-date">
 									{new Date(message.created_at).toLocaleString("en-US", {
