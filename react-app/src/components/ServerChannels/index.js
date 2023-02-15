@@ -25,7 +25,6 @@ export default function ServerChannels() {
 		history.push(`/channels/${serverId}/new`);
 		//refresh
 		dispatch(thunkGetServerChannels(channelId));
-		// dispatch(getChannelCommentsThunk(channel.id));
 	};
 
 	const editChannel = (e) => {
@@ -33,7 +32,6 @@ export default function ServerChannels() {
 		history.push(`/channels/${serverId}/${channelId}/edit`);
 		//refresh
 		dispatch(thunkGetServerChannels(channelId));
-		// dispatch(getChannelCommentsThunk(channel.id));
 	};
 
 	const deleteChannel = () => {
@@ -65,7 +63,6 @@ export default function ServerChannels() {
 						<NavLink key={key} to={`/channels/${serverId}/${channel.id}`}>
 							{channel.name}
 						</NavLink>
-
 						<button onClick={(e) => editChannel(e)}>
 							<OpenModalMenuItem
 								itemText="Edit"
@@ -79,12 +76,6 @@ export default function ServerChannels() {
 			})}
 		</div>
 	) : (
-		<button onClick={(e) => createChannel(e)}>
-			<OpenModalMenuItem
-				itemText="Create Channel"
-			// onItemClick={}
-			// modalComponent={<CreateChannelModal channelId={channel.id} description={channel.description} callbackClose={() => OnModalClose()} />}
-			/>
-		</button>
+			<>Loading</>
 	)
 }
