@@ -176,7 +176,6 @@ export default function DirectMessages() {
 										minute: "2-digit",
 										hour12: true
 									})}
-									{message.edited && `   (edited)`}
 								</p>
 							</div>
 							{messageToEditId === key && showEditor ? (
@@ -192,7 +191,10 @@ export default function DirectMessages() {
 									></input>
 								</form>
 							) : (
-								<p>{message.content}</p>
+								<div className="message-content-container">
+									<p className="message-content">{message.content}</p>
+									{message.edited && <p className="edited-tag">(edited)</p>}
+								</div>
 							)}
 						</div>
 					);
