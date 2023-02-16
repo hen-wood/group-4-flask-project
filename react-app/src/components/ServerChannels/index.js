@@ -37,12 +37,18 @@ export default function ServerChannels() {
 		}
 	}, [channelArr]);
 	const deleteChannel = id => {
+		setIsLoaded(false);
 		dispatch(deleteChannelThunk(id));
-		// dispatch(thunkGetServerChannels());
+		dispatch(thunkGetServer(serverId)).then(() => {
+			setIsLoaded(true);
+		});
 	};
 
 	const OnModalClose = () => {
-		dispatch(thunkGetServerChannels(serverId));
+		setIsLoaded(false);
+		dispatch(thunkGetServer(serverId)).then(() => {
+			setIsLoaded(true);
+		});
 	};
 
 	// const currUserId = useSelector(state => state.session.user.id);
