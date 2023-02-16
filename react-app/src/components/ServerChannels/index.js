@@ -10,6 +10,7 @@ import CreateChannelModal from "../ChannelCreateModal";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams, useHistory } from "react-router-dom";
 import "./serverChannel.css";
+import OpenModalButton from "../OpenModalButton";
 
 export default function ServerChannels() {
 	const dispatch = useDispatch();
@@ -82,19 +83,17 @@ export default function ServerChannels() {
 						</NavLink>
 						{user?.id == server.mod_id && (
 							<>
-								<button className="btn-openmodal">
-									<OpenModalMenuItem
-										itemText={<i className="fa-solid fa-pen-to-square"></i>}
-										modalComponent={
-											<EditChannelModal
-												channelId={channel.id}
-												description={channel.description}
-												name={channel.name}
-												callbackClose={() => OnModalClose()}
-											/>
-										}
-									/>
-								</button>
+								<OpenModalButton
+									buttonText={<i className="fa-solid fa-pen-to-square"></i>}
+									modalComponent={
+										<EditChannelModal
+											channelId={channel.id}
+											description={channel.description}
+											name={channel.name}
+											callbackClose={() => OnModalClose()}
+										/>
+									}
+								/>
 								<button
 									className="btn-openmodal"
 									onClick={() => deleteChannel(channel.id)}
