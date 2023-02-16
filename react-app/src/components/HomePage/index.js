@@ -60,10 +60,6 @@ export default function HomePage() {
 							<Route path="/channels/@me">
 								<DirectChannels />
 							</Route>
-							<Route path="/channels/:serverId/:channelId">
-								<ServerChannels />
-								<DeleteServer />
-							</Route>
 							<Route path="/channels/:serverId">
 								<ServerChannels />
 								<DeleteServer />
