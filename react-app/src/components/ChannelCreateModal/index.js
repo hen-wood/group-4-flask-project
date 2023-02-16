@@ -35,16 +35,16 @@ function CreateChannelModal(props) {
     };
 
     return (
-        <div>
+        <div className="create-channel-container">
             <h1>Create Channel</h1>
             <form onSubmit={handleSubmit}>
-                <ul>
+                <ul className="error-container">
                     {errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
                     ))}
                 </ul>
                 <label>
-                    Channel Name
+                    Channel Name:
                     <textarea
                         className="textarea"
                         value={name}
@@ -53,7 +53,7 @@ function CreateChannelModal(props) {
                     />
                 </label>
                 <label>
-                    Channel description
+                    Channel description:
                     <textarea
                         className="textarea"
                         value={description}
