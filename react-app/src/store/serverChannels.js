@@ -97,7 +97,6 @@ export default function reducer(state = initialState, action) {
             return newState
         }
         case EDIT_CHANNEL: {
-            debugger
             return {
                 ...state,
                 [action.channel]: action.channel
