@@ -48,38 +48,44 @@ export default function DirectMessages() {
 					: currChannel.user_one.username
 			);
 
-			socket = io();
-			socket.on(`${directChannelId} message`, data => {
-				setMessages(messages => {
-					return {
-						...messages,
-						[data.id]: data
-					};
-				});
-				const messagesDiv = document.querySelector("#center-messages");
-				messagesDiv.scrollTop = messagesDiv.scrollHeight;
-			});
-			socket.on(`${directChannelId} edit message`, data => {
-				data.edited = true;
-				setMessages(messages => {
-					return {
-						...messages,
-						[data.id]: data
-					};
-				});
-			});
-
-			socket.on(`${directChannelId} delete message`, data => {
-				setMessages(messages => {
-					const messagesCopy = { ...messages };
-					delete messagesCopy[data.message_id];
-					return messagesCopy;
-				});
-			});
-
 			setIsLoaded(true);
 		}
 	}, [currChannel]);
+
+	useEffect(() => {
+		socket = io();
+		socket.on(`${directChannelId} message`, data => {
+			setMessages(messages => {
+				return {
+					...messages,
+					[data.id]: data
+				};
+			});
+			const messagesDiv = document.querySelector("#center-messages");
+			messagesDiv.scrollTop = messagesDiv.scrollHeight;
+		});
+		socket.on(`${directChannelId} edit message`, data => {
+			data.edited = true;
+			setMessages(messages => {
+				return {
+					...messages,
+					[data.id]: data
+				};
+			});
+		});
+
+		socket.on(`${directChannelId} delete message`, data => {
+			setMessages(messages => {
+				const messagesCopy = { ...messages };
+				delete messagesCopy[data.message_id];
+				return messagesCopy;
+			});
+		});
+
+		return () => {
+			socket.disconnect();
+		};
+	}, []);
 
 	const updateChatInput = e => {
 		setMessageInput(e.target.value);
