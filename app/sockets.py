@@ -5,23 +5,19 @@ from flask_socketio import SocketIO, emit
 from datetime import datetime
 import os
 
-# if os.environ.get("FLASK_ENV") == "production":
-#     origins = [
-#         "https://group-4-discord.onrender.com/",
-#         "https://discord-clone-maks.onrender.com/",
-#         "https://discordance.onrender.com/",
-#         "https://discord-clone-31dg.onrender.com/",
-#         "http://group-4-discord.onrender.com/",
-#         "http://discord-clone-maks.onrender.com/",
-#         "http://discordance.onrender.com/",
-#         "http://discord-clone-31dg.onrender.com/",
-#         "*://group-4-discord.onrender.com/",
-#         "*://discord-clone-maks.onrender.com/",
-#         "*://discordance.onrender.com/",
-#         "*://discord-clone-31dg.onrender.com/"
-#     ]
-# else:
-origins = "*"
+if os.environ.get("FLASK_ENV") == "production":
+    origins = [
+        "https://group-4-discord.onrender.com",
+        "https://discord-clone-maks.onrender.com",
+        "https://discordance.onrender.com",
+        "https://discord-clone-31dg.onrender.com",
+        "http://group-4-discord.onrender.com",
+        "http://discord-clone-maks.onrender.com",
+        "http://discordance.onrender.com",
+        "http://discord-clone-31dg.onrender.com"
+    ]
+else:
+    origins = "*"
 
 socketio = SocketIO(cors_allowed_origins=origins)
 
