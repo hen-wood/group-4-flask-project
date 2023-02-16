@@ -10,10 +10,15 @@ def seed_memberships():
         server_id = 2,
         user_id = 1
     )
+    demo_membership3 = Membership(
+        server_id = 1,
+        user_id = 2
+    )
 
 
     db.session.add(demo_membership1)
     db.session.add(demo_membership2)
+    db.session.add(demo_membership3)
     db.session.commit()
 
 

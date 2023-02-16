@@ -24,3 +24,32 @@ a {
 .btn-openmodal:hover {
     outline: 1px solid white;
 }
+
+.error-container {
+    color: red;
+}
+
+
+.textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+
+#modal-content {
+    width: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 25px;
+}
+
+#modal-content .title {
+    margin-top: 0
+}
