@@ -193,7 +193,7 @@ export default function DirectMessages() {
 							) : (
 								<div className="message-content-container">
 									<p className="message-content">{message.content}</p>
-									{message.edited && <p className="edited-tag">(edited)</p>}
+									{message.edited && <p className="edited-tag">{"(edited)"}</p>}
 								</div>
 							)}
 						</div>
@@ -205,15 +205,15 @@ export default function DirectMessages() {
 					<input
 						type="text"
 						value={messageInput}
-						placeHolder={`Message ${otherUsername}`}
+						placeholder={`Message ${otherUsername}`}
 						onChange={updateChatInput}
 					/>
 				</form>
 			</div>
 		</div>
 	) : (
-		<div id="center-container">
-			<div id="center-top">
+		<div className="center-container">
+			<div className="center-top">
 				<p>Loading...</p>
 			</div>
 			<div id="center-messages"></div>

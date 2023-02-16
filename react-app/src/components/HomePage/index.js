@@ -70,17 +70,21 @@ export default function HomePage() {
 			</div>
 			<Switch>
 				<Route exact path="/channels/@me">
-					<div id="center-container">
-						<div id="center-top"></div>
+					<div className="center-container">
+						<div className="center-top"></div>
 					</div>
 				</Route>
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />
 				</Route>
-				{/* <Route path="/channels/:serverId">
-				<ServerMembers />
-				</Route> */}
 
+				<Route exact path="/channels/:serverId">
+					<div className="center-container">
+						<div className="center-top">
+							<h1>TESTING</h1>
+						</div>
+					</div>
+				</Route>
 				<Route path="/channels/:serverId/:channelId">
 					<ChannelComments />
 				</Route>
