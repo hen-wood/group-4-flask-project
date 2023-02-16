@@ -2,6 +2,7 @@ const LOAD_CHANNELS = '/channels/LOAD';
 const CREATE_CHANNEL = '/channels/CREATE_CHANNEL';
 const EDIT_CHANNEL = '/channels/EDIT_CHANNEL';
 const DELETE_CHANNEL = '/channels/DELETE_CHANNEL';
+// const LOAD_SINGLE_CHANNEL = '/channels/LOAD_SINGLE_CHANNEL';
 
 // Action creator
 export const loadChannels = (channels) => {
@@ -23,6 +24,11 @@ export const deleteChannel = (channel) => ({
     channel
 })
 
+// export const loadSingleChannel = (channel) => ({
+//     type: LOAD_SINGLE_CHANNEL,
+//     channel
+// })
+
 
 // Thunks
 export const thunkGetServerChannels = (id) => async dispatch => {
@@ -33,6 +39,13 @@ export const thunkGetServerChannels = (id) => async dispatch => {
     }
 }
 
+// export const loadSingleChannelThunk = (id) => async dispatch => {
+//     const response = await fetch(`/api/servers/${id}`)
+//     if (response.ok) {
+//         const data = await response.json()
+//         dispatch(loadSingleChannel(data))
+//     }
+// }
 
 export const createChannelThunk = (userInput, serverId) => async (dispatch) => {
     const response = await fetch(`/api/channels/${serverId}`, {
@@ -72,7 +85,8 @@ export const deleteChannelThunk = (channelId) => async (dispatch) => {
 
 // Initial State
 const initialState = {
-    channels: {}
+    channels: {},
+    // singleChannel: {}
 };
 
 
@@ -86,6 +100,14 @@ export default function reducer(state = initialState, action) {
             })
             return { ...newState };
         }
+        // case SET_SINGLE_USER_DIRECT_CHANNEL:
+		// 	newState.singleUserDirectChannel = action.payload;
+		// 	const messagesObj = {};
+		// 	action.payload.messages.forEach(msg => {
+		// 		messagesObj[msg.id] = msg;
+		// 	});
+		// 	newState.singleUserDirectChannel.messages = messagesObj;
+		// 	return newState;
         case CREATE_CHANNEL:
             return {
                 ...state,
@@ -97,7 +119,6 @@ export default function reducer(state = initialState, action) {
             return newState
         }
         case EDIT_CHANNEL: {
-            debugger
             return {
                 ...state,
                 [action.channel]: action.channel

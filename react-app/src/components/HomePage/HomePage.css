@@ -121,14 +121,14 @@
 
 
 /* Center area of the screen */
-#center-container {
+.center-container {
     background-color: #35393f;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-#center-top {
+.center-top {
     min-height: 50px;
     border-bottom: 1px solid #202225;
     display: flex;
@@ -136,12 +136,18 @@
     padding: 0 10px;
 }
 
-#center-top p {
+.center-top .channel-name {
     margin: 0;
     color: white;
     font-weight: bolder;
 }
 
+.center-top .channel-desc {
+    margin: 0;
+    padding-left: 15px;
+    color: rgba(255, 255, 255, 0.771);
+    font-size: small;
+}
 #center-messages {
     height: 100%;
     overflow-y: scroll;
@@ -158,6 +164,11 @@
     width: 8px;
     background-color: #202225;
     border-radius: 4px;
+}
+
+#center-comments {
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .message-card {
@@ -257,9 +268,23 @@
     justify-content: center;
 }
 
+#comment-form-container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #message-input {
     width: 100%;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#comment-input {
+    width: 100%;
     display: flex;
     justify-content: center;
 }

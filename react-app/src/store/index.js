@@ -5,13 +5,15 @@ import directChannels from "./directChannels";
 import server from "./server";
 import servers from "./servers";
 import channels from "./serverChannels";
+import channelComments from "./channelComments";
 
 const rootReducer = combineReducers({
 	session,
 	directChannels,
 	server,
 	servers,
-	channels
+	channels,
+	channelComments
 });
 
 let enhancer;
