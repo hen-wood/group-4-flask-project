@@ -7,7 +7,7 @@ channel_routes = Blueprint('channels', __name__)
 
 
 @channel_routes.route('/<int:serverId>')
-# @login_required
+@login_required
 def get_channels(serverId):
     """
     Query for all channels and return
@@ -17,7 +17,7 @@ def get_channels(serverId):
 
 
 @channel_routes.route('/<int:serverId>', methods=['POST'])
-# @login_required
+@login_required
 def add_channel(serverId):
     """
     Add channel and return
@@ -46,7 +46,7 @@ def edit_channel(channelId):
 
 
 @channel_routes.route('/<int:channelId>', methods=['DELETE'])
-# @login_required
+@login_required
 def delete_channel(channelId):
     """
     Delete channel
