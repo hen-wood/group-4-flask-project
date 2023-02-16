@@ -1,16 +1,21 @@
 """empty message
-Revision ID: 05fc49ae6d08
+
+Revision ID: f69ef94bfcf8
 Revises:
-Create Date: 2023-02-15 17:15:56.140834
+Create Date: 2023-02-16 17:00:07.100873
+
 """
+
+
 from alembic import op
 import sqlalchemy as sa
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '05fc49ae6d08'
+revision = 'f69ef94bfcf8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,7 +49,6 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE direct_channels_table SET SCHEMA {SCHEMA};")
-
 
     op.create_table('servers_table',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -80,6 +84,7 @@ def upgrade():
     sa.Column('direct_channel_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('content', sa.Text(), nullable=False),
+    sa.Column('edited', sa.Boolean(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['direct_channel_id'], ['direct_channels_table.id'], ),
@@ -116,8 +121,7 @@ def upgrade():
     )
 
     if environment == "production":
-        op.execute(f"ALTER TABLE channel_comments_table SET SCHEMA {SCHEMA};")
-
+        op.execute(f"ALTER TABLE channels_comments_table SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

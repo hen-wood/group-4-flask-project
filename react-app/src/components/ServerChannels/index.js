@@ -37,6 +37,7 @@ export default function ServerChannels() {
 			setChannels(channelsObj);
 		}
 	}, [channelArr]);
+
 	const deleteChannel = id => {
 		setIsLoaded(false);
 		dispatch(deleteChannelThunk(id));

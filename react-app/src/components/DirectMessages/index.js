@@ -137,8 +137,8 @@ export default function DirectMessages() {
 	};
 
 	return isLoaded ? (
-		<div className="center-container">
-			<div className="center-top">
+		<div id="center-container">
+			<div id="center-top">
 				<p>@{otherUsername}</p>
 			</div>
 			<div id="center-messages">
@@ -212,8 +212,8 @@ export default function DirectMessages() {
 			</div>
 		</div>
 	) : (
-		<div className="center-container">
-			<div className="center-top">
+		<div id="center-container">
+			<div id="center-top">
 				<p>Loading...</p>
 			</div>
 			<div id="center-messages"></div>

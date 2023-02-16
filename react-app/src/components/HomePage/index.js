@@ -48,6 +48,7 @@ export default function HomePage() {
 				<div id="left-menu">
 					<div id="left-menu-top">
 						<Switch>
+							<Route path="/channels/@me"></Route>
 							<Route path="/channels/:serverId">
 								<ServerName />
 							</Route>
