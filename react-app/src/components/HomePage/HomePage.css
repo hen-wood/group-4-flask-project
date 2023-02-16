@@ -2,7 +2,34 @@
     height: 100vh;
     display: flex;
 }
+/* Main Loading Screen */
+#main-loading-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #35393f;
+    width:100%;
+    height: 100%;
+}
 
+#main-loading-text{
+    color: #babcc4;
+    animation: fade 2s infinite;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
 /* Left area of the screen */
 #left-container {
     background-color: #202225;
@@ -165,6 +192,10 @@
 
 .options-hidden {
     display: none;
+}
+
+#message-edit-input{
+    width: 95%;
 }
 
 .message-card-username {

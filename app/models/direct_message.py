@@ -12,6 +12,7 @@ class DirectMessage(db.Model):
     direct_channel_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("direct_channels_table.id")), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     content = db.Column(db.Text, nullable=False)
+    edited = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
@@ -23,5 +24,6 @@ class DirectMessage(db.Model):
             'direct_channel_id': self.direct_channel_id,
             'username': self.message_user.username,
             'content': self.content,
+            'edited': self.edited,
             'created_at': self.created_at
         }

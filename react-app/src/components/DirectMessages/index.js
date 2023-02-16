@@ -182,6 +182,7 @@ export default function DirectMessages() {
 							{messageToEditId === key && showEditor ? (
 								<form onSubmit={e => handleEditSubmit(e, message.id)}>
 									<input
+										id="message-edit-input"
 										type="text"
 										value={editedMessageContent}
 										onChange={e => {
@@ -209,6 +210,11 @@ export default function DirectMessages() {
 			</div>
 		</div>
 	) : (
-		<h3>Loading Messages...</h3>
+		<div id="center-container">
+			<div id="center-top">
+				<p>Loading...</p>
+			</div>
+			<div id="center-messages"></div>
+		</div>
 	);
 }

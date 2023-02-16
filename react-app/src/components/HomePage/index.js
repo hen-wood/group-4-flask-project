@@ -38,9 +38,10 @@ export default function HomePage() {
 							<DiscordanceLogo />
 						</div>
 					</div>
-					<div id="left-nav-center"></div>
+					<div id="left-nav-center">
+						<ServersList />
+					</div>
 
-					<ServersList />
 					<CreateServer />
 					<JoinAServer />
 
@@ -73,11 +74,9 @@ export default function HomePage() {
 			</div>
 			<Switch>
 				<Route exact path="/channels/@me">
-					<h1>This would be when you first log in</h1>
-					<p>
-						Normally it's a list of all of your friends, but since we don't have
-						a friends feature we'll have to come up with something else
-					</p>
+					<div id="center-container">
+						<div id="center-top"></div>
+					</div>
 				</Route>
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />
@@ -92,6 +91,10 @@ export default function HomePage() {
 			</Switch>
 		</div>
 	) : (
-		<h1>loading...</h1>
+		<div id="main-container">
+			<div id="main-loading-container">
+				<h1 id="main-loading-text">Loading...</h1>
+			</div>
+		</div>
 	);
 }

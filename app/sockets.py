@@ -7,18 +7,14 @@ import os
 
 if os.environ.get("FLASK_ENV") == "production":
     origins = [
-        "https://group-4-discord.onrender.com/",
-        "https://discord-clone-maks.onrender.com/",
-        "https://discordance.onrender.com/",
-        "https://discord-clone-31dg.onrender.com/",
-        "http://group-4-discord.onrender.com/",
-        "http://discord-clone-maks.onrender.com/",
-        "http://discordance.onrender.com/",
-        "http://discord-clone-31dg.onrender.com/",
-        "*://group-4-discord.onrender.com/",
-        "*://discord-clone-maks.onrender.com/",
-        "*://discordance.onrender.com/",
-        "*://discord-clone-31dg.onrender.com/"
+        "https://group-4-discord.onrender.com",
+        "https://discord-clone-maks.onrender.com",
+        "https://discordance.onrender.com",
+        "https://discord-clone-31dg.onrender.com",
+        "http://group-4-discord.onrender.com",
+        "http://discord-clone-maks.onrender.com",
+        "http://discordance.onrender.com",
+        "http://discord-clone-31dg.onrender.com"
     ]
 else:
     origins = "*"
@@ -44,6 +40,7 @@ def handle_chat(data):
 def handle_edit_message(data):
     message_to_edit = DirectMessage.query.filter(DirectMessage.id == data['message_id']).one()
     message_to_edit.content = data['content']
+    message_to_edit.edited = True
     db.session.add(message_to_edit)
     db.session.commit()
     data['id']=message_to_edit.id
