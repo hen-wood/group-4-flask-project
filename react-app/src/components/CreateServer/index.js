@@ -1,16 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { createServerThunk } from "../../store/servers";
-import { useHistory } from "react-router-dom";
 import "./createServer.css";
+import { useModal } from "../../context/Modal";
 
 export default function CreateServer() {
-	const history = useHistory();
+
 	const dispatch = useDispatch();
 	const [serverName, setServerName] = useState();
-
+	const { closeModal } = useModal();
 	const handleSubmit = async e => {
 		e.preventDefault();
 
@@ -20,10 +19,12 @@ export default function CreateServer() {
 
 		dispatch(createServerThunk(payload));
 		setServerName("");
+		closeModal();
+
 	};
 
 	return (
-		<div>
+		<div className="createServerContainer">
 			<form className="createForm" onSubmit={handleSubmit}>
 				<input
 					type="text"

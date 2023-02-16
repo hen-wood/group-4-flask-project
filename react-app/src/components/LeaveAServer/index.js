@@ -4,7 +4,7 @@ import { leaveServerThunk } from '../../store/memberships';
 import { useHistory } from 'react-router-dom';
 import { thunkGetUserServers } from '../../store/servers';
 import { useDispatch, useSelector } from "react-redux";
-
+import {deleteServerFromList} from '../../store/servers'
 
 export default function LeaveAServer () {
     const history = useHistory();
@@ -17,10 +17,10 @@ export default function LeaveAServer () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+      let serverId = server.id
         dispatch(leaveServerThunk(server.id))
-        dispatch(thunkGetUserServers())
-
+        dispatch(deleteServerFromList(serverId))
+        history.push('/channels/@me')
     }
 
     return (

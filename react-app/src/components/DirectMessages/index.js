@@ -48,38 +48,44 @@ export default function DirectMessages() {
 					: currChannel.user_one.username
 			);
 
-			socket = io();
-			socket.on(`${directChannelId} message`, data => {
-				setMessages(messages => {
-					return {
-						...messages,
-						[data.id]: data
-					};
-				});
-				const messagesDiv = document.querySelector("#center-messages");
-				messagesDiv.scrollTop = messagesDiv.scrollHeight;
-			});
-			socket.on(`${directChannelId} edit message`, data => {
-				data.edited = true;
-				setMessages(messages => {
-					return {
-						...messages,
-						[data.id]: data
-					};
-				});
-			});
-
-			socket.on(`${directChannelId} delete message`, data => {
-				setMessages(messages => {
-					const messagesCopy = { ...messages };
-					delete messagesCopy[data.message_id];
-					return messagesCopy;
-				});
-			});
-
 			setIsLoaded(true);
 		}
 	}, [currChannel]);
+
+	useEffect(() => {
+		socket = io();
+		socket.on(`${directChannelId} message`, data => {
+			setMessages(messages => {
+				return {
+					...messages,
+					[data.id]: data
+				};
+			});
+			const messagesDiv = document.querySelector("#center-messages");
+			messagesDiv.scrollTop = messagesDiv.scrollHeight;
+		});
+		socket.on(`${directChannelId} edit message`, data => {
+			data.edited = true;
+			setMessages(messages => {
+				return {
+					...messages,
+					[data.id]: data
+				};
+			});
+		});
+
+		socket.on(`${directChannelId} delete message`, data => {
+			setMessages(messages => {
+				const messagesCopy = { ...messages };
+				delete messagesCopy[data.message_id];
+				return messagesCopy;
+			});
+		});
+
+		return () => {
+			socket.disconnect();
+		};
+	}, []);
 
 	const updateChatInput = e => {
 		setMessageInput(e.target.value);
@@ -131,8 +137,8 @@ export default function DirectMessages() {
 	};
 
 	return isLoaded ? (
-		<div id="center-container">
-			<div id="center-top">
+		<div className="center-container">
+			<div className="center-top">
 				<p>@{otherUsername}</p>
 			</div>
 			<div id="center-messages">
@@ -170,12 +176,12 @@ export default function DirectMessages() {
 										minute: "2-digit",
 										hour12: true
 									})}
-									{message.edited && `   (edited)`}
 								</p>
 							</div>
 							{messageToEditId === key && showEditor ? (
 								<form onSubmit={e => handleEditSubmit(e, message.id)}>
 									<input
+										id="message-edit-input"
 										type="text"
 										value={editedMessageContent}
 										onChange={e => {
@@ -185,7 +191,10 @@ export default function DirectMessages() {
 									></input>
 								</form>
 							) : (
-								<p>{message.content}</p>
+								<div className="message-content-container">
+									<p className="message-content">{message.content}</p>
+									{message.edited && <p className="edited-tag">{"(edited)"}</p>}
+								</div>
 							)}
 						</div>
 					);
@@ -196,13 +205,18 @@ export default function DirectMessages() {
 					<input
 						type="text"
 						value={messageInput}
-						placeHolder={`Message ${otherUsername}`}
+						placeholder={`Message ${otherUsername}`}
 						onChange={updateChatInput}
 					/>
 				</form>
 			</div>
 		</div>
 	) : (
-		<h3>Loading Messages...</h3>
+		<div className="center-container">
+			<div className="center-top">
+				<p>Loading...</p>
+			</div>
+			<div id="center-messages"></div>
+		</div>
 	);
 }

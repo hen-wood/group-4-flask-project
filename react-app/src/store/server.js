@@ -54,6 +54,7 @@ export default function reducer(state = initialState, action) {
             return loadServerState
         case DELETE_SERVER:
             const deleteState = {}
+            console.log('in delete server')
             return deleteState
         default:
             console.log('in default SERVER')

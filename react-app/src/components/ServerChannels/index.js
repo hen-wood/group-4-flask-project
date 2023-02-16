@@ -1,84 +1,115 @@
 import { useEffect, useState } from "react";
-import { thunkGetServerChannels, deleteChannelThunk } from "../../store/serverChannels";
+import {
+	thunkGetServerChannels,
+	deleteChannelThunk
+} from "../../store/serverChannels";
+import { thunkGetServer } from "../../store/server";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
-import EditChannelModal from '../ChannelEditModal';
-import CreateChannelModal from '../ChannelCreateModal';
+import EditChannelModal from "../ChannelEditModal";
+import CreateChannelModal from "../ChannelCreateModal";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams, useHistory } from "react-router-dom";
-import './serverChannel.css';
+import "./serverChannel.css";
 
 export default function ServerChannels() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [channels, setChannels] = useState({});
 	const { serverId, channelId } = useParams();
+	const user = useSelector(state => state.session.user);
+	const server = useSelector(state => state.server);
+	const channelArr = useSelector(state => state.server.channels);
 
 	useEffect(() => {
-		dispatch(thunkGetServerChannels(serverId)).then(() => {
+		dispatch(thunkGetServer(serverId)).then(() => {
 			setIsLoaded(true);
 		});
 	}, [dispatch, serverId]);
 
-	const channels = useSelector(state => state.channels);
-
-	const deleteChannel = () => {
-		dispatch(deleteChannelThunk(channelId));
-		//refresh
-		dispatch(thunkGetServerChannels());
-		// history.push(`/channels/`);
+	useEffect(() => {
+		if (channelArr) {
+			const channelsObj = {};
+			channelArr.forEach(channel => {
+				channelsObj[channel.id] = channel;
+			});
+			setChannels(channelsObj);
+		}
+	}, [channelArr]);
+	const deleteChannel = id => {
+		setIsLoaded(false);
+		dispatch(deleteChannelThunk(id));
+		dispatch(thunkGetServer(serverId)).then(() => {
+			setIsLoaded(true);
+		});
 	};
-
-
-	const createChannel = (e) => {
-		e.preventDefault();
-		history.push(`/channels/${serverId}/new`);
-		//refresh
-		dispatch(thunkGetServerChannels(channelId));
-	};
-
-	const editChannel = (e) => {
-		e.preventDefault();
-		history.push(`/channels/${serverId}/${channelId}/edit`);
-		//refresh
-		dispatch(thunkGetServerChannels(channelId));
-	};
-
-
 
 	const OnModalClose = () => {
-		dispatch(thunkGetServerChannels(serverId));
-	}
+		setIsLoaded(false);
+		dispatch(thunkGetServer(serverId)).then(() => {
+			setIsLoaded(true);
+		});
+	};
 
 	// const currUserId = useSelector(state => state.session.user.id);
 	return isLoaded ? (
 		<div>
-			<p id="direct-message-title">Text Channels</p>
-			<button onClick={(e) => createChannel(e)}>
-				<OpenModalMenuItem
-					itemText="Create Channel"
-					modalComponent={<CreateChannelModal serverId={serverId} callbackClose={() => OnModalClose()} />}
-				/>
-			</button>
+			<div className="server-channel-header">
+				<p id="direct-message-title">Text Channels</p>
+				<button className="btn-openmodal">
+					<OpenModalMenuItem
+						itemText={<i class="fa-solid fa-plus"></i>}
+						modalComponent={
+							<CreateChannelModal
+								serverId={serverId}
+								callbackClose={() => OnModalClose()}
+							/>
+						}
+					/>
+				</button>
+			</div>
 			{Object.keys(channels).map(key => {
 				const channel = channels[key];
 				return (
-					<div className="server-channel-list">
-						<NavLink key={key} to={`/channels/${serverId}/${channel.id}`}>
-							<span className="sidebarChannel_hash">#</span>{channel.name}
+					<div className="server-channel-list" key={key}>
+						<NavLink
+							key={key}
+							to={`/channels/${serverId}/${channel.id}`}
+							className="channel-name"
+						>
+							<span className="sidebarChannel_hash">#</span>
+							{channel.name}
 						</NavLink>
-						<button onClick={(e) => editChannel(e)}>
-							<OpenModalMenuItem
-								itemText="Edit"
-								// onItemClick={}
-								modalComponent={<EditChannelModal channelId={channel.id} description={channel.description} name={channel.name} serverId={ channel.server_id} callbackClose={() => OnModalClose()} />}
-							/>
-						</button>
-						<button onClick={(e) => deleteChannel(e)} >Delete</button>
+						{user?.id == server.mod_id && (
+							<>
+								<button className="btn-openmodal">
+									<OpenModalMenuItem
+										itemText={<i className="fa-solid fa-pen-to-square"></i>}
+										modalComponent={
+											<EditChannelModal
+												channelId={channel.id}
+												description={channel.description}
+												name={channel.name}
+												callbackClose={() => OnModalClose()}
+											/>
+										}
+									/>
+								</button>
+								<button
+									className="btn-openmodal"
+									onClick={() => deleteChannel(channel.id)}
+								>
+									<li>
+										<i className="fa-solid fa-trash" />
+									</li>
+								</button>
+							</>
+						)}
 					</div>
 				);
 			})}
 		</div>
 	) : (
-			<>Loading</>
-	)
+		<>Loading</>
+	);
 }

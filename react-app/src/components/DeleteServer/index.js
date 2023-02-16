@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {deleteServerThunk} from '../../store/server';
+import {deleteServerFromList} from '../../store/servers'
 import {useHistory} from 'react-router-dom';
 import './deleteServer.css';
 
@@ -20,8 +21,9 @@ export default function DeleteServer() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(deleteServerThunk(serverId));
-
-        history.push(`/channels/@me`);
+        console.log(serverId, 'here is serverid')
+        dispatch(deleteServerFromList(serverId))
+        history.push('/channels/@me')
     }
 
     return (<div>

@@ -1,7 +1,8 @@
 const LOAD_CHANNELS = '/channels/LOAD';
-const CREATE_CHANNEL = 'channels/CREATE_CHANNEL';
-const EDIT_CHANNEL = 'channels/EDIT_CHANNEL';
-const DELETE_CHANNEL = 'channels/DELETE_CHANNEL';
+const CREATE_CHANNEL = '/channels/CREATE_CHANNEL';
+const EDIT_CHANNEL = '/channels/EDIT_CHANNEL';
+const DELETE_CHANNEL = '/channels/DELETE_CHANNEL';
+// const LOAD_SINGLE_CHANNEL = '/channels/LOAD_SINGLE_CHANNEL';
 
 // Action creator
 export const loadChannels = (channels) => {
@@ -18,10 +19,15 @@ export const editChannel = (channel) => ({
     channel
 })
 
-export const deleteChannel = (channelId) => ({
+export const deleteChannel = (channel) => ({
     type: DELETE_CHANNEL,
-    channelId
+    channel
 })
+
+// export const loadSingleChannel = (channel) => ({
+//     type: LOAD_SINGLE_CHANNEL,
+//     channel
+// })
 
 
 // Thunks
@@ -33,6 +39,13 @@ export const thunkGetServerChannels = (id) => async dispatch => {
     }
 }
 
+// export const loadSingleChannelThunk = (id) => async dispatch => {
+//     const response = await fetch(`/api/servers/${id}`)
+//     if (response.ok) {
+//         const data = await response.json()
+//         dispatch(loadSingleChannel(data))
+//     }
+// }
 
 export const createChannelThunk = (userInput, serverId) => async (dispatch) => {
     const response = await fetch(`/api/channels/${serverId}`, {
@@ -48,8 +61,8 @@ export const createChannelThunk = (userInput, serverId) => async (dispatch) => {
 }
 
 
-export const editChannelThunk = (input, serverId, channelId) => async (dispatch) => {
-    const response = await fetch(`/api/channels/${serverId}/${channelId}`, {
+export const editChannelThunk = (input, channelId) => async (dispatch) => {
+    const response = await fetch(`/api/channels/${channelId}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(input)
@@ -66,15 +79,14 @@ export const deleteChannelThunk = (channelId) => async (dispatch) => {
         method: 'DELETE',
     })
     if (response.ok) {
-        const channel = await response.json();
-        dispatch(deleteChannel(channel));
-        // return channel;
+        dispatch(deleteChannel(channelId));
     }
 }
 
 // Initial State
 const initialState = {
-    channels: {}
+    channels: {},
+    // singleChannel: {}
 };
 
 
@@ -88,16 +100,22 @@ export default function reducer(state = initialState, action) {
             })
             return { ...newState };
         }
+        // case SET_SINGLE_USER_DIRECT_CHANNEL:
+		// 	newState.singleUserDirectChannel = action.payload;
+		// 	const messagesObj = {};
+		// 	action.payload.messages.forEach(msg => {
+		// 		messagesObj[msg.id] = msg;
+		// 	});
+		// 	newState.singleUserDirectChannel.messages = messagesObj;
+		// 	return newState;
         case CREATE_CHANNEL:
             return {
                 ...state,
                 [action.channel.id]: action.channel
             }
         case DELETE_CHANNEL: {
-            const newState = {
-                ...state
-            }
-            delete newState.channels[action.channelId]
+            const newState = { ...state }
+            delete newState[action.channel];
             return newState
         }
         case EDIT_CHANNEL: {

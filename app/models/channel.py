@@ -27,5 +27,6 @@ class Channel(db.Model):
             'id': self.id,
             'name': self.name,
             'server_id': self.server_id,
-            'description': self.description
+            'description': self.description,
+            'channel_comments': [comment.to_dict() for comment in self.channel_comments]
         }
