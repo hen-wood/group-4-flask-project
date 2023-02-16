@@ -40,6 +40,7 @@ def handle_chat(data):
 def handle_edit_message(data):
     message_to_edit = DirectMessage.query.filter(DirectMessage.id == data['message_id']).one()
     message_to_edit.content = data['content']
+    message_to_edit.edited = True
     db.session.add(message_to_edit)
     db.session.commit()
     data['id']=message_to_edit.id
