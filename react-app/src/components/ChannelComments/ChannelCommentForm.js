@@ -39,7 +39,7 @@ export default function ChannelCommentForm() {
 				<input
 					type="text"
 					value={commentInput}
-					placeHolder={`Leave your comment`}
+					placeholder={`Leave your comment`}
 					onChange={updateChannelInput}
 				/>
 			</form>

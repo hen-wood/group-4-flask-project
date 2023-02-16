@@ -60,7 +60,7 @@ export default function ServerChannels() {
 				<p id="direct-message-title">Text Channels</p>
 				<button className="btn-openmodal">
 					<OpenModalMenuItem
-						itemText={<i class="fa-solid fa-plus"></i>}
+						itemText={<i className="fa-solid fa-plus"></i>}
 						modalComponent={
 							<CreateChannelModal
 								serverId={serverId}

@@ -13,9 +13,12 @@ class ChannelComment(db.Model):
     content = db.Column(db.Text, nullable=False)
     #has to be a foreignkey in order to connect to the channel table in a many comments to one channel relationship
     channel_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("channels_table.id")), nullable=False)
-    user_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('users.id')),nullable=False)
+    edited = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+
+    user = db.relationship('User')
 
     def to_dict(self):
         return {
@@ -23,5 +26,6 @@ class ChannelComment(db.Model):
             'content': self.content,
             'channel_id': self.channel_id,
             'user_id': self.user_id,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'username': self.user.username
         }
