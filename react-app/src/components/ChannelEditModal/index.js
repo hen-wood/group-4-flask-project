@@ -23,7 +23,7 @@ function EditChannelModal(props) {
             description,
             id: props.channelId
         }
-        return dispatch(channelActions.editChannelThunk(editedChannel, props.serverId, props.channelId))
+        return dispatch(channelActions.editChannelThunk(editedChannel, props.channelId))
             .then(() => {
                 props.callbackClose();
                 closeModal();
