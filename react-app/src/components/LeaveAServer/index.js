@@ -20,7 +20,7 @@ export default function LeaveAServer () {
       let serverId = server.id
         dispatch(leaveServerThunk(server.id))
         dispatch(deleteServerFromList(serverId))
-
+        history.push('/channels/@me')
     }
 
     return (

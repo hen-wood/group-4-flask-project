@@ -23,6 +23,7 @@ export default function DeleteServer() {
         dispatch(deleteServerThunk(serverId));
         console.log(serverId, 'here is serverid')
         dispatch(deleteServerFromList(serverId))
+        history.push('/channels/@me')
     }
 
     return (<div>
