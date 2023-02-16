@@ -21,8 +21,8 @@ export default function JoinAServer () {
 
 
 
-        dispatch(thunkAddMembership(code))
-        dispatch(thunkGetUserServers())
+     dispatch(thunkAddMembership(code))
+    dispatch(thunkGetUserServers())
 
     }
 
