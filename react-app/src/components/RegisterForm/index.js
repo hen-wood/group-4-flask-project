@@ -30,53 +30,67 @@ export default function RegisterForm() {
 	};
 
 	return (
-		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={e => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={e => setUsername(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={e => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={e => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Sign Up</button>
-			</form>
-			<Link to="/login">Already have an account?</Link>
-		</>
+		<div className="page-wrapper sign-up">
+
+			<div className="img-div">
+				<img src="https://i.imgur.com/nBUx5Al.png" className="temp-img-class" />
+			</div>
+
+			<div className="master-div sign-up">
+
+				<div>
+
+					<h1>Sign Up</h1>
+					<form
+						onSubmit={handleSubmit}
+						className="actual-form sign-up"
+					>
+						<ul>
+							{errors.map((error, idx) => (
+								<li key={idx}>{error}</li>
+							))}
+						</ul>
+						<label>
+							Email
+						</label>
+						<input
+							type="text"
+							value={email}
+							onChange={e => setEmail(e.target.value)}
+							required
+						/>
+						<label>
+							Username
+						</label>
+						<input
+							type="text"
+							value={username}
+							onChange={e => setUsername(e.target.value)}
+							required
+						/>
+						<label>
+							Password
+						</label>
+						<input
+							type="password"
+							value={password}
+							onChange={e => setPassword(e.target.value)}
+							required
+						/>
+						<label>
+							Confirm Password
+						</label>
+						<input
+							type="password"
+							value={confirmPassword}
+							onChange={e => setConfirmPassword(e.target.value)}
+							required
+						/>
+						<button type="submit" className="button">Sign Up</button>
+					</form>
+					<Link className="link" to="/login">Already have an account?</Link>
+				</div>
+			</div>
+		</div>
 	);
 }
