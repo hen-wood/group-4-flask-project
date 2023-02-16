@@ -9,7 +9,7 @@ if os.environ.get("FLASK_ENV") == "production":
     origins = [
         "https://group-4-discord.onrender.com/",
         "https://discord-clone-maks.onrender.com/",
-        "https://discordance.onrender.com/",
+        "*://discordance.onrender.com/",
         "http://group-4-discord.onrender.com/",
         "http://discord-clone-maks.onrender.com/",
         "http://discordance.onrender.com/",
