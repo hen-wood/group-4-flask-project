@@ -171,6 +171,11 @@
     overflow-y: scroll;
 }
 
+#center-comments {
+    height: 100%;
+    overflow-y: scroll;
+}
+
 .message-card {
     position: relative;
     display: flex;
@@ -279,6 +284,12 @@
 #message-input {
     width: 100%;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#comment-input {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
