@@ -11,7 +11,7 @@ from .api.test_route import test_route
 from .api.comments_routes import comments_routes
 from .api.channel_routes import channel_routes
 from .api.direct_channels import direct_channels
-from .api.sockets import socketio
+from app.sockets import socketio
 from .api.server_routes import server_routes
 from .seeds import seed_commands
 from .config import Config
