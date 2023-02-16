@@ -49,7 +49,7 @@ export default function ChannelComments() {
     return isLoaded ? (
         <div id="center-container">
             <div id="center-top">
-                <p>@{currChannel.name}</p>
+                <p>@{currChannel?.name}</p>
             </div>
             <div id="center-comments">
                 {Object.keys(currComments).map(key => {

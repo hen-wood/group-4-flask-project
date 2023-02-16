@@ -34,14 +34,13 @@ def add_channel(serverId):
     return channel.to_dict()
 
 
-@channel_routes.route('/<int:serverId>/<int:channelId>', methods=['PUT'])
-def edit_channel(serverId, channelId):
+@channel_routes.route('/<int:channelId>', methods=['PUT'])
+def edit_channel(channelId):
     """
     Edit channel desciption and return
     """
     channel = Channel.query.get(channelId)
-    description = request.json['description']
-    channel.description = description
+    channel.description = request.json['description']
     db.session.commit()
     return channel.to_dict()
 
@@ -55,4 +54,4 @@ def delete_channel(channelId):
     channel = Channel.query.get(channelId)
     db.session.delete(channel)
     db.session.commit()
-    return redirect(url_for('/<int:serverId>'))
+    return jsonify({"ok": True, "message": "Successfully removed channel"})

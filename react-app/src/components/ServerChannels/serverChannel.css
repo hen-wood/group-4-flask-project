@@ -2,9 +2,22 @@
     font-size: 15px;
     padding-right: 4px;
 }
-
+*/
 
 .server-channel-list {
     display: flex;
     flex-direction: row;
-} */
+}
+
+.server-channel-list .channel-name{
+    flex-grow: 1;
+}
+
+.server-channel-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.server-channel-header #direct-message-title{
+    flex-grow: 1;
+}
