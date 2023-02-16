@@ -145,6 +145,19 @@
 #center-messages {
     height: 100%;
     overflow-y: scroll;
+    margin-left: 10px;
+    padding-right: 5px;
+}
+
+#center-messages::-webkit-scrollbar{
+    width: 8px;
+    background-color: #2e3338;
+    border-radius: 4px;
+}
+#center-messages::-webkit-scrollbar-thumb{
+    width: 8px;
+    background-color: #202225;
+    border-radius: 4px;
 }
 
 .message-card {
@@ -195,17 +208,45 @@
 }
 
 #message-edit-input{
-    width: 95%;
+    width: 100%;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #40444b;
+    color: #d9dce4;
+    box-sizing: border-box;
+}
+
+#message-edit-input:focus{
+    outline: none;
 }
 
 .message-card-username {
     margin-right: 10px;
     color: #eff1f7;
     font-weight: bolder;
+    margin-top: 5px;
 }
 
 .message-card-date {
     font-size: small;
+    margin-top: 5px;
+}
+
+.message-content-container{
+    display: flex;
+    align-items: center;
+}
+
+.message-content{
+    margin: 5px 0;
+}
+
+.edited-tag{
+    margin: 5px 8px;
+    font-size: 10px;
+    color:#96989d;
 }
 
 #message-form-container {
@@ -218,15 +259,17 @@
 
 #message-input {
     width: 100%;
+    padding: 10px;
     display: flex;
     justify-content: center;
 }
 
 #message-input input[type="text"] {
-    width: 95%;
+    width: 100%;
+    box-sizing: border-box;
     padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     color: #d9dce4;
     background-color: #40444b;
 }
