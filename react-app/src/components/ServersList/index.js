@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {thunkGetUserServers} from "../../store/servers";
-import './servers.css'
+import './ServersList.css'
 export default function ServersList() {
     const dispatch = useDispatch();
     let servers = []
@@ -27,13 +27,18 @@ export default function ServersList() {
     }
 
     return servers && (
-        <div>
+        <div className='serverListContainer'>
 
             {servers.map((server) => (
                server ?(
                 <div>
-                   <Link key={server.id} to={`/channels/${server.id}`}>{server.name}
-                    </Link>
+                   <NavLink className="serverListButton" key={server.id} to={`/channels/${server.id}`}
+                   style={{ color: '#3b9758' }}
+                    activeStyle={{ color: 'white' }}
+                    >
+                        {server.name}
+
+                    </NavLink>
                     </div>
                     ) : (<div>nothin</div>)
                 ))}
