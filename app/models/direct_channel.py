@@ -29,7 +29,7 @@ class DirectChannel(db.Model):
                 'username': self.user_one.username
                 },
             'user_two': {
-                'id': self.user_one.id,
+                'id': self.user_two.id,
                 'username': self.user_two.username
                 },
             'messages': [message.to_dict() for message in self.direct_channel_messages]
