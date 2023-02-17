@@ -1,18 +1,19 @@
 .serverModalContainer {
     background-color: '#ffffff';
-    width:20em;
+    width:28em;
     height: 25em;
     display: grid;
     justify-content: center;
-
+    border: 1px solid red;
+    margin-left: 1.4em;
 
 }
+
 
 .serverModalHeader{
     display: grid;
 font-size: 18px;
 justify-content: center;
-
 margin-top: 1em;
 
 }
@@ -24,28 +25,22 @@ margin-top: 1em;
     text-align: center;
 }
 
-.ServerModalCreateServer{
+.ServerModalCreateServer .OpenModalButton, .ServerModalJoinServer .OpenModalButton {
+    background-color: white;
+    border:1px solid grey;
+    border-radius: 10px;
+}
+
+
+.ServerModalCreateServer, .ServerModalJoinServer{
     display: grid;
     margin-top: -5em;
     margin-top: -7.5em;
     margin-left: 1em;
     height: 3em;
 
-
-
-    width: 18em;
+    width: 24em;
 }
 
-
-.ServerModalJoinServer{
-    display: grid;
-    margin-top: -5em;
-    margin-left: 1em;
-    height: 3em;
-
-
-
-    width: 18em;
-}
 
 

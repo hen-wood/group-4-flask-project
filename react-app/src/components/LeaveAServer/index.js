@@ -5,11 +5,12 @@ import { useHistory } from "react-router-dom";
 import { thunkGetUserServers } from "../../store/servers";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteServerFromList } from "../../store/servers";
-
+import "./LeaveAServer.css";
 export default function LeaveAServer() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const server = useSelector(state => state.server);
+	console.log(server, "in server leave here");
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -20,9 +21,13 @@ export default function LeaveAServer() {
 	};
 
 	return (
-		<div>
+		<div className="leaveAServerContainer">
 			<form onSubmit={handleSubmit}>
-				<input type="submit" value="Leave server"></input>
+				<input
+					type="submit"
+					className="LeaveAServerButton"
+					value="Leave server"
+				></input>
 			</form>
 		</div>
 	);
