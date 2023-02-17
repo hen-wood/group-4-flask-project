@@ -14,6 +14,7 @@
     padding: 10px 0;
     width: 1180px;
     height: fit-content;
+    z-index: 2;
 }
 
 #logo-title-container{
@@ -24,10 +25,6 @@
     width: 260px;
 }
 
-#discordance-logo{
-    height: 40px;
-    width: 40px;
-}
 
 #splash-title{
     margin: 0;
@@ -40,6 +37,10 @@
     border-radius: 20px;
     border: none;
     padding: 10px;
+    margin: 10px;
+    font-weight: bolder;
+    color: #414eed;
+    font-family: 'Titan One', cursive;
     z-index: 1;
 }
 #login-button:hover{
