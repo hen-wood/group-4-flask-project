@@ -1,5 +1,5 @@
 import { deleteServerFromList } from "./servers";
-
+import { thunkGetUserServers } from "./servers";
 
 const LOAD_SERVER = "/server/LOAD";
 const DELETE_SERVER = "/server/DELETE";
@@ -22,18 +22,19 @@ export const editServerThunk = (payload, id) => async dispatch => {
         body: JSON.stringify(payload)
     })
     if(response.ok){
+		dispatch(thunkGetUserServers())
+        dispatch(editServer(payload, id))
 
-        const data = await response.json();
-        dispatch(editServer(data))
+
     }
 
 }
 
 
-const editServer = (server) => {
+const editServer = (name,id) => {
     return {
         type: EDIT_SERVER,
-        server
+        payload: {name,id}
     }
 }
 
@@ -75,7 +76,7 @@ export default function reducer(state = initialState, action) {
 			return deleteState;
 		case EDIT_SERVER:
 			const editState = {...state};
-            editState[action.server.id] = action.server;
+            editState[action.payload.id].name = action.payload.name;
 
             return editState
 		default:

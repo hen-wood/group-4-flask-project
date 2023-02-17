@@ -25,14 +25,27 @@ export default function ServerName() {
 		navigator.clipboard.writeText(code);
 	};
 
-	const handleLeaveServer = serverId => {
-		dispatch(leaveServerThunk(serverId)).then(() => {
-			dispatch(deleteServerFromList(serverId)).then(() => {
-				history.push("/channels/@me");
-			});
+	const handleLeaveServer = async (serverId, memberId) => {
+		const res = await fetch("/api/memberships/delete", {
+			method: "DELETE",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				member_id: memberId,
+				server_id: serverId
+			})
 		});
+
+		if (res.ok) {
+			const data = await res.json();
+			console.log({ data });
+			dispatch(deleteServerFromList(serverId));
+			history.push("/channels/@me");
+		} else {
+			console.log(res.status);
+		}
 	};
 
+	const server = useSelector(state => state.server);
 	const serversObj = useSelector(state => {
 		return state.servers;
 	});
@@ -40,9 +53,9 @@ export default function ServerName() {
 		dispatch(thunkGetServer(serverId)).then(() => {
 			setIsLoaded(true);
 		});
-	}, [dispatch, serverId, serversObj[serverId]]);
+	}, [dispatch, serverId, serversObj[serverId],server.name]);
 
-	const server = useSelector(state => state.server);
+
 	const user = useSelector(state => state.session.user);
 
 	return isLoaded ? (
@@ -73,7 +86,7 @@ export default function ServerName() {
 					<p
 						id="server-option"
 						className="red-option"
-						onClick={handleLeaveServer}
+						onClick={() => handleLeaveServer(serverId, user.id)}
 					>
 						Leave Server
 					</p>

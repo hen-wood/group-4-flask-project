@@ -94,3 +94,8 @@ button.btn-openmodal:hover {
 .btn:hover {
     filter: brightness(90%);
 }
+
+#discordance-logo {
+    height: 100%;
+    width: 100%;
+}
