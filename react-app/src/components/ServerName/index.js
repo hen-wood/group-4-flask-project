@@ -45,6 +45,7 @@ export default function ServerName() {
 		}
 	};
 
+	const server = useSelector(state => state.server);
 	const serversObj = useSelector(state => {
 		return state.servers;
 	});
@@ -52,9 +53,9 @@ export default function ServerName() {
 		dispatch(thunkGetServer(serverId)).then(() => {
 			setIsLoaded(true);
 		});
-	}, [dispatch, serverId, serversObj[serverId]]);
+	}, [dispatch, serverId, serversObj[serverId],server.name]);
 
-	const server = useSelector(state => state.server);
+
 	const user = useSelector(state => state.session.user);
 
 	return isLoaded ? (
