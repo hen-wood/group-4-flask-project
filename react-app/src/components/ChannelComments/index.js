@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-	actionClearChannel,
-	loadSingleChannelThunk
-} from "../../store/serverChannels";
+import { actionClearChannel, loadSingleChannelThunk } from "../../store/serverChannels";
 import { io } from "socket.io-client";
 
 let socket;
 export default function ChannelComments() {
-	const { channelId } = useParams();
+	const { serverId, channelId } = useParams();
 	const currChannel = useSelector(state => state.channels.singleChannel);
 	const user = useSelector(state => state.session.user);
+	const currServer = useSelector(state => state.server);
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [comments, setComments] = useState({});
@@ -102,8 +100,8 @@ export default function ChannelComments() {
 					);
 				})}
 			</div>
-			<div id="comment-form-container">
-				<form id="comment-input" onSubmit={sendComment}>
+			<div id="message-form-container">
+				<form id="message-input" onSubmit={sendComment}>
 					<input
 						type="text"
 						value={commentInput}

@@ -58,17 +58,19 @@ export default function ServerChannels() {
 		<div>
 			<div className="server-channel-header">
 				<p id="direct-message-title">Text Channels</p>
-				<button className="btn-openmodal">
-					<OpenModalMenuItem
-						itemText={<i className="fa-solid fa-plus"></i>}
-						modalComponent={
-							<CreateChannelModal
-								serverId={serverId}
-								callbackClose={() => OnModalClose()}
-							/>
-						}
-					/>
-				</button>
+				{user?.id == server.mod_id && (
+					<div className="channel-custom-action-button-container">
+						<OpenModalButton
+							buttonText={<i class="fa-solid fa-plus"></i>}
+							modalComponent={
+								<CreateChannelModal
+									serverId={serverId}
+									callbackClose={() => OnModalClose()}
+								/>
+							}
+						/>
+					</div>
+				)}
 			</div>
 			{Object.keys(channels).map(key => {
 				const channel = channels[key];
@@ -84,24 +86,24 @@ export default function ServerChannels() {
 						</NavLink>
 						{user?.id == server.mod_id && (
 							<>
-								<OpenModalButton
-									buttonText={<i className="fa-solid fa-pen-to-square"></i>}
-									modalComponent={
-										<EditChannelModal
-											channelId={channel.id}
-											description={channel.description}
-											name={channel.name}
-											callbackClose={() => OnModalClose()}
-										/>
-									}
-								/>
+								<div className="channel-custom-action-button-container">
+									<OpenModalButton
+										buttonText={<i className="fa-solid fa-pen-to-square"></i>}
+										modalComponent={
+											<EditChannelModal
+												channelId={channel.id}
+												description={channel.description}
+												name={channel.name}
+												callbackClose={() => OnModalClose()}
+											/>
+										}
+									/>
+								</div>
 								<button
 									className="btn-openmodal"
 									onClick={() => deleteChannel(channel.id)}
 								>
-									<li>
-										<i className="fa-solid fa-trash" />
-									</li>
+									<i className="fa-solid fa-trash" />
 								</button>
 							</>
 						)}
