@@ -13,6 +13,11 @@ import { useDispatch } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
 import { useHistory } from "react-router";
 import ServerButton from "../ServerButton";
+import UpdateAServerName from "../UpdateAServerName";
+import LogoutButton from "../LogoutButton";
+
+import ServerMembers from "../ServerMembers";
+import ServerWelcome from "../ServerWelcome";
 
 export default function HomePage() {
 	const history = useHistory();
@@ -43,7 +48,9 @@ export default function HomePage() {
 						<ServerButton />
 					</div>
 
-					<div id="left-nav-bottom"></div>
+					<div id="left-nav-bottom">
+						<LogoutButton />
+					</div>
 				</div>
 				<div id="left-menu">
 					<div id="left-menu-top">
@@ -64,6 +71,7 @@ export default function HomePage() {
 								<DeleteServer />
 							</Route>
 							<Route path="/channels/:serverId">
+								<UpdateAServerName />
 								<ServerChannels />
 								<DeleteServer />
 							</Route>
@@ -76,6 +84,9 @@ export default function HomePage() {
 					<div id="center-container">
 						<div id="center-top"></div>
 					</div>
+				</Route>
+				<Route exact path="/channels/:serverId">
+					<ServerWelcome />
 				</Route>
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />

@@ -1,6 +1,7 @@
 #main-container {
     height: 100vh;
     display: flex;
+    background-color: #35393f;
 }
 /* Main Loading Screen */
 #main-loading-container{
@@ -85,6 +86,7 @@
 
 #left-menu-top {
     height: 50px;
+    width: 100%;
     border-bottom: 1px solid #202225;
 }
 
@@ -133,6 +135,19 @@
     display: flex;
     flex-direction: column;
 }
+#comments-and-comment-form-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#server-center{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 
 #center-top {
     min-height: 50px;
@@ -177,7 +192,6 @@
 #center-messages {
     height: 100%;
     overflow-y: scroll;
-    margin-left: 10px;
     padding-right: 5px;
 }
 
@@ -185,6 +199,7 @@
     width: 8px;
     background-color: #2e3338;
     border-radius: 4px;
+    margin-top: 4px;
 }
 #center-messages::-webkit-scrollbar-thumb{
     width: 8px;
@@ -194,12 +209,27 @@
 
 #center-comments {
     height: 100%;
+    width: 100%;
     overflow-y: scroll;
+    padding-right: 5px;
 }
 
-#center-comments {
-    height: 100%;
-    overflow-y: scroll;
+#center-comments::-webkit-scrollbar{
+    width: 8px;
+    background-color: #2e3338;
+    border-radius: 4px;
+}
+#center-comments::-webkit-scrollbar-thumb{
+    width: 8px;
+    background-color: #202225;
+    border-radius: 4px;
+}
+
+#welcome-message{
+    display: flex;
+    width: 50%;
+    padding: 50px;
+    color: #d9dce4;
 }
 
 .message-card {
@@ -299,14 +329,6 @@
     justify-content: center;
 }
 
-#comment-form-container{
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 #message-input {
     width: 100%;
     padding: 10px;
@@ -320,11 +342,7 @@
     justify-content: center;
 }
 
-#comment-input {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+
 
 #message-input input[type="text"] {
     width: 100%;
@@ -341,8 +359,52 @@
 }
 
 /* Right area of the screen */
-#right-container {
-    border-left: 1px solid black;
-    background-color: gray;
-    width: 20%;
+
+#server-members {
+    height: 100%;
+    width: 240px;
+    margin-left: 9px;
+    background-color: #2f3136;
+    overflow-y: scroll;
+}
+
+#server-members::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2e3338;
+    border-radius: 4px;
+}
+
+#server-members::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: #202225;
+    border-radius: 4px;
+}
+
+.member-card{
+    display: flex;
+    padding: 10px;
+    color: #d9dce4;
+    justify-content: space-between;
+    align-items: center;
+}
+.member-card:hover{
+    background-color: #272b30;
+}
+
+.member-options{
+    display: flex;
+    box-shadow: 0px 5px 10px -5px black;
+    border-radius: 5px;
+}
+.member-options:hover{
+    background-color: #202225;
+}
+
+.member-options i{
+    margin: 10px;
+}
+
+.member-options:hover{
+    color: #eff1f7;
+    cursor: pointer;
 }

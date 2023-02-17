@@ -14,22 +14,9 @@ def seed_direct_channels():
         user_two_id = 3
     )
 
-    demo_direct3 = DirectChannel(
-        # Demo + Scooter
-        user_one_id = 1,
-        user_two_id = 4
-    )
-
-    demo_direct4 = DirectChannel(
-        # Demo + Fred
-        user_one_id = 1,
-        user_two_id = 5
-    )
 
     db.session.add(demo_direct1)
     db.session.add(demo_direct2)
-    db.session.add(demo_direct3)
-    db.session.add(demo_direct4)
     db.session.commit()
 
 

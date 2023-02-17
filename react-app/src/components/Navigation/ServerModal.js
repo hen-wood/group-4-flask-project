@@ -44,14 +44,14 @@ function ServerModal() {
 
 			<div className="ServerModalCreateServer">
 				<OpenModalButton
-					className="ServerModalCreateServer"
-					buttonText="Create My Own"
+			        buttonText="Create My Own"
 					onItemClick={closeMenu}
 					modalComponent={<CreateServer />}
 				/>
 			</div>
 
 			<div className="ServerModalJoinServer">
+			<p className="ServerModalInviteAlready">Have an invite already?</p>
 				<OpenModalButton
 					buttonText="Join A Server"
 					onItemClick={closeMenu}

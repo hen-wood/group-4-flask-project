@@ -1,4 +1,4 @@
-.fa-plus {
+.ServerButtonPlus {
     color: #3b9758;
 }
 
@@ -8,14 +8,8 @@
 
 .OpenModalMenuItemButton:hover{
     background-color: #3b9758;
-
-
-
 }
-.OpenModalMenuItemButton:hover > .fa-plus {
+
+.OpenModalMenuItemButton:hover > .ServerButtonPlus {
     color: white;
-
-
-
 }
-

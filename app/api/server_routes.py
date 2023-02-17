@@ -94,20 +94,17 @@ def add_member_to_server(codeId):
 
     print(codeId,'codeID')
     server = Server.query.filter_by(code=codeId).first()
-    if Membership.query.filter_by(server_id=server.id, user_id=current_user.id).first():
-            return jsonify({"message": "You already have a membership to that server"})
-
-
-
-    membership = Membership(
+    if server is not None:
+        if Membership.query.filter_by(server_id=server.id, user_id=current_user.id).first():
+            return jsonify({"message": "You already have a membership to that server"}),401
+        membership = Membership(
         server_id = server.id,
-        user_id = current_user.id
-    )
+        user_id = current_user.id)
+        db.session.add(membership)
+        db.session.commit()
+        return server.to_dict_single_server()
+    return jsonify({"message": "There is no server with the code entered"}), 404
 
-    db.session.add(membership)
-
-    db.session.commit()
-    return server.to_dict_single_server()
 
 
 @server_routes.route('/membership/<serverId>', methods=['DELETE'])
@@ -135,8 +132,11 @@ def delete_server(serverId):
     '''
     Delete Server
     '''
-
+    user_id = current_user.id
     server = Server.query.get(serverId)
+    print('hasdasdasdasd ', server.mod_id)
+    if user_id != server.mod_id:
+         return jsonify({"message": "you must be the owner of the server to delete it"})
     db.session.delete(server)
     db.session.commit()
     return jsonify({"message": "Successfully deleted"})

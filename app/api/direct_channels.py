@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Membership, Server,Channel,DirectChannel,ChannelComment, DirectMessage, db
 import json
@@ -17,7 +17,18 @@ def get_all_user_direct_channels():
 
 @direct_channels.route('/<id>')
 def get_single_channel(id):
-    print("FUCUCUCUCUUCUCUCUUCK")
     channel = DirectChannel.query.filter(DirectChannel.id == id).one()
-    print(channel.to_dict())
     return jsonify(channel.to_dict())
+
+@direct_channels.route('/create', methods=['POST'])
+def create_direct_channel():
+    data = request.json
+    new_channel = DirectChannel(
+        user_one_id = data['user_one_id'],
+        user_two_id = data['user_two_id']
+    )
+
+    print(new_channel)
+    db.session.add(new_channel)
+    db.session.commit()
+    return jsonify(new_channel.to_dict())

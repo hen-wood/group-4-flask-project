@@ -6,7 +6,9 @@ const CLEAR_CHANNEL_COMMENTS = "channelComments/CLEAR_CHANNEL_COMMENTS";
 // Action Creators
 const setChannelComments = data => {
 	const commentsObj = {};
-	data.comments.forEach(comment => (commentsObj[comment["id"]] = comment));
+	data.comments.forEach(comment => {
+		commentsObj[comment.id] = comment;
+	});
 	return {
 		type: SET_CHANNEL_COMMENTS,
 		payload: commentsObj
@@ -17,8 +19,8 @@ export const addChannelComment = comment => {
 	return {
 		type: ADD_CHANNEL_COMMENT,
 		comment
-	}
-}
+	};
+};
 
 export const clearComments = () => {
 	return {
@@ -41,8 +43,8 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
-        case SET_CHANNEL_COMMENTS:
-			return { channelComments: action.payload };
+		case SET_CHANNEL_COMMENTS:
+			return action.payload;
 		case CLEAR_CHANNEL_COMMENTS:
 			return initialState;
 		default:

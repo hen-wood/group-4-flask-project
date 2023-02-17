@@ -17,78 +17,101 @@ export default function RegisterForm() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+
+		const checked = [];
+
+		if (email.split(".").length < 2) {
+			checked.push("Not a well formed email address");
+		}
+
+		if (username.length < 2 || username.length > 32) {
+			checked.push("Username must be between 2 and 32 in length");
+		}
+
+		if (password.length < 8) {
+			checked.push("Must be at least 8 characters long");
+		}
+
+		if (password !== confirmPassword) {
+			checked.push(
+				"Confirm Password field must be the same as the Password field"
+			);
+		}
+
+		if (checked.length) {
+			setErrors(checked);
+			return;
+		}
+
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
 			}
 		} else {
-			setErrors([
+			checked.push(
 				"Confirm Password field must be the same as the Password field"
-			]);
+			);
 		}
+
+		setErrors(checked);
 	};
 
 	return (
 		<div className="page-wrapper sign-up">
-
 			<div className="img-div">
 				<img src="https://i.imgur.com/nBUx5Al.png" className="temp-img-class" />
 			</div>
 
 			<div className="master-div sign-up">
+				<div className="main-form sign-up">
+					<h2>Create an account</h2>
 
-				<div>
-
-					<h1>Sign Up</h1>
-					<form
-						onSubmit={handleSubmit}
-						className="actual-form sign-up"
-					>
+					<form onSubmit={handleSubmit} className="actual-form sign-up">
 						<ul>
 							{errors.map((error, idx) => (
-								<li key={idx}>{error}</li>
+								<li className="error-container" key={idx}>
+									{error}
+								</li>
 							))}
 						</ul>
-						<label>
-							Email
-						</label>
+
+						<label>Email</label>
 						<input
-							type="text"
+							type="email"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
 							required
 						/>
-						<label>
-							Username
-						</label>
+						<label>Username</label>
 						<input
 							type="text"
 							value={username}
 							onChange={e => setUsername(e.target.value)}
 							required
 						/>
-						<label>
-							Password
-						</label>
+						<label>Password</label>
 						<input
 							type="password"
 							value={password}
 							onChange={e => setPassword(e.target.value)}
 							required
 						/>
-						<label>
-							Confirm Password
-						</label>
+						<label>Confirm Password</label>
 						<input
 							type="password"
 							value={confirmPassword}
 							onChange={e => setConfirmPassword(e.target.value)}
 							required
 						/>
-						<button type="submit" className="button">Sign Up</button>
+						<button type="submit" className="login-signup-button sign-up">
+							Sign Up
+						</button>
+
+						<Link className="signup-redirect-text link" to="/login">
+							Already have an account?
+						</Link>
 					</form>
-					<Link className="link" to="/login">Already have an account?</Link>
 				</div>
 			</div>
 		</div>

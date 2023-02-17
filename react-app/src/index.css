@@ -8,20 +8,20 @@ a {
     text-decoration: none;
 }
 
-.btn-openmodal {
+.channel-custom-action-button-container button.OpenModalButton,
+button.btn-openmodal {
     border: none;
-    padding: 0;
     cursor: pointer;
     list-style: none;
     color: white;
     background-color: transparent;
-}
-
-.btn-openmodal>li {
     padding: 10px;
+    height: 35px;
+    width: 35px;
 }
 
-.btn-openmodal:hover {
+.channel-custom-action-button-container button.OpenModalButton:hover,
+button.btn-openmodal:hover {
     outline: 1px solid white;
 }
 
@@ -52,4 +52,45 @@ a {
 
 #modal-content .title {
     margin-top: 0
+}
+
+#IDENTIFIER {
+    flex-grow: 1;
+}
+
+
+.logout-button-style {
+    font-size: 16px;
+}
+
+.logout-modal-style {
+    margin-top: 0
+}
+
+.logout-q-style{
+    margin: 10px;
+}
+
+.btn-no {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: blue;
+}
+
+.btn {
+    margin: 5px;
+}
+
+.btn-yes {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: red;
+}
+
+.btn:hover {
+    filter: brightness(90%);
 }

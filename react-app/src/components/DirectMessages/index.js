@@ -142,6 +142,12 @@ export default function DirectMessages() {
 				<p>@{otherUsername}</p>
 			</div>
 			<div id="center-messages">
+				<div className="message-card">
+					<div className="message-card-top">
+						<p className="message-card-username">{`Say hello to ${otherUsername}!`}</p>
+					</div>
+					<div className="message-content-container"></div>
+				</div>
 				{Object.keys(messages).map(key => {
 					const message = messages[key];
 					return (
