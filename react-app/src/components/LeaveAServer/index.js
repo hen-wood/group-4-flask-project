@@ -10,7 +10,6 @@ export default function LeaveAServer() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const server = useSelector(state => state.server);
-	console.log(server, "in server leave here");
 
 	const handleSubmit = async e => {
 		e.preventDefault();

@@ -10,9 +10,10 @@ import ServerMembers from "../ServerMembers";
 
 let socket;
 export default function ChannelComments() {
-	const { channelId } = useParams();
+	const { serverId, channelId } = useParams();
 	const currChannel = useSelector(state => state.channels.singleChannel);
 	const user = useSelector(state => state.session.user);
+	const currServer = useSelector(state => state.server);
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [comments, setComments] = useState({});

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { deleteServerThunk } from "../../store/server";
@@ -11,10 +11,17 @@ export default function DeleteServer() {
 	const dispatch = useDispatch();
 	const { serverId } = useParams();
 	const serverObj = useSelector(state => state.server);
+	const user = useSelector(state => state.session.user)
 
+	const userId = user.id
 	if (!serverObj) {
 		return null;
 	}
+	console.log(userId, serverObj.mod_id)
+	if(userId != serverObj.mod_id){
+		return null;
+	}
+
 
 	const handleSubmit = async e => {
 		e.preventDefault();

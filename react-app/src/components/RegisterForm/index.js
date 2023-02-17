@@ -17,16 +17,26 @@ export default function RegisterForm() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+
+		const checked = []
+
+		if (username.length < 2 || username.length > 32) {
+			checked.push('Must be between 2 and 32 in length')
+		}
+
+		if (password.length < 8) {
+			checked.push('Must be at least 8 characters long')
+		}
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
 			}
 		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field"
-			]);
+			checked.push("Confirm Password field must be the same as the Password field")
 		}
+
+		setErrors(checked)
 	};
 
 	return (
@@ -54,7 +64,7 @@ export default function RegisterForm() {
 							Email
 						</label>
 						<input
-							type="text"
+							type="email"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
 							required
@@ -86,9 +96,9 @@ export default function RegisterForm() {
 							onChange={e => setConfirmPassword(e.target.value)}
 							required
 						/>
-						<button type="submit" className="button">Sign Up</button>
+						<button type="submit" className="login-signup-button">Sign Up</button>
 					</form>
-					<Link className="link" to="/login">Already have an account?</Link>
+					<Link className="signup-redirect-text link" to="/login">Already have an account?</Link>
 				</div>
 			</div>
 		</div>
