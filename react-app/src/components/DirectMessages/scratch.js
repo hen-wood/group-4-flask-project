@@ -66,7 +66,6 @@ export default function DirectMessages() {
 						}
 					};
 				});
-				console.log(newMessages);
 			});
 		});
 		return () => {
