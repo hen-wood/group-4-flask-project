@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600&family=Titan+One&display=swap');
 
+.splash-page-wrapper {
+    overflow: hidden;
+    height: 98vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 #splash-container {
     background-color: #414eed;
     height: 70vh;
@@ -65,4 +74,21 @@
     position: absolute;
     left: -250px;
     bottom: 30vh;
+}
+
+.git-link-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #414EED;
+    border-top: 1px black solid;
+    padding-top: 10px;
+}
+
+.git-link-div a {
+    color: #414EED;
+}
+
+.git-link-div div {
+    color: black;
 }

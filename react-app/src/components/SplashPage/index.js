@@ -25,39 +25,73 @@ export default function SplashPage() {
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<div id="splash-container">
-			<div id="splash-top-bar">
-				<div id="logo-title-container">
-					<DiscordanceLogo />
-					<h1 id="splash-title">Discordance</h1>
+		<div className="splash-page-wrapper">
+			<div id="splash-container">
+				<div id="splash-top-bar">
+					<div id="logo-title-container">
+						<DiscordanceLogo />
+						<h1 id="splash-title">Discordance</h1>
+					</div>
+					<div>
+						<button id="login-button" onClick={handleClick}>
+							{sessionUser ? "Open Discordance" : "Login"}
+						</button>
+						<button
+							id="login-button"
+							className={`${sessionUser ? "True" : "False"}`}
+							onClick={() => {
+								dispatch(demo1Login());
+							}}
+						>
+							Demo user 1
+						</button>
+						<button
+							id="login-button"
+							className={`${sessionUser ? "True" : "False"}`}
+							onClick={() => {
+								dispatch(demo2Login());
+							}}
+						>
+							Demo user 2
+						</button>
+					</div>
 				</div>
-				<div>
-					<button id="login-button" onClick={handleClick}>
-						{sessionUser ? "Open Discordance" : "Login"}
-					</button>
-					<button
-						id="login-button"
-						className={`${sessionUser ? "True" : "False"}`}
-						onClick={() => {
-							dispatch(demo1Login());
-						}}
-					>
-						Demo user 1
-					</button>
-					<button
-						id="login-button"
-						className={`${sessionUser ? "True" : "False"}`}
-						onClick={() => {
-							dispatch(demo2Login());
-						}}
-					>
-						Demo user 2
-					</button>
-				</div>
+				<SplashCenter />
+				<SplashLeft />
+				<SplashRight />
 			</div>
-			<SplashCenter />
-			<SplashLeft />
-			<SplashRight />
+
+			<div className="git-link-div">
+
+				<div>
+					find us on github:
+				</div>
+
+				<div className="dot">.</div>
+
+				<a href="https://github.com/Ardian-Kovanxhi">
+					Ardian
+				</a>
+
+				<div className="dot">.</div>
+
+				<a href="https://github.com/anti-epic">
+					Chase
+				</a>
+
+				<div className="dot">.</div>
+
+				<a href="https://github.com/enkhzayaqt">
+					Emma
+				</a>
+
+				<div className="dot">.</div>
+
+				<a href="https://github.com/hen-wood">
+					Henry
+				</a>
+
+			</div>
 		</div>
 	);
 }
