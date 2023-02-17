@@ -35,7 +35,7 @@ export default function LoginForm() {
 
 					<div className="title-div login">
 
-						<div>Welcome back!</div>
+						<div className="welcome-back">Welcome back!</div>
 
 						<div className="non-title-text">We're so excited to see you again</div>
 
@@ -46,25 +46,32 @@ export default function LoginForm() {
 						onSubmit={handleSubmit}
 					>
 
-						<ul>
+						{/* <ul>
 							{errors.map((error, idx) => (
 								<li key={idx}>{error}</li>
 							))}
-						</ul>
+						</ul> */}
 
-						<label>
+						<label
+							className={`form-labels ${!!errors.length}`}
+						>
 							Email
+							<div className="dot">.</div>
+							<div className="errors-actual">{!!errors.length ? '- Login or password is invalid' : ''}</div>
 						</label>
 
 						<input
-							type="text"
+							type="email"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
 							required
 						/>
 
-						<label>
+						<label className={`form-labels ${!!errors.length}`}>
 							Password
+							<div className="dot errors-actual">-</div>
+							<div className="errors-actual">
+								{!!errors.length ? '- Login or password is invalid' : ''}</div>
 						</label>
 
 						<input
@@ -74,10 +81,10 @@ export default function LoginForm() {
 							required
 						/>
 
-						<button type="submit" className="button login">Log In</button>
+						<button type="submit" className="login-signup-button login">Log In</button>
 
-						<div>
-							Need an account? <Link className="link" to="/register">Register</Link>
+						<div className="signup-redirect-text">
+							Need an account? <Link className="signup-redirect-text link" to="/register">Register</Link>
 						</div>
 
 					</form>
@@ -91,6 +98,11 @@ export default function LoginForm() {
 					<h2>
 						Repo link
 					</h2>
+					<div>
+						or click <a
+							className="signup-redirect-text link"
+							href="https://github.com/hen-wood/group-4-flask-project.git">here</a>
+					</div>
 
 				</div>
 			</div>

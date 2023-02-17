@@ -37,6 +37,8 @@ export default function DirectChannels() {
 			})}
 		</div>
 	) : (
-		<h1>Loading user direct channels...</h1>
+		<div>
+			<p id="direct-message-title">Loading DMs...</p>
+		</div>
 	);
 }
