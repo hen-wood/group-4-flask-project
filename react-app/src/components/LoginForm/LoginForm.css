@@ -37,6 +37,14 @@
     margin-top: 20px;
 }
 
+.actual-form input {
+    background-color: #1E1F22;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px 0px;
+}
+
 
 .img-div {
     position: absolute;
