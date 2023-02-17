@@ -6,12 +6,14 @@ import { useModal } from "../../context/Modal";
 function EditChannelModal(props) {
     const dispatch = useDispatch();
     const [description, setDescription] = useState(props.description);
+    const [name, setName] = useState(props.name);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
     useEffect(() => {
         const errors = [];
         if (description === "") errors.push("Please enter your description");
+        if (description === "") errors.push("Please enter your name");
         setErrors(errors);
     }, [description]);
 
@@ -19,7 +21,7 @@ function EditChannelModal(props) {
         e.preventDefault();
         const editedChannel = {
             server_id: props.serverId,
-            name: props.name,
+            name,
             description,
             id: props.channelId
         }
@@ -44,6 +46,15 @@ function EditChannelModal(props) {
                         <li key={idx}>{error}</li>
                     ))}
                 </ul>
+                <label>
+                    Name:
+                    <textarea
+                        className="textarea"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </label>
                 <label>
                     Description
                     <textarea

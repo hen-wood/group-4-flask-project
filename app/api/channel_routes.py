@@ -50,6 +50,7 @@ def edit_channel(channelId):
     """
     channel = Channel.query.get(channelId)
     channel.description = request.json['description']
+    channel.name = request.json['name']
     db.session.commit()
     return channel.to_dict()
 
