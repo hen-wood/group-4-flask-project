@@ -21,7 +21,7 @@ export default function ServerMembers() {
 	}
 
 	return server[5] ? (
-		<div>
+		<div id="server-members">
 			{server[5].map(member =>
 				member ? <div>{member.username}</div> : <div>no members</div>
 			)}

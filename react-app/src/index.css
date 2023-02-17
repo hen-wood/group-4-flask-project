@@ -8,20 +8,20 @@ a {
     text-decoration: none;
 }
 
-.btn-openmodal {
+.channel-custom-action-button-container button.OpenModalButton,
+button.btn-openmodal {
     border: none;
-    padding: 0;
     cursor: pointer;
     list-style: none;
     color: white;
     background-color: transparent;
-}
-
-.btn-openmodal>li {
     padding: 10px;
+    height: 35px;
+    width: 35px;
 }
 
-.btn-openmodal:hover {
+.channel-custom-action-button-container button.OpenModalButton:hover,
+button.btn-openmodal:hover {
     outline: 1px solid white;
 }
 

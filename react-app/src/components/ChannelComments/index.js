@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-	actionClearChannel,
-	loadSingleChannelThunk
-} from "../../store/serverChannels";
+import { actionClearChannel, loadSingleChannelThunk } from "../../store/serverChannels";
 import { io } from "socket.io-client";
+import ServerMembers from "../ServerMembers";
 
 let socket;
 export default function ChannelComments() {
-	const { channelId } = useParams();
+	const { serverId, channelId } = useParams();
 	const currChannel = useSelector(state => state.channels.singleChannel);
 	const user = useSelector(state => state.session.user);
+	const currServer = useSelector(state => state.server);
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [comments, setComments] = useState({});
@@ -79,31 +78,34 @@ export default function ChannelComments() {
 				</p>
 				<p className="channel-desc">{currChannel.description}</p>
 			</div>
-			<div id="center-comments">
-				{Object.keys(comments).map(key => {
-					const comment = comments[key];
-					return (
-						<div key={key} className="message-card">
-							<div className="message-card-top">
-								<p className="message-card-username">{comment.username}</p>
-								<p className="message-card-date">
-									{new Date(comment.created_at).toLocaleString("en-US", {
-										year: "numeric",
-										month: "2-digit",
-										day: "2-digit",
-										hour: "2-digit",
-										minute: "2-digit",
-										hour12: true
-									})}
-								</p>
+			<div id="server-center">
+				<div id="center-comments">
+					{Object.keys(comments).map(key => {
+						const comment = comments[key];
+						return (
+							<div key={key} className="message-card">
+								<div className="message-card-top">
+									<p className="message-card-username">{comment.username}</p>
+									<p className="message-card-date">
+										{new Date(comment.created_at).toLocaleString("en-US", {
+											year: "numeric",
+											month: "2-digit",
+											day: "2-digit",
+											hour: "2-digit",
+											minute: "2-digit",
+											hour12: true
+										})}
+									</p>
+								</div>
+								<p>{comment.content}</p>
 							</div>
-							<p>{comment.content}</p>
-						</div>
-					);
-				})}
+						);
+					})}
+				</div>
+				<ServerMembers />
 			</div>
-			<div id="comment-form-container">
-				<form id="comment-input" onSubmit={sendComment}>
+			<div id="message-form-container">
+				<form id="message-input" onSubmit={sendComment}>
 					<input
 						type="text"
 						value={commentInput}
