@@ -37,7 +37,7 @@ export default function LoginForm() {
 
 						<div className="welcome-back">Welcome back!</div>
 
-						<div className="non-title-text">We're so excited to see you again</div>
+						<div className="non-title-text">We're so excited to see you again!</div>
 
 					</div>
 

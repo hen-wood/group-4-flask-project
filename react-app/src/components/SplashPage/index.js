@@ -4,13 +4,26 @@ import SplashCenter from "../Svgs/SplashCenter";
 import SplashLeft from "../Svgs/SplashLeft";
 import DiscordanceLogo from "../Svgs/DiscordanceLogo";
 import "./SplashPage.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { demo1Login, demo2Login } from "../../store/session";
+
+
+
 export default function SplashPage() {
 	const history = useHistory();
+	const dispatch = useDispatch();
+
 	const handleClick = () => {
 		history.push("/login");
 	};
+
+	// const demo1Login = async e => {
+	// 	// e.preventDefault();
+	// 	await dispatch(demo1Login)
+	// }
+
 	const sessionUser = useSelector(state => state.session.user);
+
 	return (
 		<div id="splash-container">
 			<div id="splash-top-bar">
@@ -18,9 +31,29 @@ export default function SplashPage() {
 					<DiscordanceLogo />
 					<h1 id="splash-title">Discordance</h1>
 				</div>
-				<button id="login-button" onClick={handleClick}>
-					{sessionUser ? "Open Discordance" : "Login"}
-				</button>
+				<div>
+					<button id="login-button" onClick={handleClick}>
+						{sessionUser ? "Open Discordance" : "Login"}
+					</button>
+					<button
+						id="login-button"
+						className={`${sessionUser ? "True" : "False"}`}
+						onClick={() => {
+							dispatch(demo1Login());
+						}}
+					>
+						Demo user 1
+					</button>
+					<button
+						id="login-button"
+						className={`${sessionUser ? "True" : "False"}`}
+						onClick={() => {
+							dispatch(demo2Login());
+						}}
+					>
+						Demo user 2
+					</button>
+				</div>
 			</div>
 			<SplashCenter />
 			<SplashLeft />

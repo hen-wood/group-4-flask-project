@@ -13,20 +13,35 @@ export default function RegisterForm() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
+	const errorObj = { emailError: false, usernameError: false, passwordError: false, confirmError: false }
+
 	if (sessionUser) return <Redirect to="/channels/@me" />;
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 
+		errorObj.emailError = false
+		errorObj.usernameError = false
+		errorObj.passwordError = false
+		errorObj.confirmError = false
+
 		const checked = []
+
+		if (email.split('.').length < 2) {
+			checked.push('Not a well formed email address')
+			errorObj.emailError = true
+		}
 
 		if (username.length < 2 || username.length > 32) {
 			checked.push('Must be between 2 and 32 in length')
+			errorObj.usernameError = true
 		}
 
 		if (password.length < 8) {
 			checked.push('Must be at least 8 characters long')
+			errorObj.passwordError = true
 		}
+
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
@@ -34,6 +49,8 @@ export default function RegisterForm() {
 			}
 		} else {
 			checked.push("Confirm Password field must be the same as the Password field")
+			errorObj.confirmError = true
+
 		}
 
 		setErrors(checked)
@@ -48,9 +65,10 @@ export default function RegisterForm() {
 
 			<div className="master-div sign-up">
 
-				<div>
+				<div className="main-form sign-up">
 
-					<h1>Sign Up</h1>
+					<h2>Create an account</h2>
+
 					<form
 						onSubmit={handleSubmit}
 						className="actual-form sign-up"
@@ -60,6 +78,7 @@ export default function RegisterForm() {
 								<li key={idx}>{error}</li>
 							))}
 						</ul>
+
 						<label>
 							Email
 						</label>
@@ -96,9 +115,10 @@ export default function RegisterForm() {
 							onChange={e => setConfirmPassword(e.target.value)}
 							required
 						/>
-						<button type="submit" className="login-signup-button">Sign Up</button>
+						<button type="submit" className="login-signup-button sign-up">Sign Up</button>
+
+						<Link className="signup-redirect-text link" to="/login">Already have an account?</Link>
 					</form>
-					<Link className="signup-redirect-text link" to="/login">Already have an account?</Link>
 				</div>
 			</div>
 		</div>
