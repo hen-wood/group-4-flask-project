@@ -102,6 +102,10 @@ export default function ServerMembers({ user }) {
 			})}
 		</div>
 	) : (
-		<h1>Loading...</h1>
+		<div id="server-members">
+			<div className="member-card">
+				<p>Loading server members...</p>
+			</div>
+		</div>
 	);
 }

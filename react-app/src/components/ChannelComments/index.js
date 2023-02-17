@@ -120,6 +120,22 @@ export default function ChannelComments() {
 			</div>
 		</div>
 	) : (
-		<h3>Loading Comments...</h3>
+		<div className="center-container">
+			<div className="center-top">
+				<p className="channel-name">Loading channel...</p>
+				<p className="channel-desc">{currChannel.description}</p>
+			</div>
+			<div id="server-center">
+				<div id="comments-and-comment-form-container">
+					<div id="center-comments"></div>
+					<div id="message-form-container">
+						<form id="message-input" onSubmit={sendComment}>
+							<input type="text" />
+						</form>
+					</div>
+				</div>
+				<ServerMembers user={user} />
+			</div>
+		</div>
 	);
 }
