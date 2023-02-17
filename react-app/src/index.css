@@ -53,3 +53,44 @@ button.btn-openmodal:hover {
 #modal-content .title {
     margin-top: 0
 }
+
+#IDENTIFIER {
+    flex-grow: 1;
+}
+
+
+.logout-button-style {
+    font-size: 16px;
+}
+
+.logout-modal-style {
+    margin-top: 0
+}
+
+.logout-q-style{
+    margin: 10px;
+}
+
+.btn-no {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: blue;
+}
+
+.btn {
+    margin: 5px;
+}
+
+.btn-yes {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: red;
+}
+
+.btn:hover {
+    filter: brightness(90%);
+}

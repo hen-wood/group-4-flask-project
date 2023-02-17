@@ -41,12 +41,13 @@ export default function JoinAServer() {
             <form onSubmit={handleSubmit}>
                 {
                 errors.map(error => (
-                    <li className='joinServerErrorMessage'>
-                        {error}</li>
+                    <div className='joinServerErrorMessage'>
+                        {error}</div>
                 ))
             }
                 <div className='joinAServerInviteLinkText'>
-                    Invite Link <p className='astrik'>*</p>
+                    Invite Link
+                    <p className='astrik'>*</p>
                 </div>
                 <input type="text" placeholder='Enter Code' required
                     value={code}
@@ -56,17 +57,18 @@ export default function JoinAServer() {
                 <p className='joinAServerDescription'>
                     INVITES SHOULD LOOK LIKE
                     <br/>
-                    <br />
+                    <br/>
                     92ag4
                     <br/>
                     akuHS
                     <br/>
                     AHu45
                 </p>
-                <div className='joinAServerDontHaveAInvite'> Don't have an invite?
-                <br/>
-                <i class="fa-solid fa-compass"></i>
-                    In the future we will have some pubblic communites for you to discover.
+                <div className='joinAServerDontHaveAInvite'>
+                    Don't have an invite?
+                    <br/>
+                    <i class="fa-solid fa-compass"></i>
+                    In the future we will have some public communities for you to discover.
                 </div>
                 <div className='joinASeverSubmitButtonContainer'>
                     <input type='submit' className='joinAServerSubmitButton' value='Join Server'></input>

@@ -9,8 +9,9 @@ export default function ServerName() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
-
-
+	const serversObj = useSelector(state => {
+        return state.servers
+    })
 	const [showText, setShowText] = useState(false)
 	const handleMouseEnter = e => {
 		if(isOpen){
@@ -27,14 +28,14 @@ export default function ServerName() {
 
 
 
+	  const {serverId} = useParams();
 
-    const {serverId} = useParams();
 
 	useEffect(() => {
 		dispatch(thunkGetServer(serverId)).then(() => {
 			setIsLoaded(true);
 		});
-	}, [dispatch, serverId]);
+	}, [dispatch, serverId, serversObj[serverId]]);
 
 
 	const server = useSelector(

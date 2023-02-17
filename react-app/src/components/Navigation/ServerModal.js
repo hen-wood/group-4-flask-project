@@ -51,6 +51,7 @@ function ServerModal() {
 			</div>
 
 			<div className="ServerModalJoinServer">
+			<p className="ServerModalInviteAlready">Have an invite already?</p>
 				<OpenModalButton
 					buttonText="Join A Server"
 					onItemClick={closeMenu}
