@@ -61,7 +61,6 @@ export const logout = () => async (dispatch) => {
 			"Content-Type": "application/json",
 		},
 	});
-
 	if (response.ok) {
 		dispatch(removeUser());
 	}
@@ -99,7 +98,7 @@ export default function reducer(state = initialState, action) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
-			return { user: null };
+			return { user: {} };
 		default:
 			return state;
 	}
