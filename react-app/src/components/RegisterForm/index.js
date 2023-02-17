@@ -13,33 +13,26 @@ export default function RegisterForm() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	const errorObj = { emailError: false, usernameError: false, passwordError: false, confirmError: false }
 
 	if (sessionUser) return <Redirect to="/channels/@me" />;
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		errorObj.emailError = false
-		errorObj.usernameError = false
-		errorObj.passwordError = false
-		errorObj.confirmError = false
+
 
 		const checked = []
 
 		if (email.split('.').length < 2) {
 			checked.push('Not a well formed email address')
-			errorObj.emailError = true
 		}
 
 		if (username.length < 2 || username.length > 32) {
 			checked.push('Must be between 2 and 32 in length')
-			errorObj.usernameError = true
 		}
 
 		if (password.length < 8) {
 			checked.push('Must be at least 8 characters long')
-			errorObj.passwordError = true
 		}
 
 		if (password === confirmPassword) {
@@ -49,7 +42,6 @@ export default function RegisterForm() {
 			}
 		} else {
 			checked.push("Confirm Password field must be the same as the Password field")
-			errorObj.confirmError = true
 
 		}
 
