@@ -5,7 +5,7 @@ import { deleteServerThunk } from "../../store/server";
 import { deleteServerFromList } from "../../store/servers";
 import { useHistory } from "react-router-dom";
 import "./deleteServer.css";
-
+import { thunkGetUserServers } from "../../store/servers";
 export default function DeleteServer() {
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -26,6 +26,7 @@ export default function DeleteServer() {
 		e.preventDefault();
 		dispatch(deleteServerFromList(serverId));
 		dispatch(deleteServerThunk(serverId));
+		dispatch(thunkGetUserServers())
 		history.push("/channels/@me");
 	};
 
