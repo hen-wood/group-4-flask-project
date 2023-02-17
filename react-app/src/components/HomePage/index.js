@@ -37,7 +37,11 @@ export default function HomePage() {
 			<div id="left-container">
 				<div id="left-nav-bar">
 					<div id="left-nav-top">
-						<div onClick={handleDirectMessageIconClick}>
+						<div
+							className="serverListButton"
+							id="direct-message-button"
+							onClick={handleDirectMessageIconClick}
+						>
 							<DiscordanceLogo />
 						</div>
 					</div>

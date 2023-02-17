@@ -1,12 +1,11 @@
 export default function DiscordanceLogo() {
 	return (
 		<svg
-			className="link-icon"
 			id="discordance-logo"
 			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
-			width="400"
-			height="400"
+			width="40"
+			height="40"
 			viewBox="0 0 400 400"
 		>
 			<path
