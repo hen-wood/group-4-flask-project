@@ -1,3 +1,6 @@
+import { deleteServerFromList } from "./servers";
+
+
 const LOAD_SERVER = "/server/LOAD";
 const DELETE_SERVER = "/server/DELETE";
 const EDIT_SERVER = "/server/UPDATE"
@@ -13,7 +16,6 @@ export const thunkGetServer = id => async dispatch => {
 
 
 export const editServerThunk = (payload, id) => async dispatch => {
-    // console.log(id, ' in edit')
     const response = await fetch(`/api/servers/${id}`, {
         method: 'PUT',
         headers: {"Content-Type" : "application/json"},
@@ -45,7 +47,9 @@ export const deleteServerThunk = id => async dispatch => {
 	});
 	if (response.ok) {
 		const data = await response.json();
+		console.log(data, 'here with data')
 		dispatch(deleteServer(data));
+		dispatch(deleteServerFromList(id))
 	}
 };
 

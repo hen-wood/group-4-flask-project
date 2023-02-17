@@ -24,10 +24,9 @@ export default function DeleteServer() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		dispatch(deleteServerFromList(serverId));
-		dispatch(deleteServerThunk(serverId));
-		dispatch(thunkGetUserServers())
-		history.push("/channels/@me");
+		dispatch(deleteServerThunk(serverId)).then(() => history.push("/channels/@me") );
+		// dispatch(deleteServerFromList(serverId));
+
 	};
 
 	return (
