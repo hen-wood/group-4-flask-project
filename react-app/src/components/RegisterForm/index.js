@@ -86,9 +86,9 @@ export default function RegisterForm() {
 							onChange={e => setConfirmPassword(e.target.value)}
 							required
 						/>
-						<button type="submit" className="button">Sign Up</button>
+						<button type="submit" className="login-signup-button">Sign Up</button>
 					</form>
-					<Link className="link" to="/login">Already have an account?</Link>
+					<Link className="signup-redirect-text link" to="/login">Already have an account?</Link>
 				</div>
 			</div>
 		</div>
