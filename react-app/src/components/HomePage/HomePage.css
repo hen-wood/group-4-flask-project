@@ -45,9 +45,11 @@
     flex-direction: column;
 }
 
-#discordance-logo {
-    height: 50px;
-    width: 50px;
+#direct-message-button.serverListButton {
+   background-color: #2469ff;
+}
+#direct-message-button:hover{
+    cursor: pointer;
 }
 
 
@@ -63,12 +65,6 @@
     padding: 10px 0;
 }
 
-#discordance-logo:hover{
-    height: 60px;
-    width: 60px;
-    cursor: pointer;
-    transition: .2s ease-in;
-}
 
 .left-nav-button {
     border-radius: 50%;
@@ -86,6 +82,7 @@
 
 #left-menu-top {
     height: 50px;
+    width: 100%;
     border-bottom: 1px solid #202225;
 }
 
@@ -224,7 +221,12 @@
     border-radius: 4px;
 }
 
-
+#welcome-message{
+    display: flex;
+    width: 50%;
+    padding: 50px;
+    color: #d9dce4;
+}
 
 .message-card {
     position: relative;

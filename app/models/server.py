@@ -32,7 +32,14 @@ class Server(db.Model):
         return{
             'id': self.id,
             'name': self.name,
-            'members': [{'username':member.user.username, 'email':member.user.email} for member in self.server_members]
+            # 'members': [{'username':member.user.username, 'email':member.user.email} for member in self.server_members]
+        }
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'code': self.code,
+            'mod_id': self.mod_id
         }
 
 
@@ -54,5 +61,6 @@ class Server(db.Model):
             'name': self.name,
             'code': self.code,
             'mod_id': self.mod_id,
-            'server_mod': self.server_mod.to_dict()
+            'server_mod': self.server_mod.to_dict(),
+            # 'members': [{'id':member.user.username, 'username':member.user.username, 'email':member.user.email} for member in self.server_members]
         }

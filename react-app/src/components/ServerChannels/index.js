@@ -61,7 +61,7 @@ export default function ServerChannels() {
 				{user?.id == server.mod_id && (
 					<div className="channel-custom-action-button-container">
 						<OpenModalButton
-							buttonText={<i class="fa-solid fa-plus"></i>}
+							buttonText={<i className="fa-solid fa-plus"></i>}
 							modalComponent={
 								<CreateChannelModal
 									serverId={serverId}

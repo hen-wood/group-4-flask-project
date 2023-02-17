@@ -5,7 +5,7 @@ import { deleteServerThunk } from "../../store/server";
 import { deleteServerFromList } from "../../store/servers";
 import { useHistory } from "react-router-dom";
 import "./deleteServer.css";
-
+import { thunkGetUserServers } from "../../store/servers";
 export default function DeleteServer() {
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -17,7 +17,6 @@ export default function DeleteServer() {
 	if (!serverObj) {
 		return null;
 	}
-	console.log(userId, serverObj.mod_id)
 	if(userId != serverObj.mod_id){
 		return null;
 	}
@@ -25,9 +24,9 @@ export default function DeleteServer() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		dispatch(deleteServerThunk(serverId));
-		dispatch(deleteServerFromList(serverId));
-		history.push("/channels/@me");
+		dispatch(deleteServerThunk(serverId)).then(() => history.push("/channels/@me") );
+		// dispatch(deleteServerFromList(serverId));
+
 	};
 
 	return (

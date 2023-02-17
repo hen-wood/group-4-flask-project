@@ -13,11 +13,12 @@ export default function Server() {
 
 	if (serverObj) {
 		server = Object.values(serverObj);
+		console.log(serverObj, 'asdsadadasdasdasdsadads')
 	}
 
 	useEffect(() => {
 		dispatch(thunkGetServer(serverId));
-	}, [dispatch, server.length, serverId]);
+	}, [dispatch, server.length, serverId, serverObj[5]]);
 
 	if (!serverObj) {
 		return <div>no servers</div>;

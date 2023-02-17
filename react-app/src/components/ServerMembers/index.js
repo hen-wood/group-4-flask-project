@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-export default function ServerMembers({ user }) {
+export default function ServerMembers() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -11,6 +11,8 @@ export default function ServerMembers({ user }) {
 	const server = useSelector(state => {
 		return state.server;
 	});
+
+	const user = useSelector(state => state.session.user);
 
 	const userDirectChannels = useSelector(state => {
 		return state.directChannels.userDirectChannels;
