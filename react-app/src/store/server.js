@@ -46,10 +46,9 @@ export const deleteServerThunk = id => async dispatch => {
 		method: "DELETE"
 	});
 	if (response.ok) {
-		const data = await response.json();
-		console.log(data, 'here with data')
-		dispatch(deleteServer(data));
 		dispatch(deleteServerFromList(id))
+		const data = await response.json();
+		dispatch(deleteServer(data));
 	}
 };
 
