@@ -2,33 +2,25 @@ import { useEffect, useState } from "react";
 import { thunkGetServer } from "../../store/server";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import LeaveAServer from "../LeaveAServer"
-import './ServerName.css'
+import LeaveAServer from "../LeaveAServer";
+import "./ServerName.css";
 export default function ServerName() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
-
-
-	const [showText, setShowText] = useState(false)
+	const [showText, setShowText] = useState(false);
 	const handleMouseEnter = e => {
-		if(isOpen){
-
-			setShowText(false)
-			setIsOpen(false)
+		if (isOpen) {
+			setShowText(false);
+			setIsOpen(false);
+		} else {
+			setShowText(true);
+			setIsOpen(true);
 		}
-		else {
+	};
 
-			setShowText(true)
-			setIsOpen(true)
-		}
-	  }
-
-
-
-
-    const {serverId} = useParams();
+	const { serverId } = useParams();
 
 	useEffect(() => {
 		dispatch(thunkGetServer(serverId)).then(() => {
@@ -36,29 +28,22 @@ export default function ServerName() {
 		});
 	}, [dispatch, serverId]);
 
-
-	const server = useSelector(
-		state => state.server
-	);
-
-
+	const server = useSelector(state => state.server);
 
 	return isLoaded ? (
-
 		<div className="serverNameContainer">
-
-
-		<div  className="serverNameDisplay"  onClick={handleMouseEnter}>
-
-        {server.name} <i class="fa-solid fa-chevron-down serverNameDownButton"></i>
-		{showText && <p className="message">Server Code: {server.code} </p> }
-		<LeaveAServer  className='serverNameLeaveServer'/>
-
+			<div className="serverNameDisplay" onClick={handleMouseEnter}>
+				{server.name}{" "}
+				<i class="fa-solid fa-chevron-down serverNameDownButton"></i>
+				{showText && <p className="message">Server Code: {server.code} </p>}
+				<LeaveAServer className="serverNameLeaveServer" />
+			</div>
 		</div>
-
-				</div>
-
 	) : (
-		<h1>Loading user direct channels...</h1>
+		<div className="serverNameContainer">
+			<div className="serverNameDisplay">
+				<p className="loading">Loading...</p>
+			</div>
+		</div>
 	);
 }

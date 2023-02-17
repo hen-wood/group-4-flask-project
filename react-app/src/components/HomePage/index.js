@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
 import { useHistory } from "react-router";
 import ServerButton from "../ServerButton";
+import ServerMembers from "../ServerMembers";
+import ServerWelcome from "../ServerWelcome";
 
 export default function HomePage() {
 	const history = useHistory();
@@ -76,6 +78,9 @@ export default function HomePage() {
 					<div id="center-container">
 						<div id="center-top"></div>
 					</div>
+				</Route>
+				<Route exact path="/channels/:serverId">
+					<ServerWelcome />
 				</Route>
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />

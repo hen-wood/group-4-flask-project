@@ -117,7 +117,7 @@ export default function ChannelComments() {
 						</form>
 					</div>
 				</div>
-				<ServerMembers user={user} />
+				<ServerMembers />
 			</div>
 		</div>
 	) : (
@@ -135,7 +135,7 @@ export default function ChannelComments() {
 						</form>
 					</div>
 				</div>
-				<ServerMembers user={user} />
+				<ServerMembers />
 			</div>
 		</div>
 	);
