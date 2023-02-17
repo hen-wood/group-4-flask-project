@@ -1,33 +1,88 @@
-.serverNameContainer{
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-}
-
-
-.serverNameDisplay{
-    color:white;
-    display: grid;
-    overflow: hidden;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: .5em;
-    font-size: 14px;
-    border: 1px solid red;
-    z-index: 100;
-}
-
-
-
-.serverNameDisplay:hover{
-   background-color: #4c4850;
-   transition-property: background-color;
-   transition-duration: .5s;
-   cursor: pointer;
-}
-
-.serverNameDownButton{
-    display: grid;
-    justify-content: end;
+.serverNameContainer {
+    position: relative;
+    display: flex;
     align-items: center;
-    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 14px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.serverNameOpen {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 14px;
+    box-sizing: border-box;
+}
+
+
+
+.serverNameContainer:hover {
+    background-color: #3d4044;
+    transition: .2s ease-in;
+}
+
+#server-options-title{
+    color: #d9dce4;
+    font-weight: bolder;
+    margin:0;
+}
+
+#server-options-icon{
+    color: #d9dce4;
+    font-weight: bolder;
+    margin:0;
+    cursor: pointer;
+}
+
+#server-option{
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+#server-option.blue-option:hover{
+    background-color: #4351ee;
+}
+
+#server-option.red-option{
+    color: #f23f43;
+}
+
+#server-option.red-option:hover{
+    background-color: #f23f43;
+    color: #d9dce4;
+}
+
+#server-option:active{
+    color:#b7bac2;
+}
+
+#separator{
+    width: 100%;
+    border-bottom: 1px solid #b7bac2;
+}
+
+#server-options-modal.hidden{
+    display: none;
+}
+
+
+#server-options-modal{
+    position: absolute;
+    width: 210px;
+    border-radius: 10px;
+    right: 5px;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    color:#d9dce4;
+    background-color: black;
 }
