@@ -32,7 +32,7 @@ export default function ServersList() {
             {servers.map((server) => (
                server ?(
                 <div>
-                   <NavLink className="serverListButton" key={server.id} to={`/channels/${server.id}`}
+                   <NavLink className="serverListButton" key={server.id} to={`/channels/${server.id}/${server.id}`}
                    style={{ color: '#3b9758' }}
                     activeStyle={{ color: 'white' }}
                     >
