@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
 import { useHistory } from "react-router";
 import ServerButton from "../ServerButton";
+import UpdateAServerName from "../UpdateAServerName";
 
 export default function HomePage() {
 	const history = useHistory();
@@ -51,6 +52,7 @@ export default function HomePage() {
 							<Route path="/channels/@me"></Route>
 							<Route path="/channels/:serverId">
 								<ServerName />
+								<UpdateAServerName />
 							</Route>
 						</Switch>
 					</div>

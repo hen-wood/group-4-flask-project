@@ -4,7 +4,6 @@
     height: 15em;
     display: grid;
     justify-content: center;
-border: 1px solid black;
 margin-left: 5em;
 
 }
@@ -45,6 +44,7 @@ margin-left: 5em;
 
 .joinServerErrorMessage{
     color:red;
+    text-align: center;
 }
 
 .joinAServerSubmitButton{
