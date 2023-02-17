@@ -56,3 +56,38 @@ def handle_edit_message(data):
     db.session.commit()
     event = f"{data['channel_id']} delete message"
     emit(event, data, broadcast=True)
+
+@socketio.on("comment")
+def handle_comments(data):
+    new_comment = ChannelComment(
+        channel_id = data['channelId'],
+        user_id = data['userId'],
+        content = data['content']
+    )
+    db.session.add(new_comment)
+    db.session.commit()
+    data['id']=new_comment.id
+    data['created_at']=datetime.strptime(str(new_comment.created_at), "%Y-%m-%d %H:%M:%S.%f").strftime("%a, %d %b %Y %H:%M:%S GMT")
+    event = f"{data['channelId']} comment"
+    emit(event, data, broadcast=True)
+
+
+@socketio.on('edit comment')
+def handle_edit_comment(data):
+    comment_to_edit = ChannelComment.query.filter(ChannelComment.id == data['Comment_id']).one()
+    comment_to_edit.content = data['content']
+    comment_to_edit.edited = True
+    db.session.add(comment_to_edit)
+    db.session.commit()
+    data['id']=comment_to_edit.id
+    data['created_at']=datetime.strptime(str(comment_to_edit.created_at), "%Y-%m-%d %H:%M:%S.%f").strftime("%a, %d %b %Y %H:%M:%S GMT")
+    event = f"{data['channel_id']} edit comment"
+    emit(event, data, broadcast=True)
+
+@socketio.on('delete comment')
+def handle_edit_comment(data):
+    comment_to_delete = ChannelComment.query.filter(ChannelComment.id == data['comment_id']).one()
+    db.session.delete(comment_to_delete)
+    db.session.commit()
+    event = f"{data['channel_id']} delete comment"
+    emit(event, data, broadcast=True)

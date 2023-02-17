@@ -3,23 +3,27 @@ import { thunkGetServer } from "../../store/server";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import LeaveAServer from "../LeaveAServer"
-
+import './ServerName.css'
 export default function ServerName() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
 
 
 	const [showText, setShowText] = useState(false)
 	const handleMouseEnter = e => {
-		e.target.style.background = "grey"
-		setShowText(true)
-	  }
-	  const handleMouseLeave = e => {
-		e.target.style.background =  "#202225";
-		setShowText(false)
-	  }
+		if(isOpen){
 
+			setShowText(false)
+			setIsOpen(false)
+		}
+		else {
+
+			setShowText(true)
+			setIsOpen(true)
+		}
+	  }
 
 
 
@@ -41,17 +45,17 @@ export default function ServerName() {
 
 	return isLoaded ? (
 
-		<div>
+		<div className="serverNameContainer">
 
 
-		<div    onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}>
+		<div  className="serverNameDisplay"  onClick={handleMouseEnter}>
 
-        {server.name}
+        {server.name} <i class="fa-solid fa-chevron-down serverNameDownButton"></i>
 		{showText && <p className="message">Server Code: {server.code} </p> }
+		<LeaveAServer  className='serverNameLeaveServer'/>
 
 		</div>
-		<LeaveAServer />
+
 				</div>
 
 	) : (

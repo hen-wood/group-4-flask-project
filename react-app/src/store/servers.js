@@ -2,12 +2,8 @@ const LOAD_SERVERS = "/servers/LOAD";
 const CREATE_SERVER = "/server/ADD";
 const DELETE_SERVER_FROM_LIST = "/serverlist/DELETE";
 
-
-
 export const thunkGetUserServers = () => async dispatch => {
-	console.log('in it right now')
 	const response = await fetch("/api/servers/");
-	console.log(response)
 	if (response.ok) {
 		const servers = await response.json();
 		dispatch(loadServers(servers));
@@ -23,9 +19,8 @@ const createServer = servers => {
 };
 
 export const deleteServerFromList = server => {
-	console.log(server, ' in actions store for delete server from list')
-	return {type: DELETE_SERVER_FROM_LIST, server}
-}
+	return { type: DELETE_SERVER_FROM_LIST, server };
+};
 
 export const createServerThunk = payload => async dispatch => {
 	const response = await fetch(`/api/servers/`, {
@@ -40,8 +35,6 @@ export const createServerThunk = payload => async dispatch => {
 		dispatch(createServer(data));
 	}
 };
-
-
 
 const initialState = {};
 
@@ -58,7 +51,6 @@ export default function reducer(state = initialState, action) {
 			newServerState[action.servers.id] = action.servers;
 			return newServerState;
 		case DELETE_SERVER_FROM_LIST:
-			console.log('in delete server reducer')
 			const deleteState = { ...state };
 			delete deleteState[action.server];
 			return deleteState;

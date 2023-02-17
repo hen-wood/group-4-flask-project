@@ -1,0 +1,10 @@
+
+.LeaveAServerButton{
+    background-color:#36393f;
+    border: 0px;
+}
+
+.LeaveAServerButton:hover{
+    background-color: #4c4850;
+    border: 0px;
+}

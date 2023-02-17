@@ -1,0 +1,33 @@
+.serverNameContainer{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+
+.serverNameDisplay{
+    color:white;
+    display: grid;
+    overflow: hidden;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: .5em;
+    font-size: 14px;
+    border: 1px solid red;
+    z-index: 100;
+}
+
+
+
+.serverNameDisplay:hover{
+   background-color: #4c4850;
+   transition-property: background-color;
+   transition-duration: .5s;
+   cursor: pointer;
+}
+
+.serverNameDownButton{
+    display: grid;
+    justify-content: end;
+    align-items: center;
+    align-self: center;
+}

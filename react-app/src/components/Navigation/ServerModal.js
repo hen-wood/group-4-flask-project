@@ -44,8 +44,7 @@ function ServerModal() {
 
 			<div className="ServerModalCreateServer">
 				<OpenModalButton
-					className="ServerModalCreateServer"
-					buttonText="Create My Own"
+			        buttonText="Create My Own"
 					onItemClick={closeMenu}
 					modalComponent={<CreateServer />}
 				/>
