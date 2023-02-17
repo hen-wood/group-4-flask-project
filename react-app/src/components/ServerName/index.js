@@ -25,12 +25,24 @@ export default function ServerName() {
 		navigator.clipboard.writeText(code);
 	};
 
-	const handleLeaveServer = serverId => {
-		dispatch(leaveServerThunk(serverId)).then(() => {
-			dispatch(deleteServerFromList(serverId)).then(() => {
-				history.push("/channels/@me");
-			});
+	const handleLeaveServer = async (serverId, memberId) => {
+		const res = await fetch("/api/memberships/delete", {
+			method: "DELETE",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				member_id: memberId,
+				server_id: serverId
+			})
 		});
+
+		if (res.ok) {
+			const data = await res.json();
+			console.log({ data });
+			dispatch(deleteServerFromList(serverId));
+			history.push("/channels/@me");
+		} else {
+			console.log(res.status);
+		}
 	};
 
 	const serversObj = useSelector(state => {
@@ -73,7 +85,7 @@ export default function ServerName() {
 					<p
 						id="server-option"
 						className="red-option"
-						onClick={handleLeaveServer}
+						onClick={() => handleLeaveServer(serverId, user.id)}
 					>
 						Leave Server
 					</p>
