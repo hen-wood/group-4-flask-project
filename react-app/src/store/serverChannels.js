@@ -3,7 +3,7 @@ const CREATE_CHANNEL = "/channels/CREATE_CHANNEL";
 const EDIT_CHANNEL = "/channels/EDIT_CHANNEL";
 const DELETE_CHANNEL = "/channels/DELETE_CHANNEL";
 const LOAD_SINGLE_CHANNEL = "/channels/LOAD_SINGLE_CHANNEL";
-
+const CLEAR_SINGLE_CHANNEL = "/channels/CLEAR_SINGLE_CHANNEL";
 // Action creator
 export const loadChannels = channels => {
 	return { type: LOAD_CHANNELS, channels };
@@ -27,6 +27,9 @@ export const deleteChannel = channel => ({
 export const loadSingleChannel = channel => ({
 	type: LOAD_SINGLE_CHANNEL,
 	channel
+});
+export const actionClearChannel = () => ({
+	type: CLEAR_SINGLE_CHANNEL
 });
 
 // Thunks
@@ -103,14 +106,11 @@ export default function reducer(state = initialState, action) {
 			newState.singleChannel = action.channel;
 			return newState;
 		}
-		// case SET_SINGLE_USER_DIRECT_CHANNEL:
-		// 	newState.singleUserDirectChannel = action.payload;
-		// 	const messagesObj = {};
-		// 	action.payload.messages.forEach(msg => {
-		// 		messagesObj[msg.id] = msg;
-		// 	});
-		// 	newState.singleUserDirectChannel.messages = messagesObj;
-		// 	return newState;
+		case CLEAR_SINGLE_CHANNEL:
+			newState = { ...state };
+			newState.singleChannel = {};
+			return newState;
+			return;
 		case CREATE_CHANNEL:
 			return {
 				...state,

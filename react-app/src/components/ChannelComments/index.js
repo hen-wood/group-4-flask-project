@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { loadSingleChannelThunk } from "../../store/serverChannels";
+import {
+	actionClearChannel,
+	loadSingleChannelThunk
+} from "../../store/serverChannels";
 import { io } from "socket.io-client";
 
 let socket;
@@ -16,9 +19,10 @@ export default function ChannelComments() {
 
 	useEffect(() => {
 		dispatch(loadSingleChannelThunk(channelId)).then(() => {
-			setIsLoaded(true);
+			// setIsLoaded(true);
 		});
 		return () => {
+			dispatch(actionClearChannel());
 			setComments({});
 		};
 	}, [channelId]);
@@ -30,8 +34,9 @@ export default function ChannelComments() {
 				commentsObj[comment.id] = comment;
 			});
 			setComments(commentsObj);
+			setIsLoaded(true);
 		}
-	}, [currChannel]);
+	}, [currChannel, channelId]);
 
 	useEffect(() => {
 		socket = io();
