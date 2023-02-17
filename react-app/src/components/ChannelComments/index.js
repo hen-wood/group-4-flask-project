@@ -6,6 +6,7 @@ import {
 	loadSingleChannelThunk
 } from "../../store/serverChannels";
 import { io } from "socket.io-client";
+import ServerMembers from "../ServerMembers";
 
 let socket;
 export default function ChannelComments() {
@@ -79,28 +80,31 @@ export default function ChannelComments() {
 				</p>
 				<p className="channel-desc">{currChannel.description}</p>
 			</div>
-			<div id="center-comments">
-				{Object.keys(comments).map(key => {
-					const comment = comments[key];
-					return (
-						<div key={key} className="message-card">
-							<div className="message-card-top">
-								<p className="message-card-username">{comment.username}</p>
-								<p className="message-card-date">
-									{new Date(comment.created_at).toLocaleString("en-US", {
-										year: "numeric",
-										month: "2-digit",
-										day: "2-digit",
-										hour: "2-digit",
-										minute: "2-digit",
-										hour12: true
-									})}
-								</p>
+			<div id="server-center">
+				<div id="center-comments">
+					{Object.keys(comments).map(key => {
+						const comment = comments[key];
+						return (
+							<div key={key} className="message-card">
+								<div className="message-card-top">
+									<p className="message-card-username">{comment.username}</p>
+									<p className="message-card-date">
+										{new Date(comment.created_at).toLocaleString("en-US", {
+											year: "numeric",
+											month: "2-digit",
+											day: "2-digit",
+											hour: "2-digit",
+											minute: "2-digit",
+											hour12: true
+										})}
+									</p>
+								</div>
+								<p>{comment.content}</p>
 							</div>
-							<p>{comment.content}</p>
-						</div>
-					);
-				})}
+						);
+					})}
+				</div>
+				<ServerMembers />
 			</div>
 			<div id="comment-form-container">
 				<form id="comment-input" onSubmit={sendComment}>
