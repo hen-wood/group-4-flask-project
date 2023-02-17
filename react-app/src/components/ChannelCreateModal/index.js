@@ -13,16 +13,10 @@ function CreateChannelModal(props) {
 
     const { closeModal } = useModal();
 
-    useEffect(() => {
-        const errors = [];
-        if (description === "") errors.push("Please enter your description");
-        if (name === "") errors.push("Please enter your channel name");
-        setErrors(errors);
-    }, [name, description]);
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        return dispatch(channelActions.createChannelThunk({ name, description }, props.serverId))
+        if (validate()) {
+            return dispatch(channelActions.createChannelThunk({ name, description }, props.serverId))
             .then(() => {
                 props.callbackClose();
                 closeModal();
@@ -32,6 +26,16 @@ function CreateChannelModal(props) {
                 const { message } = data;
                 setErrors([message]);
             });
+        }
+    }
+
+    const validate = () => {
+        const errors = [];
+        if (description === "") errors.push("Please enter your description");
+        if (name === "") errors.push("Please enter your channel name");
+        setErrors(errors);
+        if (errors.length > 0) return false;
+        else return true;
     };
 
     return (
