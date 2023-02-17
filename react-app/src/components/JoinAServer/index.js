@@ -1,47 +1,40 @@
-import React from 'react';
-import {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {thunkAddMembership} from '../../store/memberships';
-import {thunkGetUserServers} from '../../store/servers';
-import {useModal} from "../../context/Modal";
-import './joinAServer.css'
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { thunkAddMembership } from "../../store/memberships";
+import { thunkGetUserServers } from "../../store/servers";
+import { useModal } from "../../context/Modal";
+import "./joinAServer.css";
 
 export default function JoinAServer() {
-    const dispatch = useDispatch();
-    const [code, setCode] = useState("")
-    const {closeModal} = useModal();
-    const [errors, setErrors] = useState([]);
+	const dispatch = useDispatch();
+	const [code, setCode] = useState("");
+	const { closeModal } = useModal();
+	const [errors, setErrors] = useState([]);
 
+	const handleSubmit = e => {
+		e.preventDefault();
+		setErrors([]);
+		dispatch(thunkAddMembership(code)).then(res => {
+			if (res.message) {
+				setErrors(e => [res.message]);
+			} else {
+				dispatch(thunkGetUserServers()).then(() => closeModal());
+			}
+		});
+	};
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setErrors([]);
-        dispatch(thunkAddMembership(code)).then(res => {
-            if (res.message) {
-                setErrors(e => [res.message])
-            } else {
-                dispatch(thunkGetUserServers()).then(() => closeModal())
-            }
-        })
-
-
-    }
-
-    return (
-        <div className="joinServerContainer">
-
-
-            <h1 className='joinAServerHeader'>
-                Join A Server
-            </h1>
-            <p className='joinAServerInformation'>
-                Enter an invite below to join an existing server
-            </p>
+	return (
+		<div className="joinServerContainer">
+			<h1 className="joinAServerHeader">Join A Server</h1>
+			<p className="joinAServerInformation">
+				Enter an invite below to join an existing server
+			</p>
 
             <form onSubmit={handleSubmit}>
                 {
                 errors.map(error => (
-                    <div className='errors-actual'>
+                    <div className='joinServerErrorMessage'>
                         {error}</div>
                 ))
             }

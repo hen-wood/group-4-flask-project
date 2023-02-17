@@ -34,5 +34,5 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            # 'memberships': [membership.server.to_dict() for membership in self.user_memberships]
+            # 'memberships': [membership.server.to_dict_single_server() for membership in self.user_memberships]
         }

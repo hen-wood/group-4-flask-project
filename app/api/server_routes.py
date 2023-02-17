@@ -16,12 +16,12 @@ def get_current_user_servers():
     Returns all servers that current user is a member of
     '''
     userId = current_user.id
-    memberships = Membership.query.filter(Membership.user_id == userId).all()
-    servers = [Server.query.get(membership.server_id) for membership in memberships]
 
-    res = [server.to_dict_all_servers() for server in servers]
 
-    return jsonify(res)
+    test = User.query.get(userId)
+    test2 = [m.server.to_dict() for m in test.user_memberships]
+
+    return jsonify(test2)
 
 
 @server_routes.route('/<int:serverId>')
