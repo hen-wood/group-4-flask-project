@@ -21,7 +21,6 @@ function LogoutModal(props) {
 
     return (
         <div className="create-channel-container">
-            <h1>Log out</h1>
             <div className="logout-modal-style">
                 <div className="logout-q-style">
                     Are you sure to log out?
