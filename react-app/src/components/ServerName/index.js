@@ -33,6 +33,9 @@ export default function ServerName() {
 		});
 	};
 
+	const serversObj = useSelector(state => {
+		return state.servers;
+	});
 	useEffect(() => {
 		dispatch(thunkGetServer(serverId)).then(() => {
 			setIsLoaded(true);

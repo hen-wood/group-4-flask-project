@@ -58,7 +58,6 @@ export default function HomePage() {
 							<Route path="/channels/@me"></Route>
 							<Route path="/channels/:serverId">
 								<ServerName />
-								<UpdateAServerName />
 							</Route>
 						</Switch>
 					</div>
@@ -72,6 +71,7 @@ export default function HomePage() {
 								<DeleteServer />
 							</Route>
 							<Route path="/channels/:serverId">
+								<UpdateAServerName />
 								<ServerChannels />
 								<DeleteServer />
 							</Route>
