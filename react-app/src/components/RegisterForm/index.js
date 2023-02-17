@@ -43,18 +43,12 @@ export default function RegisterForm() {
 			return;
 		}
 
-		if (password === confirmPassword) {
+		else {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
 			}
-		} else {
-			checked.push(
-				"Confirm Password field must be the same as the Password field"
-			);
 		}
-
-		setErrors(checked);
 	};
 
 	return (
@@ -68,15 +62,17 @@ export default function RegisterForm() {
 					<h2>Create an account</h2>
 
 					<form onSubmit={handleSubmit} className="actual-form sign-up">
-						<ul>
+						<ul className="error-container">
 							{errors.map((error, idx) => (
-								<li className="error-container" key={idx}>
+								<li key={idx}>
 									{error}
 								</li>
 							))}
 						</ul>
 
-						<label>Email</label>
+						<label>
+							Email
+						</label>
 						<input
 							type="email"
 							value={email}
