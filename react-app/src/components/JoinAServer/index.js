@@ -34,7 +34,7 @@ export default function JoinAServer() {
             <form onSubmit={handleSubmit}>
                 {
                 errors.map(error => (
-                    <div className='joinServerErrorMessage'>
+                    <div className='errors-actual'>
                         {error}</div>
                 ))
             }
