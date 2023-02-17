@@ -9,16 +9,19 @@ export default function ServersList() {
     const serversObj = useSelector(state => {
         return state.servers
     })
+    const serverObj = useSelector(state => {
+        return state.server
+    })
 
     if(serversObj){
       servers = Object.values(serversObj);
     }
-
+    let serverChecker = Object.keys(serverObj)
 
     useEffect(() => {
         dispatch(thunkGetUserServers())
 
-    }, [dispatch, servers.length])
+    }, [dispatch, servers.length, serverChecker.length])
 
 
     if (!servers) {

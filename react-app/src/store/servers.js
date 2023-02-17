@@ -52,6 +52,7 @@ export default function reducer(state = initialState, action) {
 			return newServerState;
 		case DELETE_SERVER_FROM_LIST:
 			const deleteState = { ...state };
+			console.log(action.server, 'here in delte')
 			delete deleteState[action.server];
 			return deleteState;
 		default:
