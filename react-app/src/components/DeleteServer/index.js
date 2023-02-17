@@ -17,7 +17,6 @@ export default function DeleteServer() {
 	if (!serverObj) {
 		return null;
 	}
-	console.log(userId, serverObj.mod_id)
 	if(userId != serverObj.mod_id){
 		return null;
 	}
