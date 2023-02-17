@@ -133,7 +133,12 @@
     display: flex;
     flex-direction: column;
 }
-
+#comments-and-comment-form-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 #server-center{
     display: flex;
     width: 100%;
@@ -141,10 +146,6 @@
     overflow: hidden;
 }
 
-#server-members{
-    height: 100%;
-    width: 240px;
-}
 
 #center-top {
     min-height: 50px;
@@ -189,7 +190,6 @@
 #center-messages {
     height: 100%;
     overflow-y: scroll;
-    margin-left: 10px;
     padding-right: 5px;
 }
 
@@ -197,6 +197,7 @@
     width: 8px;
     background-color: #2e3338;
     border-radius: 4px;
+    margin-top: 4px;
 }
 #center-messages::-webkit-scrollbar-thumb{
     width: 8px;
@@ -208,9 +209,9 @@
     height: 100%;
     width: 100%;
     overflow-y: scroll;
-    margin-left: 10px;
     padding-right: 5px;
 }
+
 #center-comments::-webkit-scrollbar{
     width: 8px;
     background-color: #2e3338;
@@ -342,11 +343,7 @@
     justify-content: center;
 }
 
-#comment-input {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+
 
 #message-input input[type="text"] {
     width: 100%;
@@ -363,8 +360,16 @@
 }
 
 /* Right area of the screen */
-#right-container {
-    border-left: 1px solid black;
-    background-color: gray;
-    width: 20%;
+
+#server-members {
+    height: 100%;
+    width: 240px;
+    margin-left: 9px;
+    background-color: #2f3136;
+}
+
+.member-card{
+    display: flex;
+    padding-left: 10px;
+    color: #d9dce4;
 }
