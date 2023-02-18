@@ -43,7 +43,7 @@ export default function ServersList() {
 							</NavLink>
 						</div>
 					) : (
-						<div>nothin</div>
+						<div id="loading">...</div>
 					)
 				)}
 			</div>
