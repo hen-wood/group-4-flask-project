@@ -29,7 +29,7 @@ export default function RegisterForm() {
 		}
 
 		if (password.length < 8) {
-			checked.push("Must be at least 8 characters long");
+			checked.push("Password must be at least 8 characters long");
 		}
 
 		if (password !== confirmPassword) {
