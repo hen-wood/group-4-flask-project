@@ -7,7 +7,6 @@ import ChannelComments from "../ChannelComments";
 import ServersList from "../ServersList";
 import ServerChannels from "../ServerChannels";
 import ServerName from "../ServerName";
-import DeleteServer from "../DeleteServer";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
@@ -72,12 +71,10 @@ export default function HomePage() {
 							</Route>
 							<Route path="/channels/:serverId/:channelId">
 								<ServerChannels />
-								<DeleteServer />
 							</Route>
 							<Route path="/channels/:serverId">
 								<UpdateAServerName />
 								<ServerChannels />
-								<DeleteServer />
 							</Route>
 						</Switch>
 					</div>

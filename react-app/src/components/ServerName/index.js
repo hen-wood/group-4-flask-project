@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { thunkGetServer } from "../../store/server";
+import { deleteServerThunk, thunkGetServer } from "../../store/server";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory, useParams } from "react-router-dom";
-import LeaveAServer from "../LeaveAServer";
-import { leaveServerThunk } from "../../store/memberships";
+import { useHistory, useParams } from "react-router-dom";
 import { deleteServerFromList } from "../../store/servers";
 import "./ServerName.css";
 export default function ServerName() {
@@ -45,6 +43,12 @@ export default function ServerName() {
 		}
 	};
 
+	const handleDeleteServer = () => {
+		dispatch(deleteServerThunk(serverId)).then(() =>
+			history.push("/channels/@me")
+		);
+	};
+
 	const server = useSelector(state => state.server);
 	const serversObj = useSelector(state => {
 		return state.servers;
@@ -53,8 +57,7 @@ export default function ServerName() {
 		dispatch(thunkGetServer(serverId)).then(() => {
 			setIsLoaded(true);
 		});
-	}, [dispatch, serverId, serversObj[serverId],server.name]);
-
+	}, [dispatch, serverId, serversObj[serverId], server.name]);
 
 	const user = useSelector(state => state.session.user);
 
@@ -91,7 +94,11 @@ export default function ServerName() {
 						Leave Server
 					</p>
 				) : (
-					<p id="server-option" className="red-option">
+					<p
+						id="server-option"
+						className="red-option"
+						onClick={handleDeleteServer}
+					>
 						Delete Server
 					</p>
 				)}
