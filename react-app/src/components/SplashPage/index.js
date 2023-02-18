@@ -40,7 +40,7 @@ export default function SplashPage() {
 							id="login-button"
 							className={`${sessionUser ? "True" : "False"}`}
 							onClick={() => {
-								dispatch(demo1Login());
+								dispatch(demo1Login()).then(handleClick);
 							}}
 						>
 							Demo user 1
@@ -49,7 +49,7 @@ export default function SplashPage() {
 							id="login-button"
 							className={`${sessionUser ? "True" : "False"}`}
 							onClick={() => {
-								dispatch(demo2Login());
+								dispatch(demo2Login()).then(handleClick);
 							}}
 						>
 							Demo user 2
