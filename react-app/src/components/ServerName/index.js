@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
-import { deleteServerThunk, thunkGetServer } from "../../store/server";
+import {
+	deleteServerThunk,
+	thunkGetServer,
+	editServerThunk
+} from "../../store/server";
+import { thunkGetUserServers } from "../../store/servers";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { deleteServerFromList } from "../../store/servers";
 import "./ServerName.css";
 export default function ServerName() {
+	const server = useSelector(state => state.server);
+	const user = useSelector(state => state.session.user);
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { serverId } = useParams();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+	const [name, setName] = useState("");
 
 	const handleClickName = () => {
 		if (!isOpen) setIsOpen(true);
@@ -49,17 +58,19 @@ export default function ServerName() {
 		);
 	};
 
-	const server = useSelector(state => state.server);
-	const serversObj = useSelector(state => {
-		return state.servers;
-	});
+	const handleEditServer = e => {
+		e.preventDefault();
+		dispatch(editServerThunk(name, serverId)).then(() =>
+			dispatch(thunkGetUserServers()).then(() => setIsOpen(false))
+		);
+	};
+
 	useEffect(() => {
 		dispatch(thunkGetServer(serverId)).then(() => {
+			setName(server.name);
 			setIsLoaded(true);
 		});
-	}, [dispatch, serverId, serversObj[serverId], server.name]);
-
-	const user = useSelector(state => state.session.user);
+	}, [dispatch, serverId, server.name]);
 
 	return isLoaded ? (
 		<div
@@ -94,13 +105,23 @@ export default function ServerName() {
 						Leave Server
 					</p>
 				) : (
-					<p
-						id="server-option"
-						className="red-option"
-						onClick={handleDeleteServer}
-					>
-						Delete Server
-					</p>
+					<>
+						<form onSubmit={handleEditServer}>
+							<input
+								type="text"
+								value={name}
+								onChange={e => setName(e.target.value)}
+							/>
+							<input type="submit" value="Update Server Name" />
+						</form>
+						<p
+							id="server-option"
+							className="red-option"
+							onClick={handleDeleteServer}
+						>
+							Delete Server
+						</p>
+					</>
 				)}
 			</div>
 		</div>

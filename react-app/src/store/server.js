@@ -3,7 +3,7 @@ import { thunkGetUserServers } from "./servers";
 
 const LOAD_SERVER = "/server/LOAD";
 const DELETE_SERVER = "/server/DELETE";
-const EDIT_SERVER = "/server/UPDATE"
+const EDIT_SERVER = "/server/UPDATE";
 export const thunkGetServer = id => async dispatch => {
 	const response = await fetch(`/api/servers/${id}`);
 	if (response.ok) {
@@ -12,42 +12,31 @@ export const thunkGetServer = id => async dispatch => {
 	}
 };
 
+export const editServerThunk = (name, id) => async dispatch => {
+	const response = await fetch(`/api/servers/${id}`, {
+		method: "PUT",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ name })
+	});
+	if (response.ok) {
+		dispatch(thunkGetUserServers());
+		dispatch(editServer(name, id));
+	}
+};
 
-
-
-export const editServerThunk = (payload, id) => async dispatch => {
-    const response = await fetch(`/api/servers/${id}`, {
-        method: 'PUT',
-        headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify(payload)
-    })
-    if(response.ok){
-		dispatch(thunkGetUserServers())
-        dispatch(editServer(payload, id))
-
-
-    }
-
-}
-
-
-const editServer = (name,id) => {
-    return {
-        type: EDIT_SERVER,
-        payload: {name,id}
-    }
-}
-
-
-
-
+const editServer = (name, id) => {
+	return {
+		type: EDIT_SERVER,
+		payload: { name, id }
+	};
+};
 
 export const deleteServerThunk = id => async dispatch => {
 	const response = await fetch(`/api/servers/${id}`, {
 		method: "DELETE"
 	});
 	if (response.ok) {
-		dispatch(deleteServerFromList(id))
+		dispatch(deleteServerFromList(id));
 		const data = await response.json();
 		dispatch(deleteServer(data));
 	}
@@ -75,10 +64,11 @@ export default function reducer(state = initialState, action) {
 			const deleteState = {};
 			return deleteState;
 		case EDIT_SERVER:
-			const editState = {...state};
-            editState[action.payload.id].name = action.payload.name;
-
-            return editState
+			const editState = { ...state };
+			console.log(action.payload);
+			console.log(editState);
+			editState.name = action.payload.name;
+			return editState;
 		default:
 			return state;
 	}
