@@ -42,13 +42,28 @@
 
 #server-option{
     font-weight: bold;
-    cursor: pointer;
-    padding: 8px;
+    padding: 4px;
     border-radius: 5px;
 }
 
+#edit-server-name-form{
+    width: 100%;
+}
+
+#edit-server-name-form input{
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 100%;
+}
+
+
+
 #server-option.blue-option:hover{
     background-color: #4351ee;
+    cursor: pointer;
 }
 
 #server-option.red-option{
@@ -58,10 +73,15 @@
 #server-option.red-option:hover{
     background-color: #f23f43;
     color: #d9dce4;
+    cursor: pointer;
 }
 
 #server-option:active{
     color:#b7bac2;
+}
+
+#server-option-static{
+
 }
 
 #separator{

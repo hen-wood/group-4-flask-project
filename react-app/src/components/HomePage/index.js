@@ -73,7 +73,6 @@ export default function HomePage() {
 								<ServerChannels />
 							</Route>
 							<Route path="/channels/:serverId">
-								<UpdateAServerName />
 								<ServerChannels />
 							</Route>
 						</Switch>
