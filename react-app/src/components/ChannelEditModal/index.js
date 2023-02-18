@@ -56,12 +56,11 @@ function EditChannelModal(props) {
                     />
                 </label>
                 <label>
-                    Description
+                    Description:
                     <textarea
                         className="textarea"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        required
                     />
                 </label>
                 <button onClick={() => closeModal()}>Cancel</button>
