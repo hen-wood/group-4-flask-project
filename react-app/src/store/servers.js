@@ -33,6 +33,7 @@ export const createServerThunk = payload => async dispatch => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(createServer(data));
+		return data
 	}
 };
 
@@ -52,7 +53,6 @@ export default function reducer(state = initialState, action) {
 			return newServerState;
 		case DELETE_SERVER_FROM_LIST:
 			const deleteState = { ...state };
-			console.log(action.server, 'here in delte')
 			delete deleteState[action.server];
 			return deleteState;
 		default:

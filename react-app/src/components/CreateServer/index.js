@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
+import 	{ useHistory} from "react-router-dom"
 import { createServerThunk } from "../../store/servers";
 import "./createServer.css";
 import { useModal } from "../../context/Modal";
 
 export default function CreateServer() {
-
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const [serverName, setServerName] = useState();
 	const { closeModal } = useModal();
@@ -17,10 +18,11 @@ export default function CreateServer() {
 			name: serverName
 		};
 
-		dispatch(createServerThunk(payload));
+		dispatch(createServerThunk(payload)).then((data) => history.push(`/channels/${data.id}`));
 		setServerName("");
 		closeModal();
 
+		history.push(`/channels/`)
 	};
 
 	return (
