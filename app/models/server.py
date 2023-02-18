@@ -26,7 +26,7 @@ class Server(db.Model):
 
 
     server_mod = db.relationship('User', back_populates='user_servers')
-    server_members = db.relationship('Membership', back_populates='server',  passive_deletes=True)
+    server_members = db.relationship('Membership', back_populates='server', cascade="all, delete")
 
     def user_data(self):
         return{

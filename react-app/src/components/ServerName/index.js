@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
 	deleteServerThunk,
 	thunkGetServer,
@@ -12,7 +12,7 @@ import "./ServerName.css";
 export default function ServerName() {
 	const server = useSelector(state => state.server);
 	const user = useSelector(state => state.session.user);
-
+	const containerRef = useRef(null);
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { serverId } = useParams();
@@ -53,6 +53,7 @@ export default function ServerName() {
 	};
 
 	const handleDeleteServer = () => {
+		setIsLoaded(false);
 		dispatch(deleteServerThunk(serverId)).then(() =>
 			history.push("/channels/@me")
 		);
@@ -67,13 +68,32 @@ export default function ServerName() {
 
 	useEffect(() => {
 		dispatch(thunkGetServer(serverId)).then(() => {
-			setName(server.name);
+			if (server.name) {
+				setName(server.name);
+			}
 			setIsLoaded(true);
 		});
-	}, [dispatch, serverId, server.name]);
+	}, [dispatch, serverId, isOpen]);
+
+	useEffect(() => {
+		function handleClickOutside(event) {
+			if (
+				containerRef.current &&
+				!containerRef.current.contains(event.target)
+			) {
+				setIsOpen(false);
+			}
+		}
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [containerRef]);
 
 	return isLoaded ? (
 		<div
+			ref={containerRef}
 			className={isOpen ? "serverNameOpen" : "serverNameContainer"}
 			onClick={handleClickName}
 		>
@@ -106,13 +126,13 @@ export default function ServerName() {
 					</p>
 				) : (
 					<>
-						<form onSubmit={handleEditServer}>
+						<p id="server-option-update">Update Server Name</p>
+						<form id="edit-server-name-form" onSubmit={handleEditServer}>
 							<input
 								type="text"
 								value={name}
 								onChange={e => setName(e.target.value)}
 							/>
-							<input type="submit" value="Update Server Name" />
 						</form>
 						<p
 							id="server-option"

@@ -33,7 +33,7 @@ export const createServerThunk = payload => async dispatch => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(createServer(data));
-		return data
+		return data;
 	}
 };
 

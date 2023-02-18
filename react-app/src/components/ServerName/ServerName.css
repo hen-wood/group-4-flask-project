@@ -41,14 +41,24 @@
 }
 
 #server-option{
+    color: #d9dce4;
     font-weight: bold;
-    cursor: pointer;
     padding: 8px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+#server-option-update{
+    color: #d9dce4;
+    font-weight: bold;
+    margin-left: 8px;
+    margin-top: 10px;
+    margin-bottom: 3px;
     border-radius: 5px;
 }
 
 #server-option.blue-option:hover{
     background-color: #4351ee;
+    cursor: pointer;
 }
 
 #server-option.red-option{
@@ -58,10 +68,32 @@
 #server-option.red-option:hover{
     background-color: #f23f43;
     color: #d9dce4;
+    cursor: pointer;
 }
 
 #server-option:active{
     color:#b7bac2;
+}
+
+#edit-server-name-form{
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+#edit-server-name-form input{
+    width: 100%;
+    padding: 0 10px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 5px;;
+    height: 40px;
+    background-color: #3d4044;
+    color: #d9dce4;
+}
+
+#edit-server-name-form input:focus{
+    outline: none;
 }
 
 #separator{

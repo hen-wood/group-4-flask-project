@@ -21,7 +21,7 @@ export default function ChannelComments() {
 
 	useEffect(() => {
 		dispatch(loadSingleChannelThunk(channelId)).then(() => {
-			// setIsLoaded(true);
+			setIsLoaded(true);
 		});
 		return () => {
 			dispatch(actionClearChannel());
@@ -130,9 +130,7 @@ export default function ChannelComments() {
 				<div id="comments-and-comment-form-container">
 					<div id="center-comments"></div>
 					<div id="message-form-container">
-						<form id="message-input" onSubmit={sendComment}>
-							<input type="text" />
-						</form>
+						<form id="message-input"></form>
 					</div>
 				</div>
 				<ServerMembers />
