@@ -6,8 +6,8 @@ import DiscordanceLogo from "../Svgs/DiscordanceLogo";
 import "./SplashPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { demo1Login, demo2Login } from "../../store/session";
-
-
+import { useEffect, useState } from "react";
+import { authenticate } from "../../store/session";
 
 export default function SplashPage() {
 	const history = useHistory();
@@ -17,14 +17,14 @@ export default function SplashPage() {
 		history.push("/login");
 	};
 
-	// const demo1Login = async e => {
-	// 	// e.preventDefault();
-	// 	await dispatch(demo1Login)
-	// }
+	const [isLoaded, setIsLoaded] = useState(false);
+	useEffect(() => {
+		dispatch(authenticate()).then(() => setIsLoaded(true));
+	}, [dispatch]);
 
 	const sessionUser = useSelector(state => state.session.user);
 
-	return (
+	return isLoaded ? (
 		<div className="splash-page-wrapper">
 			<div id="splash-container">
 				<div id="splash-top-bar">
@@ -62,36 +62,26 @@ export default function SplashPage() {
 			</div>
 
 			<div className="git-link-div">
-
-				<div>
-					find us on github:
-				</div>
+				<div>find us on github:</div>
 
 				<div className="dot">.</div>
 
-				<a href="https://github.com/Ardian-Kovanxhi">
-					Ardian
-				</a>
+				<a href="https://github.com/Ardian-Kovanxhi">Ardian</a>
 
 				<div className="dot">.</div>
 
-				<a href="https://github.com/anti-epic">
-					Chase
-				</a>
+				<a href="https://github.com/anti-epic">Chase</a>
 
 				<div className="dot">.</div>
 
-				<a href="https://github.com/enkhzayaqt">
-					Emma
-				</a>
+				<a href="https://github.com/enkhzayaqt">Emma</a>
 
 				<div className="dot">.</div>
 
-				<a href="https://github.com/hen-wood">
-					Henry
-				</a>
-
+				<a href="https://github.com/hen-wood">Henry</a>
 			</div>
 		</div>
+	) : (
+		<></>
 	);
 }

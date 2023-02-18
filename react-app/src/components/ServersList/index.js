@@ -39,7 +39,7 @@ export default function ServersList() {
 								style={{ color: "#3b9758" }}
 								activeStyle={{ color: "white" }}
 							>
-								{server.name}
+								{server.name[0]}
 							</NavLink>
 						</div>
 					) : (
