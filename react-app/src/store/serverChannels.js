@@ -122,10 +122,10 @@ export default function reducer(state = initialState, action) {
 			return newState;
 		}
 		case EDIT_CHANNEL: {
-			return {
-				...state,
-				[action.channel]: action.channel
-			};
+			newState = { ...state };
+			newState.singleChannel = action.channel;
+			newState.channels[action.channel.id] = action.channel;
+			return newState;
 		}
 		default:
 			return state;

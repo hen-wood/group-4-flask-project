@@ -13,7 +13,6 @@ def get_comments(channelId):
     Query for all comments and returns them in a date order
     """
     comments = ChannelComment.query.filter(ChannelComment.channel_id==channelId).all()
-    print(comments, 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
     return {'comments': [comment.to_dict() for comment in comments]}
 
 
