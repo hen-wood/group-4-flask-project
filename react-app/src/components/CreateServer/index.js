@@ -27,16 +27,27 @@ export default function CreateServer() {
 
 	return (
 		<div className="createServerContainer">
+			<div className="createServerHeader">
+				Tell us more about your server
+				</div>
+				<div className="createServerInformation">
+					but make sure to just say it out loud because there is no field here other than what you want to call the server
+				</div>
 			<form className="createForm" onSubmit={handleSubmit}>
+				<label className="serverNameLabel">
+				Server Name
 				<input
+				className="createServerInput"
 					type="text"
-					placeholder="Server Name"
 					required
 					value={serverName}
 					onChange={e => setServerName(e.target.value)}
-				/>
+					/>
+					</label>
+<div className="createServerButtonContainer">
 
-				<input type="submit" value="Create Server"></input>
+				<input type="submit" className="createServerButton" value="Create"></input>
+</div>
 			</form>
 		</div>
 	);

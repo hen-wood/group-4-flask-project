@@ -1,6 +1,6 @@
 .createServerContainer{
     background-color: '#ffffff';
-    width:20em;
+    width:30em;
     height: 15em;
     display: grid;
     justify-content: center;
@@ -8,7 +8,7 @@
 
 }
 
-.serverModalHeader{
+.createServerHeader{
     display: grid;
 font-size: 18px;
 justify-content: center;
@@ -18,32 +18,55 @@ margin-top: 1em;
 }
 
 
-.serverModalInformation{
+.createServerInformation{
     font-size: 12px;
-    margin-top: -7em;
     text-align: center;
-}
-
-.ServerModalCreateServer{
+    margin-left: 10em;
+    margin-top: 1em;
     display: grid;
-    margin-top: -5em;
-    margin-top: -7.5em;
-    margin-left: 1em;
-    height: 3em;
-
-
-
-    width: 18em;
+    text-align: center;
+    height: 5em;
+    width:30em;
 }
 
 
-.ServerModalJoinServer{
+
+.serverNameLabel{
     display: grid;
-    margin-top: -5em;
-    margin-left: 1em;
+    font-weight: bolder;
+    padding: 6px;
+    margin-left: 14em;
+    font-size: 12px;
+    width:20em;
+}
+
+
+.createServerInput{
+    background-color: #e9eaed;
+}
+
+
+.createServerButtonContainer{
+    display: grid;
+   background-color: #e9eaed;
+    width: 35em;
+    height: 5em;
+    margin-left:1.5em;
+    margin-top:2.2em;
+}
+.createServerButton{
+    display: grid;
+    margin-left:33em;
+    margin-top:1.5em;
+    width:7em;
     height: 3em;
+    background-color:#5e67ed;
+    color:white;
+    border: 0px;
+}
 
 
+.createServerButton:hover{
+    background-color:#4b52be;
 
-    width: 18em;
 }
