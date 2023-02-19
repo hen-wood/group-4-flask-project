@@ -2,8 +2,8 @@
 
 .splash-page-wrapper {
     overflow: hidden;
-    height: 98vh;
-    width: 100vw;
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -11,9 +11,10 @@
 
 #splash-container {
     background-color: #414eed;
-    height: 70vh;
+    height: 100%;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 #splash-top-bar {
@@ -64,35 +65,54 @@
 
 #splash-center {
     position: absolute;
-    width: 100vw;
-    bottom: 30vh;
+    width: 100%;
+    bottom: -100px;
 }
 
 #splash-left {
     position: absolute;
     right: -150px;
-    bottom: 30vh;
+    bottom: 0;
 }
 
 #splash-right {
     position: absolute;
     left: -250px;
-    bottom: 30vh;
+    bottom: 0;
 }
 
 .git-link-div {
     width: 100%;
+    height: 30%;
     display: flex;
     justify-content: center;
+    background-color: white;
     color: #414EED;
-    border-top: 1px black solid;
     padding-top: 10px;
+    z-index: 3;
 }
 
 .git-link-div a {
     color: #414EED;
+    height: fit-content;
 }
 
 .git-link-div div {
     color: black;
+}
+
+.git-card{
+    display: flex;
+    align-items: flex-start;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 10px 15px -7px black;
+    height: fit-content;
+    margin: 0 10px;
+}
+.git-profile-image{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }

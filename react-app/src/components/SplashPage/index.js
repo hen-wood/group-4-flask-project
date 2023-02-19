@@ -61,25 +61,40 @@ export default function SplashPage() {
 				<SplashLeft />
 				<SplashRight />
 			</div>
-
 			<div className="git-link-div">
-				<div>find us on github:</div>
-
-				<div className="dot">.</div>
-
-				<a href="https://github.com/Ardian-Kovanxhi">Ardian</a>
-
-				<div className="dot">.</div>
-
-				<a href="https://github.com/anti-epic">Chase</a>
-
-				<div className="dot">.</div>
-
-				<a href="https://github.com/enkhzayaqt">Emma</a>
-
-				<div className="dot">.</div>
-
-				<a href="https://github.com/hen-wood">Henry</a>
+				<div>
+					<i className="fa-brands fa-github"></i> head to our project{" "}
+					<a href="https://github.com/hen-wood/group-4-flask-project">repo</a>{" "}
+					or find us on github:
+				</div>
+				<div className="git-card">
+					<img
+						className="git-profile-image"
+						src="https://avatars.githubusercontent.com/u/110135851?v=4"
+					/>
+					<a href="https://github.com/Ardian-Kovanxhi">Ardian</a>
+				</div>
+				<div className="git-card">
+					<img
+						className="git-profile-image"
+						src="https://avatars.githubusercontent.com/u/110782272?v=4"
+					/>
+					<a href="https://github.com/anti-epic">Chase</a>
+				</div>
+				<div className="git-card">
+					<img
+						className="git-profile-image"
+						src="https://avatars.githubusercontent.com/u/82678150?v=4"
+					/>
+					<a href="https://github.com/enkhzayaqt">Emma</a>
+				</div>
+				<div className="git-card">
+					<img
+						className="git-profile-image"
+						src="https://avatars.githubusercontent.com/u/104668677?v=4"
+					/>
+					<a href="https://github.com/hen-wood">Henry</a>
+				</div>
 			</div>
 		</div>
 	) : (
