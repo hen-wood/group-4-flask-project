@@ -42,7 +42,7 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case LOAD_SERVERS:
-			const newState = { ...state };
+			const newState = {};
 			action.servers.forEach(server => {
 				newState[server.id] = server;
 			});

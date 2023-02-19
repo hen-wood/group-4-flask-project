@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { demo1Login, demo2Login } from "../../store/session";
 import { useEffect, useState } from "react";
 import { authenticate } from "../../store/session";
+import { thunkGetUserServers } from "../../store/servers";
 
 export default function SplashPage() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const handleClick = () => {
-		history.push("/login");
+		dispatch(thunkGetUserServers()).then(() => history.push("/login"));
 	};
 
 	const [isLoaded, setIsLoaded] = useState(false);
