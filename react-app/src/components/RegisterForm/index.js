@@ -41,9 +41,7 @@ export default function RegisterForm() {
 		if (checked.length) {
 			setErrors(checked);
 			return;
-		}
-
-		else {
+		} else {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
@@ -64,15 +62,11 @@ export default function RegisterForm() {
 					<form onSubmit={handleSubmit} className="actual-form sign-up">
 						<ul className="error-container">
 							{errors.map((error, idx) => (
-								<li key={idx}>
-									{error}
-								</li>
+								<li key={idx}>{error}</li>
 							))}
 						</ul>
 
-						<label>
-							Email
-						</label>
+						<label>Email</label>
 						<input
 							type="email"
 							value={email}

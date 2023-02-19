@@ -8,7 +8,7 @@ import ServersList from "../ServersList";
 import ServerChannels from "../ServerChannels";
 import ServerName from "../ServerName";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
 import { useHistory } from "react-router";
 import ServerButton from "../ServerButton";
@@ -31,6 +31,7 @@ export default function HomePage() {
 		history.push("/channels/@me");
 	};
 
+	const user = useSelector(state => state.session.user);
 	return isLoaded ? (
 		<div id="main-container">
 			<div id="left-container">
@@ -83,6 +84,11 @@ export default function HomePage() {
 				<Route exact path="/channels/@me">
 					<div id="center-container">
 						<div id="center-top"></div>
+						<div id="center-messages">
+							<div id="welcome-message">
+								<h1 id="welcome-message-text">{`Welcome ${user.username}!`}</h1>
+							</div>
+						</div>
 					</div>
 				</Route>
 				<Route exact path="/channels/:serverId">

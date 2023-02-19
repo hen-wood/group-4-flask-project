@@ -42,6 +42,7 @@ export default function ServerChannels() {
 		setIsLoaded(false);
 		dispatch(deleteChannelThunk(id));
 		dispatch(thunkGetServer(serverId)).then(() => {
+			history.push(`/channels/${serverId}`);
 			setIsLoaded(true);
 		});
 	};

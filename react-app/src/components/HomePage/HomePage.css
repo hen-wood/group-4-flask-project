@@ -398,9 +398,10 @@
 
 .member-options i{
     margin: 10px;
+    color:#96989d;
 }
 
-.member-options:hover{
-    color: #eff1f7;
+.member-options i:hover{
+    color: #ffffff;
     cursor: pointer;
 }

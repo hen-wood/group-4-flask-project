@@ -73,12 +73,19 @@
     margin-top: 20px;
 }
 
+.actual-form label{
+    margin-top: 10px;
+}
 .actual-form input {
     background-color: #1E1F22;
     color: white;
     border: 0px;
     border-radius: 5px;
-    padding: 10px 0px;
+    padding: 10px;
+}
+
+.actual-form input:focus{
+    outline: none;
 }
 
 
@@ -129,7 +136,7 @@
     background-color: #3c45a5;
 }
 
-/* 
+/*
 A3A6AA lower case nonwhite
 B9BBBE uppercase nonwhite
 */
