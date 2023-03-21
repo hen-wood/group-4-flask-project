@@ -1,18 +1,62 @@
-.createServerContainer{
+#modal-content:has(> .createServerContainer) {
     background-color: '#ffffff';
     width:20em;
-    height: 15em;
+    height: 24em;
     display: grid;
     justify-content: center;
+    border:10px solid green;
 
 
 }
+.categoryContainer{
+    display: grid;
+    border:1px solid blue;
+    width:22em;
+    cursor: pointer;
+    }
 
+.radioCategoryContainer{
+display: grid;
+justify-content: center;
+border:1px solid red;
+cursor: pointer;
+height: 3em;
+}
+
+
+.serverNameContainer{
+    display: grid;
+    border:1px solid blue;
+    width:22em;
+    justify-content: center;
+
+}
+.serverNameContainer input{
+    display: grid;
+    width:26em;
+    justify-content: center;
+text-align: center;
+    border:1px solid green;
+    height: 3em;
+}
+.radioCategoryContainer input{
+width:20em;
+background-image: url('discord-logo.png');
+    cursor: pointer;
+}
+
+
+.radioCategoryContainer:has( > input[type="radio"]:checked  ) {
+    background-color: red;
+}
+.radioCategoryContainer:hover{
+background-color: black;
+    cursor: pointer;
+}
 .serverModalHeader{
     display: grid;
 font-size: 18px;
 justify-content: center;
-
 margin-top: 1em;
 
 }
