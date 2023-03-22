@@ -45,9 +45,9 @@ def add_server():
     '''
 
     req_data = request.get_json()
-
     server = Server(
         name = req_data['name'],
+        category = req_data['category'],
         mod_id = current_user.id
     )
     db.session.add(server)

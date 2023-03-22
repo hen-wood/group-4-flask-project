@@ -1,54 +1,111 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch} from "react-redux";
-import 	{ useHistory} from "react-router-dom"
-import { createServerThunk } from "../../store/servers";
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {createServerThunk} from "../../store/servers";
 import "./createServer.css";
-import { useModal } from "../../context/Modal";
-
+import {useModal} from "../../context/Modal";
+import discordLogo from '../../images/discord-logo.png';
 export default function CreateServer() {
-	const history = useHistory();
-	const dispatch = useDispatch();
-	const [serverName, setServerName] = useState();
-	const { closeModal } = useModal();
-	const handleSubmit = async e => {
-		e.preventDefault();
 
-		const payload = {
-			name: serverName
-		};
+    const dispatch = useDispatch();
+    const [serverName, setServerName] = useState();
+    const [category, setCategory] = useState('Gaming');
+    const {closeModal} = useModal();
+    const handleSubmit = async e => {
+        e.preventDefault();
 
-		dispatch(createServerThunk(payload)).then((data) => history.push(`/channels/${data.id}`));
-		setServerName("");
-		closeModal();
+        const payload = {
+            name: serverName,
+            category
+        };
 
-		history.push(`/channels/`)
-	};
+        dispatch(createServerThunk(payload));
+        setServerName("");
+        closeModal();
 
-	return (
-		<div className="createServerContainer">
-			<div className="createServerHeader">
-				Tell us more about your server
-				</div>
-				<div className="createServerInformation">
-					but make sure to just say it out loud because there is no field here other than what you want to call the server
-				</div>
-			<form className="createForm" onSubmit={handleSubmit}>
-				<label className="serverNameLabel">
-				Server Name
-				<input
-				className="createServerInput"
-					type="text"
-					required
-					value={serverName}
-					onChange={e => setServerName(e.target.value)}
-					/>
+    };
+
+    return (
+        <div className="createServerContainer">
+			<h1 className="CreateServerHeader">Tell us more about your server</h1>
+			<h2 className="CreateServerDescription">In order to help you with your setup, select one of the options below after creating your server name</h2>
+            <form className="createForm"
+                onSubmit={handleSubmit}>
+                <div className="serverNameContainer">
+
+                    <input type="text" placeholder="Type Server Name Here" required
+                        value={serverName}
+                        onChange={
+                            e => setServerName(e.target.value)
+                        }/>
+                </div>
+                <div className="categoryContainer"
+                    onChange={
+                        e => setCategory(e.target.value)
+                }>
+                    <label htmlFor="Gaming">
+                        <div className="radioCategoryContainer">
+							<div></div>
+						<i class="fa-solid fa-gamepad fa-2xl"></i>
+
+                            <input type="radio" id="Gaming" value="Gaming" name="category"/>
+                            Gaming
+							<div></div>
+                        </div>
+                    </label>
+                    <label htmlFor="Entertainment">
+                        <div className="radioCategoryContainer">
+						<div></div>
+						<i class="fa-solid fa-tv fa-2xl"></i>
+                            <input type="radio"  id="Entertainment" value="Entertainment" name="category"/>
+                            Entertainment
+							<div></div>
+                        </div>
+                    </label>
+                    <label htmlFor="Artists & Creators">
+                        <div className="radioCategoryContainer">
+						<div></div>
+						<i class="fa-solid fa-palette fa-2xl"></i>
+
+                            <input type="radio" id="Artists & Creators" value="Artists & Creators" name="category"/>
+                            Artists & Creators
+							<div></div>
+                        </div>
+                    </label>
+                    <label htmlFor="Education">
+                        <div className="radioCategoryContainer">
+						<div></div>
+						<i class="fa-solid fa-school fa-2xl"></i>
+                            <input type="radio" id="Education" value="Education" name="category"/>
+                            Education
+							<div></div>
+                        </div>
+                    </label>
+					<label htmlFor="Science & Tech">
+                    <div className="radioCategoryContainer">
+					<div></div>
+					<i class="fa-solid fa-microchip fa-2xl"></i>
+
+                        <input type="radio" id="Science & Tech" value="Science & Tech" name="category"/>
+                        Science & Tech
+						<div></div>
+                    </div>
 					</label>
-<div className="createServerButtonContainer">
+					<label htmlFor="Other">
+                    <div className="radioCategoryContainer">
+					<div></div>
+					<i class="fa-solid fa-tv fa-2xl"></i>
+                        <input type="radio" id="Other" value="Other" name="category"/>
+                        Other
+                    </div>
+					<div></div>
+					</label>
+				<div className="creatServerSubmitContainer">
 
-				<input type="submit" className="createServerButton" value="Create"></input>
-</div>
-			</form>
-		</div>
-	);
+                <input className="creatServerSubmitButton" type="submit" value="Create Server"></input>
+                </div>
+				</div>
+            </form>
+        </div>
+    );
 }
