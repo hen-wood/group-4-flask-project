@@ -22,8 +22,23 @@
     transition-property: border-radius, background-color;
     transition-duration: .5s;
     cursor: pointer;
+    color: white;
 }
 
+.serverListButton .OpenModalButton:hover{
+    color: white;
+}
+
+.serverListButton .OpenModalButton{
+    /* color: #3b9758; */
+    background-color: unset;
+    border: none;
+    cursor: pointer;
+}
+
+.serverListButton button{
+    cursor: pointer;
+}
 
 .ServerButtonPlus{
     display:grid;

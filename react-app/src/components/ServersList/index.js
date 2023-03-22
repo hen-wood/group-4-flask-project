@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { thunkGetUserServers } from "../../store/servers";
+import ServerButton from "../ServerButton";
 import "./ServersList.css";
 export default function ServersList() {
 	const dispatch = useDispatch();
@@ -46,6 +47,7 @@ export default function ServersList() {
 						<div id="loading">...</div>
 					)
 				)}
+				<ServerButton />
 			</div>
 		)
 	);

@@ -48,10 +48,6 @@ export default function HomePage() {
 					<div id="left-nav-center">
 						<ServersList />
 					</div>
-					<div id="IDENTIFIER">
-						<ServerButton />
-					</div>
-
 					<div id="left-nav-bottom">
 						<LogoutButton />
 					</div>

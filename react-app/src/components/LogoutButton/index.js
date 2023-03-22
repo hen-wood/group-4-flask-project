@@ -33,7 +33,7 @@ function LogoutButton() {
 
 	return (
 		<div ref={containerRef} id="logout-button-container">
-			<div className="ServerButtonIcon">
+			<div className="serverListButton">
 				<button onClick={() => setIsOpen(!isOpen)}>
 					<i className="fa-solid fa-right-from-bracket ServerButtonPlus logout-button-style"></i>
 				</button>
