@@ -4,13 +4,10 @@ import {
 	thunkGetServer,
 	editServerThunk
 } from "../../store/server";
-import { thunkGetUserServers } from "../../store/servers";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { deleteServerFromList, thunkGetUserServers } from "../../store/servers";
-import { editServerThunk } from "../../store/server";
 import "./ServerName.css";
-import { setMaxIdleHTTPParsers } from "http";
 export default function ServerName() {
 	const server = useSelector(state => state.server);
 	const user = useSelector(state => state.session.user);
