@@ -51,10 +51,6 @@ export default function RegisterForm() {
 
 	return (
 		<div className="page-wrapper sign-up">
-			<div className="img-div">
-				<img src="https://i.imgur.com/nBUx5Al.png" className="temp-img-class" />
-			</div>
-
 			<div className="master-div sign-up">
 				<div className="main-form sign-up">
 					<h2>Create an account</h2>

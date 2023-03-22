@@ -4,6 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('../Svgs/loginBackground.svg');
+    background-size: cover;
 }
 
 .master-div {
@@ -175,15 +177,20 @@ B9BBBE uppercase nonwhite
     display: flex;
     font-weight: bolder;
     color: #B9BBBE;
+    display: flex;
+    align-items: center;
 }
 
 .form-labels.true {
-    color: #F38688;
+    color: #ef7378
 }
 
-.errors-actual {
+.errors-actual.login{
     font-weight: 100;
     visibility: visible;
+    color: #ef7378;
+    font-style: italic;
+    font-size: 12px;
 }
 
 .dot {
