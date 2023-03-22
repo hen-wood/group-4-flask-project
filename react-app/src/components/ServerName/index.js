@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
-import { deleteServerThunk, thunkGetServer } from "../../store/server";
+import { useEffect, useState, useRef } from "react";
+import {
+	deleteServerThunk,
+	thunkGetServer,
+	editServerThunk
+} from "../../store/server";
+import { thunkGetUserServers } from "../../store/servers";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { deleteServerFromList, thunkGetUserServers } from "../../store/servers";
@@ -7,6 +12,9 @@ import { editServerThunk } from "../../store/server";
 import "./ServerName.css";
 import { setMaxIdleHTTPParsers } from "http";
 export default function ServerName() {
+	const server = useSelector(state => state.server);
+	const user = useSelector(state => state.session.user);
+	const containerRef = useRef(null);
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { serverId } = useParams();
@@ -47,6 +55,7 @@ export default function ServerName() {
 	};
 
 	const handleDeleteServer = () => {
+		setIsLoaded(false);
 		dispatch(deleteServerThunk(serverId)).then(() =>
 			history.push("/channels/@me")
 		);
@@ -54,29 +63,39 @@ export default function ServerName() {
 
 	const handleEditServer = e => {
 		e.preventDefault();
-		dispatch(editServerThunk({ name }, serverId)).then(() =>
-			dispatch(thunkGetUserServers()).then(() => {
-				setIsOpen(false);
-				history.push(`/channels/${serverId}`);
-			})
+		dispatch(editServerThunk(name, serverId)).then(() =>
+			dispatch(thunkGetUserServers()).then(() => setIsOpen(false))
 		);
 	};
 
-	const server = useSelector(state => state.server);
-	const serversObj = useSelector(state => {
-		return state.servers;
-	});
 	useEffect(() => {
 		dispatch(thunkGetServer(serverId)).then(() => {
-			setName(server.name);
+			if (server.name) {
+				setName(server.name);
+			}
 			setIsLoaded(true);
 		});
-	}, [dispatch, serverId, serversObj[serverId], server.name]);
+	}, [dispatch, serverId, isOpen]);
 
-	const user = useSelector(state => state.session.user);
+	useEffect(() => {
+		function handleClickOutside(event) {
+			if (
+				containerRef.current &&
+				!containerRef.current.contains(event.target)
+			) {
+				setIsOpen(false);
+			}
+		}
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [containerRef]);
 
 	return isLoaded ? (
 		<div
+			ref={containerRef}
 			className={isOpen ? "serverNameOpen" : "serverNameContainer"}
 			onClick={handleClickName}
 		>
@@ -109,11 +128,10 @@ export default function ServerName() {
 					</p>
 				) : (
 					<>
-						<p id="server-option">Update server name</p>
+						<p id="server-option-update">Update Server Name</p>
 						<form id="edit-server-name-form" onSubmit={handleEditServer}>
 							<input
 								type="text"
-								required
 								value={name}
 								onChange={e => setName(e.target.value)}
 							/>

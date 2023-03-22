@@ -33,7 +33,7 @@ export const createServerThunk = payload => async dispatch => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(createServer(data));
-		return data
+		return data;
 	}
 };
 
@@ -42,7 +42,7 @@ const initialState = {};
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case LOAD_SERVERS:
-			const newState = { ...state };
+			const newState = {};
 			action.servers.forEach(server => {
 				newState[server.id] = server;
 			});

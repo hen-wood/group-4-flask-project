@@ -5,6 +5,7 @@ const SET_SINGLE_USER_DIRECT_CHANNEL =
 const ADD_DIRECT_CHANNEL_MESSAGE = "directChannels/ADD_DIRECT_CHANNEL_MESSAGE";
 const CLEAR_SINGLE_DIRECT_CHANNEL =
 	"directChannels/CLEAR_SINGLE_DIRECT_CHANNEL";
+const CLEAR_ALL = "directChannels/CLEAR_ALL";
 
 // Action Creators
 
@@ -34,6 +35,12 @@ export const actionAddDirectChannelMessage = message => {
 export const actionClearSingleUserDirectChannel = () => {
 	return {
 		type: CLEAR_SINGLE_DIRECT_CHANNEL
+	};
+};
+
+export const actionClearAllDirectChannels = () => {
+	return {
+		type: CLEAR_ALL
 	};
 };
 
@@ -77,6 +84,8 @@ export default function reducer(state = initialState, action) {
 		case CLEAR_SINGLE_DIRECT_CHANNEL:
 			newState.singleUserDirectChannel = {};
 			return newState;
+		case CLEAR_ALL:
+			return initialState;
 		default:
 			return state;
 	}

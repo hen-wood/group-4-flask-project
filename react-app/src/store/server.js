@@ -12,14 +12,15 @@ export const thunkGetServer = id => async dispatch => {
 	}
 };
 
-export const editServerThunk = (payload, id) => async dispatch => {
+export const editServerThunk = (name, id) => async dispatch => {
 	const response = await fetch(`/api/servers/${id}`, {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(payload)
+		body: JSON.stringify({ name })
 	});
 	if (response.ok) {
-		return;
+		dispatch(thunkGetUserServers());
+		dispatch(editServer(name, id));
 	}
 };
 
@@ -64,8 +65,9 @@ export default function reducer(state = initialState, action) {
 			return deleteState;
 		case EDIT_SERVER:
 			const editState = { ...state };
-			console.log({ editState });
-			// editState.name = action.payload.name;
+			console.log(action.payload);
+			console.log(editState);
+			editState.name = action.payload.name;
 			return editState;
 		default:
 			return state;

@@ -4,16 +4,28 @@
     border-radius: 25px;
     display:grid;
     background-color:#36393f;
+    color:#3b9758;
 
     width: 5em;
     height: 5em;
     text-align: center;
     align-content: center;
-    margin-top: .15em;
-    margin-bottom: .15em;
+    margin-top: .3em;
+    margin-bottom: .3em;
     font-size: 10px;
+    font-weight: bold;
     overflow: hidden;
+    cursor: pointer;
+}
 
+.serverListButton .fa-plus{
+    font-size: 30px;
+    font-weight: 100;
+}
+
+.serverListButton button{
+    background-color: unset;
+    border: none;
 }
 
 
@@ -27,8 +39,7 @@
 }
 
 .serverListContainer{
-
-    display: grid;
-    margin-left: .3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-

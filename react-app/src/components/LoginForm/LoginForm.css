@@ -4,6 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('../Svgs/loginBackground.svg');
+    background-size: cover;
 }
 
 .master-div {
@@ -73,12 +75,19 @@
     margin-top: 20px;
 }
 
+.actual-form label{
+    margin-top: 10px;
+}
 .actual-form input {
     background-color: #1E1F22;
     color: white;
     border: 0px;
     border-radius: 5px;
-    padding: 10px 0px;
+    padding: 10px;
+}
+
+.actual-form input:focus{
+    outline: none;
 }
 
 
@@ -129,7 +138,7 @@
     background-color: #3c45a5;
 }
 
-/* 
+/*
 A3A6AA lower case nonwhite
 B9BBBE uppercase nonwhite
 */
@@ -168,15 +177,20 @@ B9BBBE uppercase nonwhite
     display: flex;
     font-weight: bolder;
     color: #B9BBBE;
+    display: flex;
+    align-items: center;
 }
 
 .form-labels.true {
-    color: #F38688;
+    color: #ef7378
 }
 
-.errors-actual {
+.errors-actual.login{
     font-weight: 100;
     visibility: visible;
+    color: #ef7378;
+    font-style: italic;
+    font-size: 12px;
 }
 
 .dot {

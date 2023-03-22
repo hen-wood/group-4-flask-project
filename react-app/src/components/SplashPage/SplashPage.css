@@ -2,26 +2,30 @@
 
 .splash-page-wrapper {
     overflow: hidden;
-    height: 98vh;
-    width: 100vw;
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #414eed;
 }
 
 #splash-container {
-    background-color: #414eed;
-    height: 70vh;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 #splash-top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
-    width: 1180px;
+    padding: 10px 50px;
+    box-sizing: border-box;
+    width: 100%;
     height: fit-content;
     z-index: 2;
 }
@@ -31,30 +35,32 @@
     align-items: center;
     justify-content: space-between;
     z-index: 1;
-    width: 260px;
+    height: 40px;
 }
 
-#discordance-logo {
+.splash-logo__image {
     height: 40px;
     width: 40px;
 }
 
 #splash-title {
-    margin: 0;
+    margin: 0 15px;
     font-family: 'Titan One', cursive;
+    font-size: 26px;
+    font-weight:lighter;
     color: white;
 }
 
 #login-button {
     background-color: white;
-    border-radius: 20px;
+    border-radius: 22px;
     border: none;
-    padding: 10px;
+    padding: 15px;
     margin: 10px;
-    font-weight: bolder;
     color: #414eed;
-    font-family: 'Titan One', cursive;
+    font-size: 13px;
     z-index: 1;
+    color:black;
 }
 
 #login-button:hover {
@@ -62,37 +68,90 @@
     box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.178);
 }
 
-#splash-center {
+.about-text{
+    width: 60vw;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 200px;
+}
+
+.about-text__title{
+    font-family: 'Titan One', cursive;
+    font-weight: 500;
+    font-size: 60px;
+    color: white;
+}
+
+.about-text__paragraph{
+    color: white;
+    font-size: 18px;
+}
+
+.splash-bg{
     position: absolute;
     width: 100vw;
-    bottom: 30vh;
+    height: 100vh;
 }
 
-#splash-left {
+.splash-bg__image{
     position: absolute;
-    right: -150px;
-    bottom: 30vh;
 }
 
-#splash-right {
+.splash-bg__image--center{
+    right: -50%;
+    bottom: -52%;
+    height: 200%;
+    width: 200%;
+}
+
+.splash-bg__image--left{
+    left: -50%;
+    bottom: 0;
+    height: 50%;
+}
+.splash-bg__image--right{
+    right: -50%;
+    bottom: 0;
+    height: 50%;
+}
+
+.git-links{
     position: absolute;
-    left: -250px;
-    bottom: 30vh;
-}
-
-.git-link-div {
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 70%);
     display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 15px -7px black;
+}
+
+.git-links__cards{
+    display: flex;
+    justify-content: space-between;
+}
+
+.git-links__card{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    color: #414EED;
-    border-top: 1px black solid;
-    padding-top: 10px;
+    align-items: center;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px -7px black;
 }
 
-.git-link-div a {
-    color: #414EED;
+.git-links__card__image{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 10px;
 }
 
-.git-link-div div {
-    color: black;
+.git-links__anchor{
+    color:#414EED;
+    font-weight: bold;
 }

@@ -4,9 +4,9 @@ import ServerModal from "../Navigation/ServerModal";
 import "./ServerButton.css";
 function ServerButton() {
 	return (
-		<div className="ServerButtonIcon">
+		<div className="serverListButton">
 			<OpenModalButton
-				buttonText={<i className="fa-light fa-plus ServerButtonPlus fa-2xl"></i>}
+				buttonText={<i className="fa-light fa-plus"></i>}
 				modalComponent={<ServerModal />}
 			/>
 		</div>

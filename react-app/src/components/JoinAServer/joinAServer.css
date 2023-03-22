@@ -84,7 +84,7 @@ transition-duration: .5s;
     color:red;
 }
 .errors-actual {
-    color: red;
+    color: #ef7378;
     font-weight: 200;
 }
 

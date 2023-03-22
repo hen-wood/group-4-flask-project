@@ -43,6 +43,8 @@
     padding: 5px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
 }
 
 #direct-message-button.serverListButton {
@@ -57,6 +59,19 @@
 #left-nav-center {
     border-top: 1px solid rgb(66, 66, 66);
     border-bottom: 1px solid rgb(66, 66, 66);
+}
+
+#left-nav-bar::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2e3338;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+#left-nav-bar::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: #202225;
+    border-radius: 4px;
 }
 
 #left-nav-top {
@@ -398,9 +413,10 @@
 
 .member-options i{
     margin: 10px;
+    color:#96989d;
 }
 
-.member-options:hover{
-    color: #eff1f7;
+.member-options i:hover{
+    color: #ffffff;
     cursor: pointer;
 }

@@ -13,20 +13,27 @@ button.btn-openmodal {
     border: none;
     cursor: pointer;
     list-style: none;
-    color: white;
+    color:#96989d;
     background-color: transparent;
     padding: 10px;
     height: 35px;
     width: 35px;
 }
 
+#left-menu-center > div > div.server-channel-header > div > button{
+    border-radius: 50%;
+}
+#left-menu-center > div > div.server-channel-header > div > button:hover{
+    background-color: #202225;
+}
+
 .channel-custom-action-button-container button.OpenModalButton:hover,
 button.btn-openmodal:hover {
-    outline: 1px solid white;
+    color: white;
 }
 
 .error-container {
-    color: red;
+    color: #f23f3f;
 }
 
 
