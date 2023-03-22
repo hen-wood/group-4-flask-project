@@ -3,9 +3,9 @@ from app.models import db, Server, environment, SCHEMA
 
 def seed_servers():
     demo_server1 = Server(
-        name='Demo Server', code='a7h34', mod_id=1, category='gaming' )
+        name='Demo Server', code='a7h34', mod_id=1, category='Gaming' )
     demo_server2 = Server(
-        name='Demo Server2', mod_id=1, category='entertainment' )
+        name='Demo Server2', mod_id=1, category='Entertainment' )
 
     db.session.add(demo_server1)
     db.session.add(demo_server2)

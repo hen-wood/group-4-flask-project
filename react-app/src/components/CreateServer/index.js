@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {createServerThunk} from "../../store/servers";
 import "./createServer.css";
 import {useModal} from "../../context/Modal";
-
+import discordLogo from '../../images/discord-logo.png';
 export default function CreateServer() {
 
     const dispatch = useDispatch();
@@ -27,53 +27,84 @@ export default function CreateServer() {
 
     return (
         <div className="createServerContainer">
+			<h1 className="CreateServerHeader">Tell us more about your server</h1>
+			<h2 className="CreateServerDescription">In order to help you with your setup, select one of the options below after creating your server name</h2>
             <form className="createForm"
                 onSubmit={handleSubmit}>
-					<div className="serverNameContainer">
+                <div className="serverNameContainer">
 
-                <input type="text" placeholder="Server Name" required
-                    value={serverName}
-                    onChange={
-						e => setServerName(e.target.value)
-                    }/>
-					</div>
+                    <input type="text" placeholder="Type Server Name Here" required
+                        value={serverName}
+                        onChange={
+                            e => setServerName(e.target.value)
+                        }/>
+                </div>
                 <div className="categoryContainer"
                     onChange={
                         e => setCategory(e.target.value)
                 }>
-                    <div className="radioCategoryContainer">
+                    <label htmlFor="Gaming">
+                        <div className="radioCategoryContainer">
+							<div></div>
+						<i class="fa-solid fa-gamepad fa-2xl"></i>
 
-                        <input type="radio" value="Gaming" name="category"/>
-                        Gaming
-                    </div>
-                    <div className="radioCategoryContainer">
+                            <input type="radio" id="Gaming" value="Gaming" name="category"/>
+                            Gaming
+							<div></div>
+                        </div>
+                    </label>
+                    <label htmlFor="Entertainment">
+                        <div className="radioCategoryContainer">
+						<div></div>
+						<i class="fa-solid fa-tv fa-2xl"></i>
+                            <input type="radio"  id="Entertainment" value="Entertainment" name="category"/>
+                            Entertainment
+							<div></div>
+                        </div>
+                    </label>
+                    <label htmlFor="Artists & Creators">
+                        <div className="radioCategoryContainer">
+						<div></div>
+						<i class="fa-solid fa-palette fa-2xl"></i>
 
-                        <input type="radio" value="Entertainment" name="category"/>
-                        Entertainment
-                    </div>
+                            <input type="radio" id="Artists & Creators" value="Artists & Creators" name="category"/>
+                            Artists & Creators
+							<div></div>
+                        </div>
+                    </label>
+                    <label htmlFor="Education">
+                        <div className="radioCategoryContainer">
+						<div></div>
+						<i class="fa-solid fa-school fa-2xl"></i>
+                            <input type="radio" id="Education" value="Education" name="category"/>
+                            Education
+							<div></div>
+                        </div>
+                    </label>
+					<label htmlFor="Science & Tech">
                     <div className="radioCategoryContainer">
+					<div></div>
+					<i class="fa-solid fa-microchip fa-2xl"></i>
 
-                        <input type="radio" value="Artists & Creators" name="category"/>
-                        Artists & Creators
-                    </div>
-                    <div className="radioCategoryContainer">
-
-                        <input type="radio" value="Education" name="category"/>
-                        Education
-                    </div>
-                    <div className="radioCategoryContainer">
-
-                        <input type="radio" value="Science & Tech" name="category"/>
+                        <input type="radio" id="Science & Tech" value="Science & Tech" name="category"/>
                         Science & Tech
+						<div></div>
                     </div>
+					</label>
+					<label htmlFor="Other">
                     <div className="radioCategoryContainer">
-
-                        <input type="radio" value="Other" name="category"/>
+					<div></div>
+					<i class="fa-solid fa-tv fa-2xl"></i>
+                        <input type="radio" id="Other" value="Other" name="category"/>
                         Other
                     </div>
-                </div>
+					<div></div>
+					</label>
+				<div className="creatServerSubmitContainer">
 
-                <input type="submit" value="Create Server"></input>
+                <input className="creatServerSubmitButton" type="submit" value="Create Server"></input>
+                </div>
+				</div>
             </form>
         </div>
     );
