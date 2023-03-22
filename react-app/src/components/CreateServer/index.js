@@ -27,8 +27,8 @@ export default function CreateServer() {
 
     return (
         <div className="createServerContainer">
-			<h1 className="CreateServerHeader">Tell us more about your server</h1>
-			<h2 className="CreateServerDescription">In order to help you with your setup, select one of the options below after creating your server name</h2>
+			<div className="CreateServerHeader">Tell us more about your server</div>
+			<div className="CreateServerDescription">In order to help you with your setup, select one of the options below after creating your server name</div>
             <form className="createForm"
                 onSubmit={handleSubmit}>
                 <div className="serverNameContainer">
@@ -100,9 +100,9 @@ export default function CreateServer() {
                     </div>
 					<div></div>
 					</label>
-				<div className="creatServerSubmitContainer">
+				<div className="createServerSubmitContainer">
 
-                <input className="creatServerSubmitButton" type="submit" value="Create Server"></input>
+                <input className="createServerSubmitButton" type="submit" value="Create Server"></input>
                 </div>
 				</div>
             </form>
