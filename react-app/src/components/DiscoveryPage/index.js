@@ -5,6 +5,7 @@ import './DiscoveryPage.css'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
+import {thunkGetAllServers} from "../../store/discover"
 import { useHistory } from "react-router";
 import LogoutButton from "../LogoutButton";
 export default function DiscoveryPage() {
@@ -12,8 +13,9 @@ export default function DiscoveryPage() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const dispatch = useDispatch();
 	const [categorySelector, setCategorySelector] = useState('Other')
+	const {other, gaming, entertainment, artistsCreators, education, scienceTech, localCommunity} = useSelector(state => state.discover)
 	useEffect(() => {
-		dispatch(thunkGetUserDirectChannels()).then(() => setIsLoaded(true));
+		dispatch(thunkGetUserDirectChannels()).then(() => dispatch(thunkGetAllServers()).then(() => setIsLoaded(true)));
 	}, [dispatch]);
 
 

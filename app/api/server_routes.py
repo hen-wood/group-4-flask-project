@@ -140,3 +140,18 @@ def delete_server(serverId):
     db.session.delete(server)
     db.session.commit()
     return jsonify({"message": "Successfully deleted"})
+
+
+
+
+@server_routes.route('/discover')
+# @login_required
+def get_all_servers():
+    '''
+    Returns all servers
+    '''
+    servers = Server.query.all()
+    serverArray = [s.to_dict_all_servers() for s in servers]
+    print('here', serverArray)
+
+    return jsonify(serverArray)

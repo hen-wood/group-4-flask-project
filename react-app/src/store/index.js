@@ -6,6 +6,7 @@ import server from "./server";
 import servers from "./servers";
 import channels from "./serverChannels";
 import channelComments from "./channelComments";
+import discover from "./discover"
 
 const rootReducer = combineReducers({
 	session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
 	server,
 	servers,
 	channels,
-	channelComments
+	channelComments,
+	discover
 });
 
 let enhancer;
