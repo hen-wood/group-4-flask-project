@@ -8,19 +8,7 @@
     flex-direction: column;
     width:92vw;
 }
-.main-bottom-container{
-    border:1px solid black;
-    display: flex;
-    flex-grow: 1;
 
-
-}
-.main-top-container{
-    border:1px solid black;
-    display: flex;
-    flex-grow: 1
-
-}
 .left-menu{
     background-color:#2b2d31 ;
     width:15em;
@@ -53,7 +41,7 @@
 }
 
 .left-menu-item:focus{
-background-color: #5865f2;
+    background-color: #5865f2;
 color: #fffffe;
 
 }
@@ -68,7 +56,41 @@ color: #fffffe;
 
     }
 
-.discoverIcon{
+    .discoverIcon{
     margin-left:.4em;
     margin-top:.38em;
+}
+.main-top-container{
+    border:1px solid black;
+    display: flex;
+    flex-grow: 1;
+
+}
+.main-top-search-container{
+    border:1px solid red;
+    display: flex;
+    flex-grow: 1;
+    margin-left:10em;
+    margin-right:18em;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5em;
+}
+
+.main-bottom-container{
+    border:1px solid black;
+    display: flex;
+    flex-grow: 1;
+    color:white;
+    font-weight: bolder;
+
+
+}
+.main-bottom-view-servers-container{
+    border:1px solid red;
+    display: flex;
+    flex-grow: 1;
+    margin-left:19.25em;
+    margin-right:18em;
+
 }
