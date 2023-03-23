@@ -1,0 +1,74 @@
+.main-container{
+    height: 100vh;
+    display: flex;
+    background-color: #35393f;
+}
+.main-sections-container{
+    display: flex;
+    flex-direction: column;
+    width:92vw;
+}
+.main-bottom-container{
+    border:1px solid black;
+    display: flex;
+    flex-grow: 1;
+
+
+}
+.main-top-container{
+    border:1px solid black;
+    display: flex;
+    flex-grow: 1
+
+}
+.left-menu{
+    background-color:#2b2d31 ;
+    width:15em;
+}
+.left-menu-top{
+    color:white;
+    font-size: 24px;
+    font-weight: bolder;
+    margin-left:1em;
+    margin-top:1em;
+}
+.left-menu-center{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin:1em;
+    color:#b5bac1
+}
+.left-menu-item{
+    border:0px;
+    border-radius: 6px;
+    cursor: pointer;
+    height: 3em;
+    background-color: #2b2d31;
+    display: grid;
+    color: #b5bac1;
+    align-content: center;
+    grid-template-columns: .25fr .75fr;
+    text-align: start;
+
+}
+
+.left-menu-item:focus{
+background-color: #5865f2;
+color: #fffffe;
+
+}
+
+.left-menu-item:hover{
+    background-color: #404246;
+    color: #fffffe;
+}
+.left-menu-item:active{
+    background-color: #5865f2;
+    color: #fffffe;
+
+    }
+
+.discoverIcon{
+    margin-left:.4em;
+    margin-top:.38em;
+}
