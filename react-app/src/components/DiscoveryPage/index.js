@@ -8,12 +8,13 @@ import { thunkGetUserDirectChannels } from "../../store/directChannels";
 import { thunkGetAllServers } from "../../store/discover";
 import { useHistory } from "react-router";
 import LogoutButton from "../LogoutButton";
+import { categoryKeys } from "./categoryKeys";
+
 export default function DiscoveryPage() {
 	const history = useHistory();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const dispatch = useDispatch();
-	const [categorySelector, setCategorySelector] = useState("Other");
-	// const { other, gaming, entertainment, artistsCreators, education, scienceTech, localCommunity }
+	const [categorySelector, setCategorySelector] = useState("other");
 	const servers = useSelector(state => state.discover);
 	useEffect(() => {
 		dispatch(thunkGetUserDirectChannels()).then(() =>
@@ -52,39 +53,40 @@ export default function DiscoveryPage() {
 							className="left-menu-item"
 							onClick={() => setCategorySelector("other")}
 						>
-							<i class="fa-regular fa-compass fa-lg discoverIcon"></i>Home
+							<i className="fa-regular fa-compass fa-lg discoverIcon"></i>Home
 						</button>
 						<button
 							className="left-menu-item"
 							onClick={() => setCategorySelector("gaming")}
 						>
-							<i class="fa-solid fa-gamepad fa-lg discoverIcon"></i>Gaming
+							<i className="fa-solid fa-gamepad fa-lg discoverIcon"></i>Gaming
 						</button>
 						<button
 							className="left-menu-item"
 							onClick={() => setCategorySelector("artistsCreators")}
 						>
-							<i class="fa-solid fa-music fa-lg discoverIcon"></i>Artists &
+							<i className="fa-solid fa-music fa-lg discoverIcon"></i>Artists &
 							Creators
 						</button>
 						<button
 							className="left-menu-item"
 							onClick={() => setCategorySelector("education")}
 						>
-							<i class="fa-solid fa-graduation-cap fa-lg discoverIcon"></i>
+							<i className="fa-solid fa-graduation-cap fa-lg discoverIcon"></i>
 							Education
 						</button>
 						<button
 							className="left-menu-item"
 							onClick={() => setCategorySelector("scienceTech")}
 						>
-							<i class="fa-solid fa-atom fa-lg discoverIcon"></i>Science & Tech
+							<i className="fa-solid fa-atom fa-lg discoverIcon"></i>Science &
+							Tech
 						</button>
 						<button
 							className="left-menu-item"
 							onClick={() => setCategorySelector("entertainment")}
 						>
-							<i class="fa-solid fa-tv fa-lg discoverIcon"></i>Entertainment
+							<i className="fa-solid fa-tv fa-lg discoverIcon"></i>Entertainment
 						</button>
 					</div>
 				</div>
@@ -94,40 +96,25 @@ export default function DiscoveryPage() {
 				<div className="main-top-container">
 					top section container
 					<div className="main-top-search-container">
-						{console.log(servers[categorySelector])}
-						{categorySelector === "Other" && <div> other search bar </div>}
-						{categorySelector === "Gaming" && <div> Gaming search bar </div>}
-						{categorySelector === "Artists & Creators" && (
-							<div> Artists & Creators search bar </div>
-						)}
-						{categorySelector === "Education" && (
-							<div> Education search bar </div>
-						)}
-						{categorySelector === "Science & Tech" && (
-							<div> Science & Tech search bar </div>
-						)}
-						{categorySelector === "Entertainment" && (
-							<div> Entertainment search bar </div>
-						)}
+						{
+							<div>
+								<h1>
+									{categorySelector === "other"
+										? "Find your community on Discordance"
+										: `Find ${categoryKeys[categorySelector]} communities on Discordance`}
+								</h1>
+							</div>
+						}
 					</div>
 				</div>
 				<div className="main-bottom-container">
 					<div className="main-bottom-view-servers-container">
-						{categorySelector === "Other" && <div> Featured communities </div>}
-						{categorySelector === "Gaming" && (
-							<div> (gaming)Popular communities </div>
-						)}
-						{categorySelector === "Artists & Creators" && (
-							<div> (Artists & Creators) Popular communities</div>
-						)}
-						{categorySelector === "Education" && (
-							<div> (Education) Popular communities</div>
-						)}
-						{categorySelector === "Science & Tech" && (
-							<div> (Science & Tech) Popular communities </div>
-						)}
-						{categorySelector === "Entertainment" && (
-							<div> (Entertainment) Popular communities </div>
+						{categorySelector === "other" ? (
+							<div> Featured communities </div>
+						) : (
+							<div>
+								<h2>{`(${categoryKeys[categorySelector]}) Popular communities`}</h2>
+							</div>
 						)}
 					</div>
 				</div>
