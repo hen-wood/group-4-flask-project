@@ -27,15 +27,28 @@ def get_unique_filename(filename):
 
 def upload_file_to_s3(file, acl="public-read"):
     try:
-        s3.upload_file(
-            file,
-            BUCKET_NAME,
-            file.filename,
-            # ExtraArgs={
-            #     "ACL": acl,
-            #     "ContentType": file.content_type
-            # }
-        )
+        # file = request.files['file']
+        acl = 'public-read'
+
+        # Use uuid4 to create a unique filename
+        filename = str(uuid.uuid4())
+
+        # Set additional parameters for S3 upload
+        extra_args = {
+            "ACL": acl,
+            "ContentType": file.content_type
+        }
+        s3.upload_fileobj(file, BUCKET_NAME, filename, ExtraArgs=extra_args)
+        # s3.Bucket(BUCKET_NAME).upload_fileobj(file, file.filename)
+        # s3.upload_fileobj(
+        #     file,
+        #     BUCKET_NAME,
+        #     file.filename,
+        #     ExtraArgs={
+        #         "ACL": acl,
+        #         "ContentType": file.content_type
+        #     }
+        # )
     except Exception as e:
         # in case the our s3 upload fails
         print('upload failed in s3 helper uload_file_to_s3')

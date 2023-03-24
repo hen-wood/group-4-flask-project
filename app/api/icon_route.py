@@ -14,13 +14,13 @@ def upload_image(serverId):
     if "image" not in request.files:
         return {"errors": "image required"}, 400
     image = request.files["image"]
-    print('after image request.files ', image)
+    print('after image request.files ', image,'yo   ', image.filename)
     # print('userId', userId, " url", request.body)
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
 
-    image.filename = get_unique_filename(image.filename)
-
+    # image.filename = get_unique_filename(image.filename)
+    # print(image.filename, ' yooooo2')
     upload = upload_file_to_s3(image)
     print('in s3 uploading', upload)
     if "url" not in upload:
