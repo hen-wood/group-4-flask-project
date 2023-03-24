@@ -13,6 +13,7 @@ from .api.channel_routes import channel_routes
 from .api.direct_channels import direct_channels
 from .api.membership_routes import membership_routes
 from .api.icon_route import icon_routes
+from .api.banner_route import banner_routes
 from app.sockets import socketio
 from .api.server_routes import server_routes
 from .seeds import seed_commands

@@ -1,13 +1,13 @@
 from flask import Blueprint, request
-from app.models import db, Icon
+from app.models import db, Banner
 from flask_login import login_required
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
-icon_routes = Blueprint("icons", __name__)
+banner_routes = Blueprint("Banner", __name__)
 
 
-@icon_routes.route("/<serverId>", methods=["POST"])
+@banner_routes.route("/<serverId>", methods=["POST"])
 @login_required
 def upload_image(serverId):
     if "image" not in request.files:
@@ -30,13 +30,13 @@ def upload_image(serverId):
     # flask_login allows us to get the current user from the request
     # serverIcon = Icon.query.get(server_id = serverId)
     print(upload, ' upload')
-    serverIcon = db.session.query(Icon).filter(Icon.server_id == serverId).first()
-    if serverIcon:
-        serverIcon.icon = url
+    serverBanner = db.session.query(Banner).filter(Banner.server_id == serverId).first()
+    if serverBanner:
+        serverBanner.Banner = url
         db.session.commit()
         print('in hererererererer')
         return {"url": url}
-    new_image = Icon(server_id=serverId, icon=url)
+    new_image = Banner(server_id=serverId, banner=url)
     db.session.add(new_image)
     db.session.commit()
     return {"url": url}
