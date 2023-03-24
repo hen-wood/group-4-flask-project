@@ -27,9 +27,10 @@ const UploadIcon = ({serverId}) => {
         }
         else {
             setImageLoading(false);
+            const error = await res.json()
             // a real app would probably use more advanced
             // error handling
-            console.log("error");
+            console.log("error", error);
         }
     }
 
