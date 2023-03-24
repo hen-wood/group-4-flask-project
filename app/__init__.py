@@ -12,6 +12,7 @@ from .api.comments_routes import comments_routes
 from .api.channel_routes import channel_routes
 from .api.direct_channels import direct_channels
 from .api.membership_routes import membership_routes
+from .api.icon_route import icon_routes
 from app.sockets import socketio
 from .api.server_routes import server_routes
 from .seeds import seed_commands
@@ -41,6 +42,7 @@ app.register_blueprint(channel_routes, url_prefix='/api/channels')
 app.register_blueprint(direct_channels, url_prefix='/api/directchannels')
 app.register_blueprint(server_routes, url_prefix='/api/servers')
 app.register_blueprint(membership_routes, url_prefix='/api/memberships')
+app.register_blueprint(icon_routes, url_prefix='/api/icons')
 db.init_app(app)
 Migrate(app, db)
 socketio.init_app(app)

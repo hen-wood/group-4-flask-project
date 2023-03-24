@@ -6,6 +6,8 @@ from .channel_comments import seed_channel_comments, undo_channel_comments
 from .direct_channels import seed_direct_channels, undo_direct_channels
 from .direct_messages import seed_direct_messages, undo_direct_messages
 from .memberships import seed_memberships, undo_memberships
+from .icons import seed_icons, undo_icons
+from .banners import seed_banners, undo_banners
 
 from app.models.db import db, environment, SCHEMA
 
@@ -22,6 +24,8 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        undo_icons()
+        undo_banners()
         undo_direct_messages()
         undo_direct_channels()
         undo_channel_comments()
@@ -36,12 +40,16 @@ def seed():
     seed_channel_comments()
     seed_direct_channels()
     seed_direct_messages()
+    seed_banners()
+    seed_icons()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_icons()
+    undo_banners()
     undo_direct_messages()
     undo_direct_channels()
     undo_channel_comments()
@@ -49,4 +57,6 @@ def undo():
     undo_memberships()
     undo_servers()
     undo_users()
+    undo_icons()
+    undo_banners()
     # Add other undo functions here
