@@ -92,7 +92,7 @@ export default function DiscoveryPage() {
 				<div className="main-top-container">
 					top section container
 					<div className="main-top-search-container">
-						{console.log(servers[categorySelector])}
+						{/* {console.log(servers[categorySelector])} */}
 						{categorySelector === "Other" && <div> other search bar </div>}
 						{categorySelector === "Gaming" && <div> Gaming search bar </div>}
 						{categorySelector === "Artists & Creators" && (
