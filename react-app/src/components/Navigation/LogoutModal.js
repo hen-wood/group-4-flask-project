@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Route, Redirect, useHistory } from "react-router-dom";
+import React from "react";
+import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 
 function LogoutModal(props) {
 	const dispatch = useDispatch();
-	const history = useHistory();
-	// const user = useSelector(state => state.session.user)
 
 	const { closeModal } = useModal();
 

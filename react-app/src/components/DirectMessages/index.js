@@ -37,7 +37,7 @@ export default function DirectMessages() {
 			dispatch(actionClearSingleUserDirectChannel);
 			setMessages({});
 		};
-	}, [directChannelId]);
+	}, [dispatch, directChannelId]);
 
 	useEffect(() => {
 		if (currChannel) {
@@ -50,7 +50,7 @@ export default function DirectMessages() {
 
 			setIsLoaded(true);
 		}
-	}, [currChannel]);
+	}, [user.id, currChannel]);
 
 	useEffect(() => {
 		socket = io();
@@ -85,7 +85,7 @@ export default function DirectMessages() {
 		return () => {
 			socket.disconnect();
 		};
-	}, []);
+	}, [directChannelId]);
 
 	const updateChatInput = e => {
 		setMessageInput(e.target.value);
