@@ -4,7 +4,6 @@ import {useDispatch} from "react-redux";
 import {createServerThunk} from "../../store/servers";
 import "./createServer.css";
 import {useModal} from "../../context/Modal";
-import discordLogo from '../../images/discord-logo.png';
 export default function CreateServer() {
 
     const dispatch = useDispatch();
