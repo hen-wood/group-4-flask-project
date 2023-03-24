@@ -32,7 +32,8 @@ class Server(db.Model):
 # db.relationship is called here in order to define this table as the "Parent" of the channels
 # table. So if this table is deleted then all channels in the server are deleted --chase
     server_channels = db.relationship("Channel",  cascade="all")
-
+    server_icon= db.relationship("Icon",  cascade="all")
+    server_banner= db.relationship("Icon",  cascade="all")
 
     server_mod = db.relationship('User', back_populates='user_servers')
     server_members = db.relationship('Membership', back_populates='server', cascade="all, delete")

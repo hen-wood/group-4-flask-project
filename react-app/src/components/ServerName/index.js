@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { deleteServerFromList, thunkGetUserServers } from "../../store/servers";
 import "./ServerName.css";
+import UploadIcon from "../UploadIcon";
 export default function ServerName() {
 	const server = useSelector(state => state.server);
 	const user = useSelector(state => state.session.user);
@@ -97,12 +98,14 @@ export default function ServerName() {
 			onClick={handleClickName}
 		>
 			<p id="server-options-title">{server.name}</p>
-			{isOpen ? (
+			{isOpen ? (<>
 				<i
 					className="fa-solid fa-xmark"
 					id="server-options-icon"
 					onClick={handleClickX}
-				></i>
+					></i>
+
+					</>
 			) : (
 				<i className="fa-solid fa-chevron-down" id="server-options-icon"></i>
 			)}
@@ -133,6 +136,7 @@ export default function ServerName() {
 								onChange={e => setName(e.target.value)}
 							/>
 						</form>
+						<UploadIcon serverId={serverId} />
 						<p
 							id="server-option"
 							className="red-option"

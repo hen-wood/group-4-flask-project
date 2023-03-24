@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import OpenModalButton from "../OpenModalButton";
-import LogoutModal from "../Navigation/LogoutModal";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";

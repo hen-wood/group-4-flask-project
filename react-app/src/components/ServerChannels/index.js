@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-	thunkGetServerChannels,
-	deleteChannelThunk
-} from "../../store/serverChannels";
+import {deleteChannelThunk} from "../../store/serverChannels";
 import { thunkGetServer } from "../../store/server";
-import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import EditChannelModal from "../ChannelEditModal";
 import CreateChannelModal from "../ChannelCreateModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +13,7 @@ export default function ServerChannels() {
 	const history = useHistory();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [channels, setChannels] = useState({});
-	const { serverId, channelId } = useParams();
+	const { serverId} = useParams();
 	const user = useSelector(state => state.session.user);
 	const server = useSelector(state => state.server);
 	const channelArr = useSelector(state => state.server.channels);
@@ -54,7 +50,6 @@ export default function ServerChannels() {
 		});
 	};
 
-	// const currUserId = useSelector(state => state.session.user.id);
 	return isLoaded ? (
 		<div>
 			<div className="server-channel-header">
