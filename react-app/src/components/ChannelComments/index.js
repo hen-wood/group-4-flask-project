@@ -10,10 +10,9 @@ import ServerMembers from "../ServerMembers";
 
 let socket;
 export default function ChannelComments() {
-	const { serverId, channelId } = useParams();
+	const { channelId } = useParams();
 	const currChannel = useSelector(state => state.channels.singleChannel);
 	const user = useSelector(state => state.session.user);
-	const currServer = useSelector(state => state.server);
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [comments, setComments] = useState({});
@@ -27,7 +26,7 @@ export default function ChannelComments() {
 			dispatch(actionClearChannel());
 			setComments({});
 		};
-	}, [channelId]);
+	}, [dispatch, channelId]);
 
 	useEffect(() => {
 		if (currChannel.channel_comments) {

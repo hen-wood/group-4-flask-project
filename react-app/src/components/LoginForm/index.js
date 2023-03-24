@@ -82,6 +82,7 @@ export default function LoginForm() {
 					<img
 						src="https://i.imgur.com/imhS9WK.png"
 						className="qr-code-actual"
+						alt="QR CODE"
 					/>
 
 					<h2>Repo link</h2>

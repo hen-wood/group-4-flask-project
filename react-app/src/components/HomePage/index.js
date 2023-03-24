@@ -11,11 +11,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
 import { useHistory } from "react-router";
-import ServerButton from "../ServerButton";
-import UpdateAServerName from "../UpdateAServerName";
 import LogoutButton from "../LogoutButton";
-
-import ServerMembers from "../ServerMembers";
 import ServerWelcome from "../ServerWelcome";
 
 export default function HomePage() {

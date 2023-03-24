@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import * as channelActions from "../../store/serverChannels";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useParams } from "react-router-dom";
 
 function CreateChannelModal(props) {
     const dispatch = useDispatch();

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 // import LoginFormModal from "../LoginFormModal";
 // import SignupFormModal from "../SignupFormModal";
@@ -8,14 +7,9 @@ import CreateServer from "../CreateServer";
 import "./ServerModal.css";
 
 function ServerModal() {
-	const dispatch = useDispatch();
 	const [showMenu, setShowMenu] = useState(false);
 	const ulRef = useRef();
 
-	const openMenu = () => {
-		if (showMenu) return;
-		setShowMenu(true);
-	};
 
 	useEffect(() => {
 		if (!showMenu) return;
@@ -31,7 +25,6 @@ function ServerModal() {
 		return () => document.removeEventListener("submit", closeMenu);
 	}, [showMenu]);
 
-	const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 	const closeMenu = () => setShowMenu(false);
 
 	return (
