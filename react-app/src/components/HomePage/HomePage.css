@@ -2,6 +2,7 @@
     height: 100vh;
     display: flex;
     background-color: #35393f;
+    position: relative;
 }
 /* Main Loading Screen */
 #main-loading-container{
@@ -35,16 +36,18 @@
 #left-container {
     background-color: #202225;
     display: flex;
+    z-index: 1;
 }
 
 /* Area with Buttons for DMs, Servers, Create/Join Server */
 #left-nav-bar {
+    position: relative;
     width: 65px;
     padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 #direct-message-button.serverListButton {
@@ -78,6 +81,10 @@
     display: flex;
     justify-content: center;
     padding: 10px 0;
+}
+
+#left-nav-bottom{
+    position: relative;
 }
 
 

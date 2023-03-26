@@ -37,7 +37,6 @@ export default function ServersList() {
 								className="serverListButton"
 								key={server.id}
 								to={`/channels/${server.id}`}
-								style={{ color: "#3b9758" }}
 								activeStyle={{ color: "white" }}
 							>
 								{server.name[0]}

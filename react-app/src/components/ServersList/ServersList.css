@@ -4,7 +4,7 @@
     border-radius: 25px;
     display:grid;
     background-color:#36393f;
-    color:#3b9758;
+    color:white;
 
     width: 5em;
     height: 5em;
@@ -14,7 +14,7 @@
     margin-bottom: .3em;
     font-size: 10px;
     font-weight: bold;
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: pointer;
 }
 
@@ -33,7 +33,7 @@
 
 .serverListButton:hover {
     border-radius: 15px;
-    background-color: #3b9758;
+    background-color: #5865f2;
     transition-property: border-radius, background-color;
     transition-duration: .5s;
 }

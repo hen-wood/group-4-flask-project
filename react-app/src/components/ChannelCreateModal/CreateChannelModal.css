@@ -1,0 +1,19 @@
+#modal-content{
+    background-color: #313338;
+    color: white;
+}
+
+.create-channel-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.create-channel-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.create-channel-buttons{
+    display: flex;
+    flex-direction: row-reverse;
+}
