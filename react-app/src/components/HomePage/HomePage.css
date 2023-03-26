@@ -36,7 +36,6 @@
 #left-container {
     background-color: #202225;
     display: flex;
-    z-index: 1;
 }
 
 /* Area with Buttons for DMs, Servers, Create/Join Server */
