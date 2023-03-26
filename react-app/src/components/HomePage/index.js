@@ -89,10 +89,6 @@ export default function HomePage() {
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />
 				</Route>
-				{/* <Route path="/channels/:serverId">
-				<ServerMembers />
-				</Route> */}
-
 				<Route path="/channels/:serverId/:channelId">
 					<ChannelComments />
 				</Route>

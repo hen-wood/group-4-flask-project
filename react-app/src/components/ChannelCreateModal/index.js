@@ -42,29 +42,41 @@ function CreateChannelModal(props) {
 
 	return (
 		<div className="create-channel-container">
-			<h1>Create Channel</h1>
 			<form className="create-channel-form" onSubmit={handleSubmit}>
-				<ul className="error-container">
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-				<label htmlFor="channel-name-input">Channel Name:</label>
-				<input
-					name="channel-name-input"
-					className="channel-name-input"
-					value={name}
-					onChange={e => setName(e.target.value)}
-					required
-				/>
-				<label htmlFor="channel-desc-input">Channel description:</label>
-				<input
-					name="channel-desc-input"
-					className="channel-desc-input"
-					value={description}
-					onChange={e => setDescription(e.target.value)}
-					required
-				/>
+				<div className="create-channel-inputs">
+					<h1 className="create-channel-title">Create Channel</h1>
+					{errors.length > 0 && (
+						<ul className="error-container">
+							{errors.map((error, idx) => (
+								<li key={idx}>{error}</li>
+							))}
+						</ul>
+					)}
+					<div className="channel-name-input-container">
+						<label className="channel-modal-label" htmlFor="channel-name-input">
+							CHANNEL NAME
+						</label>
+						<input
+							name="channel-name-input"
+							className="create-channel-input channel-name-input"
+							placeholder="new-channel"
+							value={name}
+							onChange={e => setName(e.target.value)}
+							required
+						/>
+						<p className="channel-name-hash">#</p>
+					</div>
+					<label className="channel-modal-label" htmlFor="channel-desc-input">
+						CHANNEL DESCRIPTION
+					</label>
+					<input
+						name="channel-desc-input"
+						className="create-channel-input"
+						value={description}
+						onChange={e => setDescription(e.target.value)}
+						required
+					/>
+				</div>
 				<div className="create-channel-buttons">
 					<button
 						disabled={name.length < 1 || description.length < 1}

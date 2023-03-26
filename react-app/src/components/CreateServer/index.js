@@ -1,110 +1,133 @@
 import React from "react";
-import {useState} from "react";
-import {useDispatch} from "react-redux";
-import {createServerThunk} from "../../store/servers";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createServerThunk } from "../../store/servers";
 import "./createServer.css";
-import {useModal} from "../../context/Modal";
+import { useModal } from "../../context/Modal";
 export default function CreateServer() {
+	const dispatch = useDispatch();
+	const user = useSelector(state => state.session.user);
+	const [serverName, setServerName] = useState(`${user.username}'s server`);
+	const [category, setCategory] = useState("Gaming");
+	const { closeModal } = useModal();
+	const handleSubmit = async e => {
+		e.preventDefault();
 
-    const dispatch = useDispatch();
-    const [serverName, setServerName] = useState();
-    const [category, setCategory] = useState('Gaming');
-    const {closeModal} = useModal();
-    const handleSubmit = async e => {
-        e.preventDefault();
+		const payload = {
+			name: serverName,
+			category
+		};
 
-        const payload = {
-            name: serverName,
-            category
-        };
+		dispatch(createServerThunk(payload));
+		setServerName("");
+		closeModal();
+	};
 
-        dispatch(createServerThunk(payload));
-        setServerName("");
-        closeModal();
-
-    };
-
-    return (
-        <div className="createServerContainer">
-			<div className="CreateServerHeader">Tell us more about your server</div>
-			<div className="CreateServerDescription">In order to help you with your setup, select one of the options below after creating your server name</div>
-            <form className="createForm"
-                onSubmit={handleSubmit}>
-                <div className="serverNameContainer">
-
-                    <input type="text" placeholder="Type Server Name Here" required
-                        value={serverName}
-                        onChange={
-                            e => setServerName(e.target.value)
-                        }/>
-                </div>
-                <div className="categoryContainer"
-                    onChange={
-                        e => setCategory(e.target.value)
-                }>
-                    <label htmlFor="Gaming">
-                        <div className="radioCategoryContainer">
-							<div></div>
-						<i class="fa-solid fa-gamepad fa-2xl"></i>
-
-                            <input type="radio" id="Gaming" value="Gaming" name="category"/>
-                            Gaming
-							<div></div>
-                        </div>
-                    </label>
-                    <label htmlFor="Entertainment">
-                        <div className="radioCategoryContainer">
-						<div></div>
-						<i class="fa-solid fa-tv fa-2xl"></i>
-                            <input type="radio"  id="Entertainment" value="Entertainment" name="category"/>
-                            Entertainment
-							<div></div>
-                        </div>
-                    </label>
-                    <label htmlFor="Artists & Creators">
-                        <div className="radioCategoryContainer">
-						<div></div>
-						<i class="fa-solid fa-palette fa-2xl"></i>
-
-                            <input type="radio" id="Artists & Creators" value="Artists & Creators" name="category"/>
-                            Artists & Creators
-							<div></div>
-                        </div>
-                    </label>
-                    <label htmlFor="Education">
-                        <div className="radioCategoryContainer">
-						<div></div>
-						<i class="fa-solid fa-school fa-2xl"></i>
-                            <input type="radio" id="Education" value="Education" name="category"/>
-                            Education
-							<div></div>
-                        </div>
-                    </label>
-					<label htmlFor="Science & Tech">
-                    <div className="radioCategoryContainer">
-					<div></div>
-					<i class="fa-solid fa-microchip fa-2xl"></i>
-
-                        <input type="radio" id="Science & Tech" value="Science & Tech" name="category"/>
-                        Science & Tech
-						<div></div>
-                    </div>
+	return (
+		<div className="createServerContainer">
+			<i
+				className="fa-solid fa-xmark close-modal-button"
+				onClick={closeModal}
+			></i>
+			<div className="create-server-text-div">
+				<h1 className="CreateServerHeader">Customize your server</h1>
+				<p className="CreateServerDescription">
+					In order to help you with your setup, select one of the options below
+					after creating your server name
+				</p>
+			</div>
+			<form className="createForm" onSubmit={handleSubmit}>
+				<div className="server-name-input-div">
+					<label
+						className="server-name-input-label"
+						htmlFor="server-name-input"
+					>
+						SERVER NAME
 					</label>
-					<label htmlFor="Other">
-                    <div className="radioCategoryContainer">
-					<div></div>
-					<i class="fa-solid fa-tv fa-2xl"></i>
-                        <input type="radio" id="Other" value="Other" name="category"/>
-                        Other
-                    </div>
-					<div></div>
-					</label>
-				<div className="createServerSubmitContainer">
-
-                <input className="createServerSubmitButton" type="submit" value="Create Server"></input>
-                </div>
+					<input
+						className="server-name-input"
+						name="server-name-input"
+						type="text"
+						placeholder={serverName}
+						required
+						value={serverName}
+						onChange={e => setServerName(e.target.value)}
+					/>
 				</div>
-            </form>
-        </div>
-    );
+				<div className="categoryContainer">
+					<div
+						className={
+							category === "Gaming"
+								? "category-choice category-selected"
+								: "category-choice"
+						}
+						onClick={() => setCategory("Gaming")}
+					>
+						<i className="fa-solid fa-gamepad"></i>
+						<p className="category-title">Gaming</p>
+					</div>
+					<div
+						className={
+							category === "Entertainment"
+								? "category-choice category-selected"
+								: "category-choice"
+						}
+						onClick={() => setCategory("Entertainment")}
+					>
+						<i className="fa-solid fa-tv"></i>
+						<p className="category-title">Entertainment</p>
+					</div>
+					<div
+						className={
+							category === "Artists & Creators"
+								? "category-choice category-selected"
+								: "category-choice"
+						}
+						onClick={() => setCategory("Artists & Creators")}
+					>
+						<i className="fa-solid fa-palette"></i>
+						<p className="category-title">Artists & Creators</p>
+					</div>
+					<div
+						className={
+							category === "Education"
+								? "category-choice category-selected"
+								: "category-choice"
+						}
+						onClick={() => setCategory("Education")}
+					>
+						<i className="fa-solid fa-school"></i>
+						<p className="category-title">Education</p>
+					</div>
+					<div
+						className={
+							category === "Science & Tech"
+								? "category-choice category-selected"
+								: "category-choice"
+						}
+						onClick={() => setCategory("Science & Tech")}
+					>
+						<i className="fa-solid fa-microchip"></i>
+						<p className="category-title">Science & Tech</p>
+					</div>
+					<div
+						className={
+							category === "Other"
+								? "category-choice category-selected"
+								: "category-choice"
+						}
+						onClick={() => setCategory("Other")}
+					>
+						<i className="fa-solid fa-question"></i>
+						<p className="category-title">Other</p>
+					</div>
+				</div>
+				<div className="create-server-bottom">
+					<button className="create-server-button" type="submit">
+						Create
+					</button>
+				</div>
+			</form>
+		</div>
+	);
 }

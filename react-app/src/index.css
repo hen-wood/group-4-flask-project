@@ -52,9 +52,22 @@ button.btn-openmodal:hover {
 
 #modal-content {
     width: 500px;
-    border-radius: 15px;
-    overflow: hidden;
-    padding: 25px;
+    border-radius: 8px;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+#modal-content::-webkit-scrollbar {
+    width: 8px;
+    background-color: #4f5053;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+#modal-content::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: #c1c1c4;
+    border-radius: 4px;
 }
 
 #modal-content .title {
