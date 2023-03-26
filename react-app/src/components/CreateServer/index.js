@@ -8,6 +8,7 @@ export default function CreateServer() {
 	const dispatch = useDispatch();
 	const user = useSelector(state => state.session.user);
 	const [serverName, setServerName] = useState(`${user.username}'s server`);
+	const [iconUrl, setIconUrl] = useState("");
 	const [category, setCategory] = useState("Gaming");
 	const { closeModal } = useModal();
 	const handleSubmit = async e => {
@@ -15,7 +16,8 @@ export default function CreateServer() {
 
 		const payload = {
 			name: serverName,
-			category
+			category,
+			icon: iconUrl
 		};
 
 		dispatch(createServerThunk(payload));
@@ -52,6 +54,18 @@ export default function CreateServer() {
 						required
 						value={serverName}
 						onChange={e => setServerName(e.target.value)}
+					/>
+
+					<label className="server-name-input-label" htmlFor="icon-url-input">
+						SERVER ICON
+					</label>
+					<input
+						className="server-name-input"
+						name="icon-url-input"
+						type="text"
+						placeholder="(optional) URL for your server's icon"
+						value={iconUrl}
+						onChange={e => setIconUrl(e.target.value)}
 					/>
 				</div>
 				<div className="categoryContainer">

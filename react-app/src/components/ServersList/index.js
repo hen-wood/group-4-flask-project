@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { thunkGetUserServers } from "../../store/servers";
 import ServerButton from "../ServerButton";
 import "./ServersList.css";
 export default function ServersList() {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	let servers = [];
 	const serversObj = useSelector(state => {
@@ -27,21 +28,22 @@ export default function ServersList() {
 		return <div>no servers</div>;
 	}
 
+	const handleServerClick = id => {
+		history.push(`/channels/${id}`);
+	};
+
 	return (
 		servers && (
 			<div className="serverListContainer">
 				{servers.map((server, i) =>
 					server ? (
-						<div key={i}>
-							<NavLink
-								className="serverListButton"
-								key={server.id}
-								to={`/channels/${server.id}`}
-								activeStyle={{ color: "white" }}
-							>
-								{server.name[0]}
-							</NavLink>
-						</div>
+						<img
+							key={i}
+							className="server-nav-icon"
+							src={server.icon}
+							alt={server.name}
+							onClick={() => handleServerClick(server.id)}
+						/>
 					) : (
 						<div id="loading">...</div>
 					)

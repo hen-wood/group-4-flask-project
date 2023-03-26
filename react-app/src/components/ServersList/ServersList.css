@@ -43,3 +43,23 @@
     flex-direction: column;
     align-items: center;
 }
+
+.server-nav-button{
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.server-nav-icon{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.server-nav-icon:hover{
+    border-radius: 15px;
+    transition-property: border-radius, background-color;
+    transition-duration: .5s;
+}
