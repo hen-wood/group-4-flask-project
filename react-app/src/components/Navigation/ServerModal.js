@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import OpenModalButton from "../OpenModalButton";
-// import LoginFormModal from "../LoginFormModal";
-// import SignupFormModal from "../SignupFormModal";
 import JoinAServer from "../JoinAServer";
 import CreateServer from "../CreateServer";
 import "./ServerModal.css";

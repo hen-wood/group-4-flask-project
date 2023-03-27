@@ -58,6 +58,15 @@
     cursor: pointer;
 }
 
+.no-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5865f2;
+    color: white;
+    font-weight: bold;
+}
+
 .server-nav-icon:hover{
     border-radius: 15px;
     transition-property: border-radius, background-color;

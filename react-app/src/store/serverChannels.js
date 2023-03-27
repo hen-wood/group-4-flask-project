@@ -110,7 +110,6 @@ export default function reducer(state = initialState, action) {
 			newState = { ...state };
 			newState.singleChannel = {};
 			return newState;
-			return;
 		case CREATE_CHANNEL:
 			return {
 				...state,

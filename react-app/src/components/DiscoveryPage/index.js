@@ -1,9 +1,8 @@
-// import "./HomePage.css";
-import DiscordanceLogo from "../Svgs/DiscordanceLogo";
+import discordanceLogo from "../Svgs/discordanceLogo.svg";
 import ServersList from "../ServersList";
 import "./DiscoveryPage.css";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { thunkGetUserDirectChannels } from "../../store/directChannels";
 import { thunkGetAllServers } from "../../store/discover";
 import { useHistory } from "react-router";
@@ -15,7 +14,7 @@ export default function DiscoveryPage() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const dispatch = useDispatch();
 	const [categorySelector, setCategorySelector] = useState("other");
-	const servers = useSelector(state => state.discover);
+	// const servers = useSelector(state => state.discover);
 	useEffect(() => {
 		dispatch(thunkGetUserDirectChannels()).then(() =>
 			dispatch(thunkGetAllServers()).then(() => setIsLoaded(true))
@@ -32,11 +31,15 @@ export default function DiscoveryPage() {
 				<div id="left-nav-bar">
 					<div id="left-nav-top">
 						<div
-							className="serverListButton"
 							id="direct-message-button"
 							onClick={handleDirectMessageIconClick}
+							title="Direct Messages"
 						>
-							<DiscordanceLogo />
+							<img
+								className="dm-logo"
+								src={discordanceLogo}
+								alt="discordance logo"
+							/>
 						</div>
 					</div>
 					<div id="left-nav-center">

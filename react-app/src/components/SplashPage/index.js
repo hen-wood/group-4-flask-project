@@ -1,5 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
-import DiscordanceLogo from "../Svgs/DiscordanceLogo";
+import { useHistory } from "react-router-dom";
 import "./SplashPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { demo1Login, demo2Login } from "../../store/session";
@@ -97,6 +96,7 @@ export default function SplashPage() {
 						className="git-links__anchor"
 						href="https://github.com/hen-wood/group-4-flask-project"
 						target={"_blank"}
+						rel="noreferrer"
 					>
 						repo
 					</a>{" "}
@@ -107,11 +107,13 @@ export default function SplashPage() {
 						<img
 							className="git-links__card__image"
 							src="https://avatars.githubusercontent.com/u/110135851?v=4"
+							alt="Ardian Kovanxhi"
 						/>
 						<a
 							className="git-links__anchor"
 							href="https://github.com/Ardian-Kovanxhi"
 							target={"_blank"}
+							rel="noreferrer"
 						>
 							Ardian
 						</a>
@@ -120,11 +122,13 @@ export default function SplashPage() {
 						<img
 							className="git-links__card__image"
 							src="https://avatars.githubusercontent.com/u/110782272?v=4"
+							alt="Chase Donahue"
 						/>
 						<a
 							className="git-links__anchor"
 							href="https://github.com/anti-epic"
 							target={"_blank"}
+							rel="noreferrer"
 						>
 							Chase
 						</a>
@@ -133,11 +137,13 @@ export default function SplashPage() {
 						<img
 							className="git-links__card__image"
 							src="https://avatars.githubusercontent.com/u/82678150?v=4"
+							alt="Enkhzayaqt Munkhochir"
 						/>
 						<a
 							className="git-links__anchor"
 							href="https://github.com/enkhzayaqt"
 							target={"_blank"}
+							rel="noreferrer"
 						>
 							Emma
 						</a>
@@ -146,11 +152,13 @@ export default function SplashPage() {
 						<img
 							className="git-links__card__image"
 							src="https://avatars.githubusercontent.com/u/104668677?v=4"
+							alt="Henry Woodmansee"
 						/>
 						<a
 							className="git-links__anchor"
 							href="https://github.com/hen-wood"
 							target={"_blank"}
+							rel="noreferrer"
 						>
 							Henry
 						</a>

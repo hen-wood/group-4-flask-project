@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { deleteServerFromList, thunkGetUserServers } from "../../store/servers";
 import "./ServerName.css";
-import UploadIcon from "../UploadIcon";
 export default function ServerName() {
 	const server = useSelector(state => state.server);
 	const user = useSelector(state => state.session.user);

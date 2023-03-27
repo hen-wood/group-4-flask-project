@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkGetUserServers } from "../../store/servers";
@@ -36,16 +36,24 @@ export default function ServersList() {
 		servers && (
 			<div className="serverListContainer">
 				{servers.map((server, i) =>
-					server ? (
+					server.icon ? (
 						<img
 							key={i}
 							className="server-nav-icon"
 							src={server.icon}
 							alt={server.name}
 							onClick={() => handleServerClick(server.id)}
+							title={server.name}
 						/>
 					) : (
-						<div id="loading">...</div>
+						<div
+							key={i}
+							className="server-nav-icon no-icon"
+							onClick={() => handleServerClick(server.id)}
+							title={server.name}
+						>
+							<p>{server.name[0].toUpperCase()}</p>
+						</div>
 					)
 				)}
 				<ServerButton />
