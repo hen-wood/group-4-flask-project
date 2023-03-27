@@ -13,7 +13,6 @@ export default function Server() {
 
 	if (serverObj) {
 		server = Object.values(serverObj);
-		console.log(serverObj, 'asdsadadasdasdasdsadads')
 	}
 
 	useEffect(() => {
