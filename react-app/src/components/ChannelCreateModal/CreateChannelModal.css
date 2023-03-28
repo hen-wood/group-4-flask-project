@@ -1,0 +1,73 @@
+#modal-content{
+    background-color: #313338;
+    color: white;
+    padding: 1px;
+}
+
+.create-channel-title{
+    margin-top: 0;
+    font-size: 20px;
+    color: #d5d9dc;
+}
+
+.create-channel-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.create-channel-form{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.create-channel-inputs{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+.create-channel-buttons{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row-reverse;
+    background-color: #2b2d31;
+    width: 100%;
+    padding: 15px;
+}
+
+.create-channel-input{
+    background-color: #1e1f22;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    padding: 15px;
+    box-sizing: border-box;
+    color: #d5d9dc;
+}
+
+.channel-name-input-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-name-hash{
+    position: absolute;
+    top: 19px;
+    left: 12px;
+    font-weight: bold;
+}
+
+.channel-name-input{
+    padding-left: 25px;
+    position: relative;
+}
+
+.channel-modal-label{
+    font-weight: bold;
+    font-size: 12px;
+    color: #d5d9dc;
+    margin: 5px 0;
+}

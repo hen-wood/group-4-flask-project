@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 export default function ServerMembers() {
-	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const [members, setMembers] = useState({});

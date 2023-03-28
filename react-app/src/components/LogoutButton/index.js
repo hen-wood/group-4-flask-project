@@ -31,13 +31,15 @@ function LogoutButton() {
 
 	return (
 		<div ref={containerRef} id="logout-button-container">
-			<div className="serverListButton">
-				<button onClick={() => setIsOpen(!isOpen)}>
+			<div className="serverListButton" onClick={() => setIsOpen(!isOpen)}>
+				<button>
 					<i className="fa-solid fa-right-from-bracket ServerButtonPlus logout-button-style"></i>
 				</button>
 			</div>
 			<div className={isOpen ? "logout-popout" : "logout-popout-hidden"}>
-				<p onClick={handleLogOut}>Log out?</p>
+				<button className="popout-button-blue" onClick={handleLogOut}>
+					Log out?
+				</button>
 			</div>
 		</div>
 	);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {deleteChannelThunk} from "../../store/serverChannels";
+import { deleteChannelThunk } from "../../store/serverChannels";
 import { thunkGetServer } from "../../store/server";
 import EditChannelModal from "../ChannelEditModal";
 import CreateChannelModal from "../ChannelCreateModal";
@@ -13,7 +13,7 @@ export default function ServerChannels() {
 	const history = useHistory();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [channels, setChannels] = useState({});
-	const { serverId} = useParams();
+	const { serverId } = useParams();
 	const user = useSelector(state => state.session.user);
 	const server = useSelector(state => state.server);
 	const channelArr = useSelector(state => state.server.channels);
@@ -54,7 +54,7 @@ export default function ServerChannels() {
 		<div>
 			<div className="server-channel-header">
 				<p id="direct-message-title">Text Channels</p>
-				{user?.id == server.mod_id && (
+				{user?.id === server.mod_id && (
 					<div className="channel-custom-action-button-container">
 						<OpenModalButton
 							buttonText={<i className="fa-solid fa-plus"></i>}
@@ -80,7 +80,7 @@ export default function ServerChannels() {
 							<span className="sidebarChannel_hash">#</span>
 							{channel.name}
 						</NavLink>
-						{user?.id == server.mod_id && (
+						{user?.id === server.mod_id && (
 							<>
 								<div className="channel-custom-action-button-container">
 									<OpenModalButton
@@ -108,6 +108,11 @@ export default function ServerChannels() {
 			})}
 		</div>
 	) : (
-		<>Loading</>
+		<div>
+			<div className="server-channel-header"></div>
+			<div className="server-channel-list">
+				<h1 className="loading-text">Loading</h1>
+			</div>
+		</div>
 	);
 }

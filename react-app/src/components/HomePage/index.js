@@ -1,7 +1,7 @@
 import DirectChannels from "../DirectChannels";
 import { Switch, Route } from "react-router";
 import "./HomePage.css";
-import DiscordanceLogo from "../Svgs/DiscordanceLogo";
+import discordanceLogo from "../Svgs/discordanceLogo.svg";
 import DirectMessages from "../DirectMessages";
 import ChannelComments from "../ChannelComments";
 import ServersList from "../ServersList";
@@ -34,11 +34,15 @@ export default function HomePage() {
 				<div id="left-nav-bar">
 					<div id="left-nav-top">
 						<div
-							className="serverListButton"
 							id="direct-message-button"
 							onClick={handleDirectMessageIconClick}
+							title="Direct Messages"
 						>
-							<DiscordanceLogo />
+							<img
+								className="dm-logo"
+								src={discordanceLogo}
+								alt="discordance logo"
+							/>
 						</div>
 					</div>
 					<div id="left-nav-center">
@@ -89,10 +93,6 @@ export default function HomePage() {
 				<Route path="/channels/@me/:directChannelId">
 					<DirectMessages />
 				</Route>
-				{/* <Route path="/channels/:serverId">
-				<ServerMembers />
-				</Route> */}
-
 				<Route path="/channels/:serverId/:channelId">
 					<ChannelComments />
 				</Route>

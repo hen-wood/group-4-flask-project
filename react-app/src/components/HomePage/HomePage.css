@@ -2,6 +2,7 @@
     height: 100vh;
     display: flex;
     background-color: #35393f;
+    position: relative;
 }
 /* Main Loading Screen */
 #main-loading-container{
@@ -16,6 +17,12 @@
 #main-loading-text{
     color: #babcc4;
     animation: fade 2s infinite;
+}
+
+.loading-text{
+    color: #babcc4;
+    animation: fade 2s infinite;
+    font-size: 20px;
 }
 
 @keyframes fade {
@@ -39,21 +46,30 @@
 
 /* Area with Buttons for DMs, Servers, Create/Join Server */
 #left-nav-bar {
+    position: relative;
     width: 65px;
     padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;
+    overflow: auto;
 }
 
-#direct-message-button.serverListButton {
+#direct-message-button{
    background-color: #2469ff;
+   height: 50px;
+   width: 50px;
+   border-radius: 50%;
 }
+
 #direct-message-button:hover{
     cursor: pointer;
 }
 
+.dm-logo{
+    height: 50px;
+    width: 50px;
+}
 
 
 #left-nav-center {
@@ -78,6 +94,10 @@
     display: flex;
     justify-content: center;
     padding: 10px 0;
+}
+
+#left-nav-bottom{
+    position: relative;
 }
 
 

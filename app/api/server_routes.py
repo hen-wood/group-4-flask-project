@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, User, Membership, Server, Channel,DirectChannel, ChannelComment, DirectMessage
+from app.models import db, User, Membership, Server, Channel,DirectChannel, ChannelComment, DirectMessage, Icon
 from sqlalchemy import or_, and_
 
 
@@ -52,6 +52,13 @@ def add_server():
     )
     db.session.add(server)
     db.session.commit()
+
+    server_icon = Icon(
+        server_id = server.id,
+        icon = req_data['icon']
+    )
+    db.session.add(server_icon)
+
     membership = Membership(
         server_id = server.id,
         user_id = current_user.id
@@ -63,7 +70,7 @@ def add_server():
     db.session.add(membership)
     db.session.add(general_channel)
     db.session.commit()
-    db.session.commit()
+
     return server.to_dict_single_server()
 
 

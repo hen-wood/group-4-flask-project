@@ -17,7 +17,7 @@ export default function UpdateAServerName() {
 		return null;
 	}
 
-	if (userId != serverObj.mod_id) {
+	if (userId !== serverObj.mod_id) {
 		return null;
 	}
 

@@ -1,95 +1,82 @@
-.joinServerContainer{
-    background-color: '#ffffff';
-    width:20em;
-    height: 15em;
-    display: grid;
-    justify-content: center;
-margin-left: 5em;
-
+.join-server-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
 }
 
-
-.joinAServerHeader{
-    display: grid;
-    font-size: 18px;
-    justify-content: center;
-    font-weight: bolder;
-
-}
-.joinAServerLinkExample{
-    font-size: 8px;
-    text-align: left;
-
-    margin-top: 0px;
-    padding: 0px;
+.join-server-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.joinAServerDescription{
-    font-size: 10px;
-    text-align: left;
-
+.join-server-title{
+    color: black;
+    font-size: 22px;;
 }
 
+.join-server-info{
+    font-size: 14px;
+    color: #5d5d5e;
+    margin: 0;
+}
 
-.joinAServerInformation{
+.code-input-label, .code-example-title{
+    color: #4d5058;
     font-size: 12px;
-    margin-top: -1em;
-    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
 }
 
-
-
-/*
-
-.joinServerErrorMessage{
-    color:red;
-    text-align: center;
-    margin-top: 0em;
-} */
-
-.joinAServerSubmitButton{
-    display: grid;
-    border: 0px;
-    font-size: 10px;
-    width:7em;
-    height:3em;
-    margin-left:24em;
-    margin-top: 2em;
-    color: white;
-    background-color:#5e67ed;
-    cursor: pointer;
-}
-.joinAServerSubmitButton:hover{
-background-color: #4248a6;
-transition-property: background-color;
-transition-duration: .5s;
+.code-input{
+    border: none;
+    outline: none;
+    height: 40px;
+    border-radius: 5px;
+    padding: 0 10px;
+    background-color: #e3e5e8;
+    color: #4f5053;
 }
 
-
-.joinASeverSubmitButtonContainer{
-    display: grid;
-    background-color: #eeeff1;
-    margin-top: -11.3em;
-    height: 12em;
+.req-asterisk{
+    color: red;
 }
 
-
-.joinAServerInviteLinkText{
-    font-size: 12px;
+.code-input-div{
+    display: flex;
+    flex-direction: column;
 }
 
-
-.astrik{
-    display: inline;
-    color:red;
-}
 .errors-actual {
     color: #ef7378;
     font-weight: 200;
 }
 
-/* .joinAServerDontHaveAInvite{
-    display: grid;
-    border:1px solid black;
-    grid-template-columns: 1fr 1fr 1fr;
-} */
+.join-server-button{
+    border: none;
+    background-color: #5865f2;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+    padding: 0 25px;
+    cursor: pointer;
+}
+.code-example{
+    color: #5d5d5e;
+    margin: 0;
+    font-size: 14px;
+}
+
+.close-modal-button{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #c1c1c4;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.close-modal-button:hover{
+    color: black;
+}

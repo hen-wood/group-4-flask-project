@@ -32,7 +32,7 @@ class Server(db.Model):
 # db.relationship is called here in order to define this table as the "Parent" of the channels
 # table. So if this table is deleted then all channels in the server are deleted --chase
     server_channels = db.relationship("Channel",  cascade="all")
-    server_icon= db.relationship("Icon",  cascade="all")
+    server_icon = db.relationship("Icon",  cascade="all")
     server_banner= db.relationship("Icon",  cascade="all")
 
     server_mod = db.relationship('User', back_populates='user_servers')
@@ -49,7 +49,8 @@ class Server(db.Model):
             'id': self.id,
             'name': self.name,
             'code': self.code,
-            'mod_id': self.mod_id
+            'mod_id': self.mod_id,
+            'icon': self.server_icon[0].icon
         }
 
 
@@ -62,7 +63,8 @@ class Server(db.Model):
             'server_mod': self.server_mod.to_dict(),
             'category': str(self.category) ,
             'server_members': [member.user.to_dict() for member in self.server_members],
-            'channels': [channel.to_dict() for channel in self.server_channels]
+            'channels': [channel.to_dict() for channel in self.server_channels],
+            'icon': self.server_icon[0].icon
         }
 
 
@@ -74,5 +76,6 @@ class Server(db.Model):
             'category': str(self.category) ,
             'mod_id': self.mod_id,
             'server_mod': self.server_mod.to_dict(),
+            'icon': self.server_icon.to_dict()
             # 'members': [{'id':member.user.username, 'username':member.user.username, 'email':member.user.email} for member in self.server_members]
         }
