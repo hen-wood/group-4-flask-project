@@ -107,6 +107,7 @@ def seed_channels():
     demo_channel51 = Channel(name='Running Group',  server_id=4 )
     demo_channel52 = Channel(name='Challenges',  server_id=4 )
     demo_channel53 = Channel(name='Accountability Buddies', description='a channel for finding and connecting with accountability buddies to stay on track with fitness goals', server_id=4 )
+    demo_channel54 = Channel(name='Off Topic', server_id=4 )
     db.session.add(demo_channel45)
     db.session.add(demo_channel46)
     db.session.add(demo_channel47)
@@ -116,6 +117,7 @@ def seed_channels():
     db.session.add(demo_channel51)
     db.session.add(demo_channel52)
     db.session.add(demo_channel53)
+    db.session.add(demo_channel54)
     db.session.commit()
 
 
