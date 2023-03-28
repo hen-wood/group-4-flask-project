@@ -30,7 +30,14 @@ def seed_memberships():
         server_id = 1,
         user_id = 6
     )
-
+    demo_membership8 = Membership(
+        server_id = 3,
+        user_id = 1
+    )
+    demo_membership9 = Membership(
+        server_id = 4,
+        user_id = 1
+    )
 
     db.session.add(demo_membership1)
     db.session.add(demo_membership2)
@@ -39,6 +46,8 @@ def seed_memberships():
     db.session.add(demo_membership5)
     db.session.add(demo_membership6)
     db.session.add(demo_membership7)
+    db.session.add(demo_membership8)
+    db.session.add(demo_membership9)
     db.session.commit()
 
 

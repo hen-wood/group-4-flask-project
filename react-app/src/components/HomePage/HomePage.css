@@ -1,6 +1,7 @@
 #main-container {
     height: 100vh;
     display: flex;
+    /* overflow: scroll; */
     background-color: #35393f;
     position: relative;
 }
@@ -125,8 +126,22 @@
     display: flex;
     flex-direction: column;
     margin: 5px;
-    ;
+    overflow-y: auto;
 }
+
+#left-menu-center::-webkit-scrollbar {
+    width: 8px;
+    background-color: #2e3338;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+#left-menu-center::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: #202225;
+    border-radius: 4px;
+}
+
 
 #direct-message-title {
     padding: 10px;
