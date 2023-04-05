@@ -104,7 +104,7 @@ def upgrade():
 
     op.create_table('icons_table',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('icon', sa.String(length=100), nullable=False),
+    sa.Column('icon', sa.String(length=255), nullable=False),
     sa.Column('server_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),

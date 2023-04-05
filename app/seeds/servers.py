@@ -26,7 +26,7 @@ def seed_servers():
     )
     demo2_icon = Icon(
         server_id = demo_server2.id,
-        icon = 'https://www.shutterstock.com/image-photo/hand-smartphone-records-live-music-260nw-529874515.jpg'
+        icon = 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?cs=srgb&dl=pexels-sebastian-ervi-1763075.jpg&fm=jpg'
     )
     demo3_icon = Icon(
         server_id = demo_server3.id,
