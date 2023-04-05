@@ -126,7 +126,7 @@ export default function DiscoveryPage() {
 	) : (
 		<div id="main-container">
 			<div id="main-loading-container">
-				<h1 id="main-loading-text">Loading...</h1>
+				<h1 id="main-loading-text">Loading....</h1>
 			</div>
 		</div>
 	);

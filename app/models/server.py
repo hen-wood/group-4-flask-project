@@ -76,6 +76,7 @@ class Server(db.Model):
             'category': str(self.category) ,
             'mod_id': self.mod_id,
             'server_mod': self.server_mod.to_dict(),
-            'icon': self.server_icon.to_dict()
+            # 'icon': self.server_icon.to_dict()
+            'icon': [icon.to_dict() for icon in self.server_icon]
             # 'members': [{'id':member.user.username, 'username':member.user.username, 'email':member.user.email} for member in self.server_members]
         }
